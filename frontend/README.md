@@ -1,4 +1,4 @@
-# climate_ark_frontend
+# Climate Ark App Frontend
 
 A new Flutter project.
 
