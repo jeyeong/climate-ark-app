@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.climate_ark_frontend">
+    package="com.example.frontend">
    <application
-        android:label="climate_ark_frontend"
+        android:label="frontend"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

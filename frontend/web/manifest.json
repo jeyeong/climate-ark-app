@@ -1,6 +1,6 @@
 {
-    "name": "climate_ark_frontend",
-    "short_name": "climate_ark_frontend",
+    "name": "frontend",
+    "short_name": "frontend",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
