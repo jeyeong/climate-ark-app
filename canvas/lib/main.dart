@@ -37,15 +37,45 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: const Color(0xFF09BC8A),
       ),
       body: Center(
-        child: Container(
-          margin: const EdgeInsets.all(16.0),
-          decoration: BoxDecoration(
-            border: Border.all(
-              width: 1.0,
-              color: const Color(0xFF000000),
+        child: Column(children: [
+          Container(
+            margin: const EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+              border: Border.all(
+                width: 1.0,
+                color: const Color(0xFF000000),
+              ),
             ),
           ),
-        ),
+          Card(
+            margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+            child: ListTile(
+              leading: Icon(
+                Icons.bolt,
+                color: Colors.teal,
+              ),
+              title: Text('Streak Days 4',
+                  style: TextStyle(
+                    color: Colors.teal.shade900,
+                    fontSize: 20.0,
+                  )),
+            ),
+          ),
+          Card(
+            margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+            child: ListTile(
+              leading: Icon(
+                Icons.emoji_people,
+                color: Colors.teal,
+              ),
+              title: Text('Activities Completed 8',
+                  style: TextStyle(
+                    color: Colors.teal.shade900,
+                    fontSize: 20.0,
+                  )),
+            ),
+          ),
+        ]),
       ),
     );
   }
