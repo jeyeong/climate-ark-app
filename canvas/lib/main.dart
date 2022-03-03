@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:canvas/views/login_page/login_page.dart';
+import 'package:canvas/views/login_page.dart';
 import 'package:canvas/constants.dart';
 
 void main() {
@@ -17,10 +17,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: primaryColor,
       ),
-      home: Scaffold(
-        body: Container(
-          child: const LoginPage(),
-        ),
+      home: const Scaffold(
+        body: LoginPage(),
       ),
     );
   }
