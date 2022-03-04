@@ -9,9 +9,10 @@ class InputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 8.0),
       width: double.infinity,
       decoration: BoxDecoration(
-          color: primaryLightColor, borderRadius: BorderRadius.circular(29)),
+          color: primaryLightestColor, borderRadius: BorderRadius.circular(29)),
       child: TextField(
         decoration: InputDecoration(
           hintText: title,

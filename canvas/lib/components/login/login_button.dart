@@ -3,7 +3,7 @@ import 'package:canvas/constants.dart';
 
 class LoginButton extends StatelessWidget {
   final ButtonStyle buttonStyle = TextButton.styleFrom(
-    backgroundColor: primaryColor,
+    backgroundColor: darkGreen,
     padding: const EdgeInsets.symmetric(vertical: 22.5, horizontal: 40),
   );
 
@@ -12,16 +12,19 @@ class LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: double.infinity,
-        child: ClipRRect(
-            borderRadius: BorderRadius.circular(29),
-            child: TextButton(
-              style: buttonStyle,
-              onPressed: () {},
-              child: const Text(
-                'LOGIN',
-                style: TextStyle(color: Colors.white),
-              ),
-            )));
+      width: double.infinity,
+      margin: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(29),
+        child: TextButton(
+          style: buttonStyle,
+          onPressed: () {},
+          child: const Text(
+            'LOGIN',
+            style: TextStyle(color: primaryWhite),
+          ),
+        ),
+      ),
+    );
   }
 }
