@@ -52,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
               // check out expanded!!!
               Expanded(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget> [
                     const Text("Total Carbon \nfootprint offsetted",
                     style: TextStyle(
@@ -81,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Expanded(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     const Text("Average human\nfootprint",
                     style: TextStyle(
