@@ -1,62 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart' show timeDilation;
 
-void main() {
-  runApp(
-    MyApp()
-  );
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.teal,
         body: Center(
-          child: Column(
-            children: <Widget>[
-            Card(
-              margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-              color: Colors.white,
-              child: Padding(
-                padding: EdgeInsets.all(15.0),
-                child: ListTile(leading: Icon(
-                    Icons.laptop,
-                    color: Colors.teal,
-                    ),
-                    title: 
-                    Text('Change laptop settings',
-                    style: TextStyle(
-                      color: Colors.teal.shade900,
-                      fontSize: 15.0),
-                      ),
-                      ),
-              ),
-            ),
-            Card(
-              margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-              color: Colors.white,
-              child: Padding(
-                padding: EdgeInsets.all(15.0),
-                child: ListTile(leading: Icon(
-                      Icons.phone,
-                      color: Colors.teal,
-                      ),
-                      title: 
-                      Text('shobs@gmail.com',
-                      style: TextStyle(
-                        color: Colors.teal.shade900,
-                        fontSize: 15.0),
-                        ),
-                        ),
-              ),
-            )],
+          child: Padding(
+            padding: EdgeInsets.all(15.0),
+              child: MyStatefulWidget()
           ),
         ),
       ),
-      );
+    );
   }
 }
 
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({Key? key}) : super(key: key);
+
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  bool isChecked = false;
+  @override
+  Widget build(BuildContext context) {
+
+    return CheckboxListTile(
+      title: const Text('Change Laptop Settings'),
+      subtitle: const Text('Ensuring that your computers and monitors are turned off'),
+      tileColor: Colors.greenAccent,
+      checkColor: Colors.white,
+      activeColor: Colors.lightGreen[900],
+      value: isChecked,
+      onChanged: (bool? value) {
+        setState(() {
+          isChecked = value!;
+        });
+      },
+      secondary: const Icon(Icons.laptop),
+    );
+  }
+}
 
