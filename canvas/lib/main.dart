@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:canvas/constants.dart';
 
+// Constants usage: TextStyle(color: primaryWhite)
+
 void main() {
   runApp(const MyApp());
 }
