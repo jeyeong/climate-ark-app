@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:canvas/constants.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 
 void main() => runApp(const MyApp());
@@ -11,12 +12,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.white,
         body: Center(
           child: Padding(
             padding: EdgeInsets.all(15.0),
-              child: MyStatefulWidget()
+              child: MyStatefulWidget(),
           ),
+          child: MyStatefulWidget(), 
         ),
       ),
     );
