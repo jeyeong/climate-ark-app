@@ -12,13 +12,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color(0xFFFAFAFA),
         body: Center(
           child: Padding(
             padding: EdgeInsets.all(15.0),
               child: MyStatefulWidget(),
           ),
-          child: MyStatefulWidget(), 
         ),
       ),
     );
@@ -37,19 +36,28 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   Widget build(BuildContext context) {
 
-    return CheckboxListTile(
-      title: const Text('Change Laptop Settings'),
-      subtitle: const Text('Ensuring that your computers and monitors are turned off'),
-      tileColor: Colors.greenAccent,
-      checkColor: Colors.white,
-      activeColor: Colors.lightGreen[900],
-      value: isChecked,
-      onChanged: (bool? value) {
-        setState(() {
-          isChecked = value!;
-        });
-      },
-      secondary: const Icon(Icons.laptop),
+    return Scaffold(
+      body: ListView.builder(
+        itemCount: 5,
+        itemBuilder: (BuildContext context, int index){  
+        return Column(
+        children: <Widget>[CheckboxListTile(
+          title: const Text('Change Laptop Settings'),
+          subtitle: const Text('Ensuring that your computers and monitors are turned off'),
+          tileColor: const Color(0xFF84ddc4),
+          checkColor: Color(0xFFFFFFFF),
+          activeColor: Color(0xFF045e45),
+          value: isChecked,
+          onChanged: (bool? value) {
+            setState(() {
+              isChecked = value!;
+            });
+          },
+          secondary: const Icon(Icons.laptop),
+        ),
+        ],
+      );
+      }),
     );
   }
 }
