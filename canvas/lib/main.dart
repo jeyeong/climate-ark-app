@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:canvas/views/login_page.dart';
 import 'package:canvas/constants.dart';
-import 'package:canvas/components/login/logo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,9 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: primaryColor,
       ),
-      home: const Scaffold(
-        body: LoginPage(),
-      ),
+      home: const LoginPage(),
     );
   }
 }

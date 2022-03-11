@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:canvas/constants.dart';
-import 'package:canvas/views/home_page.dart';
+import 'package:canvas/views/login_page.dart';
 
-class LoginButton extends StatelessWidget {
+class SignUpButton extends StatelessWidget {
   final ButtonStyle buttonStyle = TextButton.styleFrom(
     backgroundColor: darkGreen,
-    padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 40),
+    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
   );
 
-  LoginButton({Key? key}) : super(key: key);
+  SignUpButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +21,10 @@ class LoginButton extends StatelessWidget {
           style: buttonStyle,
           onPressed: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const HomePage()));
+                MaterialPageRoute(builder: (context) => const LoginPage()));
           },
           child: const Text(
-            'LOGIN',
+            'SIGNUP',
             style: TextStyle(color: primaryWhite),
           ),
         ),

@@ -13,8 +13,8 @@ class Logo extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(300.0),
-          child: Image(
-            image: const AssetImage('assets/icons/logo.png'),
+          child: const Image(
+            image: AssetImage('assets/icons/logo.png'),
           ),
         ),
       ),
