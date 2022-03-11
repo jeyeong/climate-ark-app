@@ -13,7 +13,7 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.symmetric(horizontal: 8.0),
+      margin: const EdgeInsets.symmetric(horizontal: 16.0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(29),
         child: TextButton(

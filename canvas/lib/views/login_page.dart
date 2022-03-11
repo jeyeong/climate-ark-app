@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:canvas/components/login/login_button.dart';
 import 'package:canvas/components/login/input_field.dart';
 import 'package:canvas/components/login/logo.dart';
+// import 'package:canvas/components/sign_up/logo.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);

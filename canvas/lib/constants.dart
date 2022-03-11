@@ -15,6 +15,10 @@ class HexColor extends Color {
 }
 */
 
+/****************************************************
+ *  COLORS
+ ****************************************************/
+
 // Primarys
 const primaryDarkestColor = Color(0xFF01251b);
 const primaryDarkerColor = Color(0xFF068360);
@@ -28,6 +32,12 @@ const primaryLightestColor = Color(0xFFcdf1e7);
 const darkGreen = Color(0xFF004346);
 const primaryDark = Color(0xFF172A3A);
 
+// Greys
+
 // Whites
 const offsetWhite = Color(0xFFFAFAFA);
 const primaryWhite = Color(0xFFFFFFFF);
+
+/****************************************************
+ *  FONT SIZE
+ ****************************************************/
