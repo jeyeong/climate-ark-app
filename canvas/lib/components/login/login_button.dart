@@ -1,6 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:canvas/constants.dart';
 
+class SecondRoute extends StatelessWidget {
+  const SecondRoute({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Second Route'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('Go back!'),
+        ),
+      ),
+    );
+  }
+}
+
 class LoginButton extends StatelessWidget {
   final ButtonStyle buttonStyle = TextButton.styleFrom(
     backgroundColor: darkGreen,
@@ -18,7 +39,10 @@ class LoginButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(29),
         child: TextButton(
           style: buttonStyle,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const SecondRoute()));
+          },
           child: const Text(
             'LOGIN',
             style: TextStyle(color: primaryWhite),
