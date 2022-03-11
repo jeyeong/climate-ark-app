@@ -12,18 +12,20 @@ class ForgotPassPage extends StatelessWidget {
         backgroundColor: primaryDarkColor,
         title: const Logo(width: 60.0),
       ),
-      body: Center(
-        child: Container(
-          color: primaryWhite,
-          width: 400.0,
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text("hahaha you forgot ur password :P"),
-                ],
+      body: SafeArea(
+        child: Center(
+          child: Container(
+            color: primaryWhite,
+            width: 400.0,
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text("hahaha you forgot ur password :P"),
+                  ],
+                ),
               ),
             ),
           ),

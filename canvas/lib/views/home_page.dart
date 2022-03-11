@@ -13,39 +13,41 @@ class HomePage extends StatelessWidget {
         backgroundColor: primaryDarkerColor,
         title: const Logo(width: 60.0),
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Container(
-            width: 400.0,
-            color: primaryWhite,
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      SizedBox(height: 20.0),
-                      ActionItem(),
-                      ActionItem(),
-                      ActionItem(),
-                      ActionItem(),
-                      SizedBox(height: 20.0),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  ElevatedButton(
-                    child: const Text('Go back!'),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: primaryDarkerColor, // background
-                      onPrimary: primaryWhite, // foreground
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Center(
+            child: Container(
+              width: 400.0,
+              color: primaryWhite,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        SizedBox(height: 20.0),
+                        ActionItem(),
+                        ActionItem(),
+                        ActionItem(),
+                        ActionItem(),
+                        SizedBox(height: 20.0),
+                      ],
                     ),
-                  ),
-                  const SizedBox(height: 20.0),
-                ],
+                    const SizedBox(height: 10),
+                    ElevatedButton(
+                      child: const Text('Go back!'),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: primaryDarkerColor, // background
+                        onPrimary: primaryWhite, // foreground
+                      ),
+                    ),
+                    const SizedBox(height: 20.0),
+                  ],
+                ),
               ),
             ),
           ),
