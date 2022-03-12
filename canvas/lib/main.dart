@@ -1,4 +1,9 @@
+import 'package:canvas/components/info_card.dart';
 import 'package:flutter/material.dart';
+//import 'package:canvas/constants.dart';
+import 'package:canvas/components/footprint_card.dart';
+
+
 
 void main() {
   runApp(const MyApp());
@@ -45,74 +50,24 @@ class _MyHomePageState extends State<MyHomePage> {
               color: const Color(0xFF000000),
             ),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Column(
             mainAxisSize: MainAxisSize.max,
             children: <Widget> [
-              // check out expanded!!!
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget> [
-                    const Text("Total Carbon \nfootprint offsetted",
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold, ),
-                    textAlign: TextAlign.center,
-                      ),
-                    Container(
-                      width: 200.0,
-                      height: 200.0,
-                      decoration: ShapeDecoration(
-                        color: Colors.transparent,
-                        shape: CircleBorder(
-                          side: BorderSide(color: Colors.black, width: 3.0))
-                      ),
-                      child: Center(
-                        child: const Text('500 Kgs', 
-                        style: TextStyle(
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.center,), 
-                      )
-                    )
-                  ],
-                ),
+              InfoCard(text: "Streak Days", days: "4",  height:100.0, icon: Icon(Icons.flash_on),),
+              Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget> [
+                Expanded(
+                  child: FootprintCard(toptext: "Total Carbon \nfootprint offsetted", circletext:'500 Kgs', radius:100.0),),
+                Expanded(
+                  child: FootprintCard(toptext:"Average human\nfootprint",circletext:'950\nKgs', radius:50.0),),
+                // Expanded(
+                ],
               ),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const Text("Average human\nfootprint",
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold, ),
-                    textAlign: TextAlign.center,
-                    ),  
-                    Container(
-                      width: 100.0,
-                      height: 100.0,
-                      decoration: ShapeDecoration(
-                        color: Colors.transparent,
-                        shape: CircleBorder(
-                          side: BorderSide(color: Colors.black, width: 3.0))
-                      ),
-                      child: Center(
-                        child: const Text('950\nKgs', 
-                          style: TextStyle(
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ), 
-                      )
-                    )
-                  ]
-                  
-                ),
-              ),
+
             ],
-          )
+          ),
         ),
       ),
     );
