@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:canvas/components/circle_with_text.dart';
 
 void main() {
   runApp(const MyApp());
@@ -49,17 +50,23 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Card(
             margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-            child: ListTile(
-              leading: Icon(
-                Icons.bolt,
-                color: Colors.teal,
+            child: Column(children: [
+              ListTile(
+                leading: Icon(
+                  Icons.bolt,
+                  color: Colors.teal,
+                ),
+                title: Text('Streak Days 4',
+                    style: TextStyle(
+                      color: Colors.teal.shade900,
+                      fontSize: 20.0,
+                    )),
               ),
-              title: Text('Streak Days 4',
-                  style: TextStyle(
-                    color: Colors.teal.shade900,
-                    fontSize: 20.0,
-                  )),
-            ),
+              const CircleWithText(
+                title: 'hey',
+                radius: 50.0,
+              ),
+            ]),
           ),
           Card(
             margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
