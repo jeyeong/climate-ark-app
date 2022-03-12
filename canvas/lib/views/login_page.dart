@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:canvas/components/login/login_button.dart';
 import 'package:canvas/components/login/input_field.dart';
 import 'package:canvas/components/gadgets/logo.dart';
+import 'package:canvas/components/login/password_field.dart';
 import 'package:canvas/views/sign_up_page.dart';
 import 'package:canvas/views/forgot_pass_page.dart';
 
@@ -26,7 +27,7 @@ class LoginPage extends StatelessWidget {
                     const Logo(width: 200.0),
                     const InputField(title: 'Username'),
                     const SizedBox(height: 20.0),
-                    const InputField(title: 'Password'),
+                    const PasswordField(),
                     const SizedBox(height: 20.0),
                     LoginButton(),
                     const SizedBox(height: 20.0),

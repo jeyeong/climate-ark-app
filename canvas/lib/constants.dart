@@ -33,6 +33,9 @@ const darkGreen = Color(0xFF004346);
 const primaryDark = Color(0xFF172A3A);
 
 // Greys
+const darkGrey = Color(0xFF555555);
+const primaryGrey = Color(0xFF333333);
+const lightGrey = Color(0xFF010101);
 
 // Whites
 const offsetWhite = Color(0xFFFAFAFA);
