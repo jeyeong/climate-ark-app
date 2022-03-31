@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:canvas/constants.dart';
-import 'package:flutter/scheduler.dart' show timeDilation;
-import 'package:canvas/search.dart';
+import 'package:canvas/classes.dart';
 
 void main() => runApp(const MyApp());
 
@@ -17,8 +16,7 @@ class MyApp extends StatelessWidget {
         body: Center(
           child: Padding(
             padding: EdgeInsets.all(15.0),
-              child: MyStatefulWidget(),
-              
+              child: MyStatefulWidget(),   
           ),
         ),
       ),
@@ -34,28 +32,28 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
       body: ListView.builder(
-        itemCount: 5,
+        itemCount: litems.length,
         itemBuilder: (BuildContext context, int index){  
         return Column(
         children: <Widget>[CheckboxListTile(
-          title: const Text('Change Laptop Settings'),
-          subtitle: const Text('Ensuring that your computers and monitors are turned off'),
+          title: Text(litems[index].tasktitle),
+          subtitle: Text(litems[index].tasksub),
           tileColor: const Color(0xFF84ddc4),
           checkColor: Color(0xFFFFFFFF),
           activeColor: Color(0xFF045e45),
-          value: isChecked,
+          value: litems[index].isComplete,
           onChanged: (bool? value) {
             setState(() {
-              isChecked = value!;
+              litems[index].isComplete = value!;
             });
           },
-          secondary: const Icon(Icons.laptop),
+          secondary: litems[index].taskicon,
         ),
         ],
       );
@@ -64,3 +62,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   }
 }
 
+List<Task> litems = [
+  Task(tasktitle: 'Change Laptop settings',
+  tasksub: 'Ensuring that your computers and monitors are turned off',
+  taskicon: const Icon(Icons.laptop)),
+  Task(tasktitle: 'Carpooling',
+  tasksub: 'Instead of driving solo, carpool and save money & the planet',
+  taskicon: const Icon(Icons.car_repair))
+];
