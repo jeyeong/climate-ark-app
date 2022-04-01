@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(15.0),
               child: MyStatefulWidget(),
-              
           ),
         ),
       ),
