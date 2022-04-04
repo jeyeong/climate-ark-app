@@ -46,11 +46,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 List<Task> litems = [
   Task(tasktitle: 'Change Laptop settings',
   tasksub: 'Ensuring that your computers and monitors are turned off',
+  tasktype: 'Electricity',
+  taskicon: const Icon(Icons.laptop)),
+  Task(tasktitle: 'Change Laptop settings',
+  tasksub: 'Ensuring that your computers and monitors are turned off',
+  tasktype: 'Electricity',
   taskicon: const Icon(Icons.laptop)),
   Task(tasktitle: 'Carpooling',
   tasksub: 'Instead of driving solo, carpool and save money & the planet',
-  taskicon: const Icon(Icons.car_repair)),
-  Task(tasktitle: 'Carpooling',
-  tasksub: 'Instead of driving solo, carpool and save money & the planet',
+  tasktype: 'Emissions',
   taskicon: const Icon(Icons.car_repair))
 ];
