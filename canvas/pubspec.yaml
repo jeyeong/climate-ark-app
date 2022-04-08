@@ -11,15 +11,15 @@ dependencies:
     flutter:
         sdk: flutter
 
-  material_floating_search_bar: ^0.3.7
+    material_floating_search_bar: ^0.3.7
 
-  cupertino_icons: ^1.0.2
+    cupertino_icons: ^1.0.2
 
 dev_dependencies:
     flutter_test:
         sdk: flutter
 
-  flutter_lints: ^1.0.0
+    flutter_lints: ^1.0.0
 
 flutter:
     # The following line ensures that the Material Icons font is
@@ -27,14 +27,13 @@ flutter:
     # the material Icons class.
     uses-material-design: true
 
-  uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  assets:
+assets:
     - images/carpool.jpg
     - images/laptop.jpg
-    - assets/
-    - assets/icons/
+    - assets/dummy.png
+    - assets/icons/logo.png
 
     # An image asset can refer to one or more resolution-specific "variants", see
     # https://flutter.dev/assets-and-images/#resolution-aware.
