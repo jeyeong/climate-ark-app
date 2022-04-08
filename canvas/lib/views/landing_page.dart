@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 
 import 'package:canvas/views/login_page.dart';
 
-// class LandingPage extends StatelessWidget {
-//   const LandingPage({Key? key}) : super(key: key);
+class ProfilePic extends StatelessWidget {
+  const ProfilePic({Key? key}) : super(key: key);
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       color: Colors.green,
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return const CircleAvatar(
+      radius: 25.0,
+      backgroundImage: AssetImage('assets/dummy.png'),
+    );
+  }
+}
 
 class LandingPage extends StatefulWidget {
   const LandingPage({Key? key}) : super(key: key);
@@ -50,8 +51,13 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Climate Ark Janus'),
-        backgroundColor: Colors.green,
+        title: const Text('J A N U S'),
+        backgroundColor: const Color(0xff08b184),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.elliptical(15, 10),
+          ),
+        ),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -61,26 +67,26 @@ class _LandingPageState extends State<LandingPage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.login),
             label: 'Login',
-            backgroundColor: Colors.lime,
+            backgroundColor: Color(0xff08b184),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
-            backgroundColor: Colors.lime,
+            backgroundColor: Color(0xff08b184),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.assignment),
             label: 'Action',
-            backgroundColor: Colors.lime,
+            backgroundColor: Color(0xff08b184),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.auto_graph),
             label: 'Impact',
-            backgroundColor: Colors.lime,
+            backgroundColor: Color(0xff08b184),
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.green[900],
+        selectedItemColor: const Color(0xff012019),
         onTap: _onItemTapped,
       ),
     );
