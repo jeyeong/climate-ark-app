@@ -1,8 +1,8 @@
 import 'package:canvas/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:canvas/components/login/login_button.dart';
-import 'package:canvas/components/login/input_field.dart';
-import 'package:canvas/components/gadgets/logo.dart';
+import 'package:canvas/components/general/input_field.dart';
+import 'package:canvas/components/general/logo.dart';
 import 'package:canvas/components/login/password_field.dart';
 import 'package:canvas/views/sign_up_page.dart';
 import 'package:canvas/views/forgot_pass_page.dart';
