@@ -32,11 +32,11 @@ class _LandingPageState extends State<LandingPage> {
       'Home',
       style: optionStyle,
     ),
-    GraphCard(),
     Text(
-      'Impact',
+      'Action',
       style: optionStyle,
     ),
+    GraphCard()
   ];
 
   void _onItemTapped(int index) {
