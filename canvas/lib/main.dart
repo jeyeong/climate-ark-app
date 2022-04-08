@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:canvas/components/circle_with_text.dart';
+import 'package:canvas/components/current_days.dart';
 
 void main() {
   runApp(const MyApp());
@@ -49,29 +50,30 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Card(
-            margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-            child: Column(children: [
-              ListTile(
-                leading: Icon(
-                  Icons.bolt,
-                  color: Colors.teal,
-                ),
-                title: Text('Streak Days 4',
-                    style: TextStyle(
-                      color: Colors.teal.shade900,
-                      fontSize: 20.0,
-                    )),
-              ),
+            margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: Colors.black38),
+                      borderRadius: const BorderRadius.all(Radius.circular(8)),
+                    ),
+                    child: const Text(
+                        'Streak Days',
+                        style: TextStyle(fontSize: 25),),
+                    margin: const EdgeInsets.all(4),
+                  ),
               const CircleWithText(
-                title: 'hey',
+                title: '4',
                 radius: 50.0,
               ),
             ]),
           ),
           Card(
-            margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+            margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
             child: ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.emoji_people,
                 color: Colors.teal,
               ),
