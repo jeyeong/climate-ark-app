@@ -1,5 +1,6 @@
 import 'package:canvas/views/landing_page.dart';
 import 'package:flutter/material.dart';
+
 import 'package:canvas/views/login_page.dart';
 import 'package:canvas/views/landing_page.dart';
 import 'package:canvas/constants.dart';

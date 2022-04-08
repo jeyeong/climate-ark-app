@@ -23,6 +23,7 @@ class HexColor extends Color {
 const primaryDarkestColor = Color(0xFF01251b);
 const primaryDarkerColor = Color(0xFF045e45);
 const primaryDarkColor = Color(0xFF068360);
+
 const primaryColor = Color(0xFF09bc8a);
 const primaryLightColor = Color(0xFF52d0ad);
 const primaryLighterColor = Color(0xFF84ddc4);
