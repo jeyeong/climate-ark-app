@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:canvas/views/login_page.dart';
+import 'package:canvas/components/action_page/graph_image.dart';
 
 class ProfilePic extends StatelessWidget {
   const ProfilePic({Key? key}) : super(key: key);
@@ -31,10 +32,7 @@ class _LandingPageState extends State<LandingPage> {
       'Home',
       style: optionStyle,
     ),
-    Text(
-      'Action',
-      style: optionStyle,
-    ),
+    GraphCard(),
     Text(
       'Impact',
       style: optionStyle,
