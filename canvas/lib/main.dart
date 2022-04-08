@@ -1,7 +1,9 @@
+import 'package:canvas/components/fun_fact.dart';
 import 'package:canvas/components/info_card.dart';
 import 'package:flutter/material.dart';
 //import 'package:canvas/constants.dart';
 import 'package:canvas/components/footprint_card.dart';
+import 'package:canvas/components/graph_image.dart';
 
 
 
@@ -53,7 +55,6 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: <Widget> [
-              InfoCard(text: "Streak Days", days: "4",  height:100.0, icon: Icon(Icons.flash_on),),
               Row(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
@@ -65,6 +66,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 // Expanded(
                 ],
               ),
+              //FunFact(text: "Saving emissions worth a flight \nbetween Delhi and Bangalore", height: 80.0, icon: Icon(Icons.airplanemode_on), col: Colors.white),
+              //InfoCard(text: "Streak Days", days: "4",  height:100.0, icon: Icon(Icons.flash_on),),
+              //InfoCard(text: "Activities Completed", days: "8",  height:120.0, icon: Icon(Icons.assignment),),
+              //FunFact(text: "Add 2 more daily tasks to your routine to \n complete 50% of all tasks!", height: 80.0, icon: Icon(Icons.lightbulb_outline), col: Colors.red),
+              GraphCard(),
 
             ],
           ),

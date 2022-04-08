@@ -26,7 +26,7 @@ class InfoCard extends StatelessWidget{
           
           title: Text(text,
               style: TextStyle(
-                fontSize: height/2,
+                fontSize: (height/3),
                 fontWeight: FontWeight.bold, ),
               textAlign: TextAlign.center,
               ),
