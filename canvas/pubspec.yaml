@@ -14,7 +14,7 @@ dependencies:
   material_floating_search_bar: ^0.3.7
 
   cupertino_icons: ^1.0.2
-  material_floating_search_bar: ^0.3.7
+  #material_floating_search_bar: ^0.3.7
 
 dev_dependencies:
   flutter_test:
@@ -26,9 +26,6 @@ flutter:
 
   uses-material-design: true
 
-<<<<<<< HEAD
- 
-=======
   # To add assets to your application, add an assets section, like this:
   assets:
     - images/carpool.jpg
@@ -59,4 +56,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
->>>>>>> 719a860bdfcbb94509780be5a2eb42212cc2e5d0
