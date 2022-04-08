@@ -34,7 +34,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               litems[index].isComplete = value!;
             });
           },
-          secondary: litems[index].taskicon,
+          secondary: Container(
+            height: 50,
+            width: 50,
+            child: Image.asset(
+            litems[index].imageicon,
+            fit: BoxFit.cover,
+            ),
+        ),
         ),
         ],
       );
@@ -47,13 +54,19 @@ List<Task> litems = [
   Task(tasktitle: 'Change Laptop settings',
   tasksub: 'Ensuring that your computers and monitors are turned off',
   tasktype: 'Electricity',
-  taskicon: const Icon(Icons.laptop)),
+  imageicon: 'images/laptop.jpg',
+  taskimpact: 5,
+  dollarssaved: 10),
   Task(tasktitle: 'Change Laptop settings',
   tasksub: 'Ensuring that your computers and monitors are turned off',
   tasktype: 'Electricity',
-  taskicon: const Icon(Icons.laptop)),
+  imageicon: 'images/laptop.jpg',
+  taskimpact: 5,
+  dollarssaved: 10),
   Task(tasktitle: 'Carpooling',
   tasksub: 'Instead of driving solo, carpool and save money & the planet',
   tasktype: 'Emissions',
-  taskicon: const Icon(Icons.car_repair))
+  imageicon: 'images/carpool.jpg',
+  taskimpact: 10,
+  dollarssaved: 12)
 ];
