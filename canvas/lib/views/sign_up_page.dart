@@ -1,8 +1,8 @@
 import 'package:canvas/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:canvas/components/sign_up/sign_up_button.dart';
-import 'package:canvas/components/login/input_field.dart';
-import 'package:canvas/components/gadgets/logo.dart';
+import 'package:canvas/components/general/input_field.dart';
+import 'package:canvas/components/general/logo.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);

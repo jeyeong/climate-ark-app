@@ -1,6 +1,6 @@
 import 'package:canvas/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:canvas/components/gadgets/logo.dart';
+import 'package:canvas/components/general/logo.dart';
 
 class ForgotPassPage extends StatelessWidget {
   const ForgotPassPage({Key? key}) : super(key: key);

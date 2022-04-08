@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:canvas/constants.dart';
 import 'package:canvas/components/actions/action_item.dart';
-import 'package:canvas/components/gadgets/logo.dart';
+import 'package:canvas/components/general/logo.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
