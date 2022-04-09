@@ -64,6 +64,19 @@ class _LandingPageState extends State<LandingPage> {
           ),
         ),
         centerTitle: true,
+        bottom: PreferredSize(
+          child: Container(
+            height: 30.0,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.elliptical(15, 10),
+                bottomRight: Radius.elliptical(15, 10),
+              ),
+              color: Colors.orange,
+            ),
+          ),
+          preferredSize: const Size.fromHeight(30.0),
+        ),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
