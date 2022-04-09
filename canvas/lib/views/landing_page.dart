@@ -8,9 +8,12 @@ class ProfilePic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CircleAvatar(
-      radius: 25.0,
-      backgroundImage: AssetImage('assets/dummy.png'),
+    return Container(
+      child: const CircleAvatar(
+        radius: 20.0,
+        backgroundImage: AssetImage('assets/dummy.png'),
+      ),
+      margin: const EdgeInsets.all(10.0),
     );
   }
 }
@@ -46,13 +49,21 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('J A N U S'),
+        leading: const ProfilePic(),
+        title: const Text(
+          'J A N U S',
+          style: TextStyle(
+            color: Color(0xff62cfb2),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         backgroundColor: const Color(0xff08b184),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.elliptical(15, 10),
           ),
         ),
+        centerTitle: true,
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
