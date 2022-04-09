@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:canvas/views/home_page.dart';
 import 'package:canvas/views/login_page.dart';
 
 class ProfilePic extends StatelessWidget {
@@ -27,10 +27,7 @@ class _LandingPageState extends State<LandingPage> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     LoginPage(),
-    Text(
-      'Home',
-      style: optionStyle,
-    ),
+    HomePage(),
     Text(
       'Action',
       style: optionStyle,
