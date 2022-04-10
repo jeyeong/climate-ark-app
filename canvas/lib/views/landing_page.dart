@@ -64,6 +64,7 @@ class _LandingPageState extends State<LandingPage> {
         //   ),
         // ),
         centerTitle: true,
+        elevation: 0,
         // bottom: PreferredSize(
         //   child: Container(
         //     height: 30.0,

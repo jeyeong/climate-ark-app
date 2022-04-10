@@ -16,15 +16,22 @@ class LoginPage extends StatelessWidget {
       body: SafeArea(
         child: Container(
           color: primaryWhite,
-          // width: 400.0,
           child: Center(
             child: Column(
               children: [
+                // Part below app bar
                 Container(
-                  height: 40.0,
+                  height: 10.0,
                   width: double.infinity,
-                  color: Colors.brown,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.elliptical(15, 10),
+                      bottomRight: Radius.elliptical(15, 10),
+                    ),
+                    color: Color(0xff08b184),
+                  ),
                 ),
+                // Main content
                 SizedBox(
                   width: 400.0,
                   child: Column(
