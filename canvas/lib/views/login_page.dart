@@ -14,51 +14,59 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Container(
-            color: primaryWhite,
-            width: 400.0,
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Logo(width: 200.0),
-                    const InputField(title: 'Username'),
-                    const SizedBox(height: 20.0),
-                    const PasswordField(),
-                    const SizedBox(height: 20.0),
-                    LoginButton(),
-                    const SizedBox(height: 20.0),
-                    Row(
-                      children: [
-                        InkWell(
-                          child: const Text('Sign Up'),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const SignUpPage()),
-                            );
-                          },
-                        ),
-                        const Spacer(),
-                        InkWell(
-                          child: const Text('Forgot Password?'),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const ForgotPassPage()),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  ],
+        child: Container(
+          color: primaryWhite,
+          // width: 400.0,
+          child: Center(
+            child: Column(
+              children: [
+                Container(
+                  height: 40.0,
+                  width: double.infinity,
+                  color: Colors.brown,
                 ),
-              ),
+                SizedBox(
+                  width: 400.0,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Logo(width: 200.0),
+                      const InputField(title: 'Username'),
+                      const SizedBox(height: 20.0),
+                      const PasswordField(),
+                      const SizedBox(height: 20.0),
+                      LoginButton(),
+                      const SizedBox(height: 20.0),
+                      Row(
+                        children: [
+                          InkWell(
+                            child: const Text('Sign Up'),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const SignUpPage()),
+                              );
+                            },
+                          ),
+                          const Spacer(),
+                          InkWell(
+                            child: const Text('Forgot Password?'),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ForgotPassPage()),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
         ),
