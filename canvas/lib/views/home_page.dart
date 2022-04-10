@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
               Container(
                 height: 140.0,
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                padding: const EdgeInsets.symmetric(horizontal: 14.0),
                 child: Container(
                   width: double.infinity,
                   decoration: const BoxDecoration(
@@ -64,6 +64,45 @@ class _HomePageState extends State<HomePage> {
                       )
                     ],
                   ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                color: Colors.green,
+                                height: 70,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              flex: 8,
+                              child: Container(
+                                color: Colors.amber,
+                                height: 40,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(),
+                            ),
+                            Expanded(
+                              flex: 15,
+                              child: Container(
+                                color: Colors.blue,
+                                height: 40,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ],
@@ -72,7 +111,7 @@ class _HomePageState extends State<HomePage> {
           Container(
             margin: const EdgeInsets.only(
               top: 12.0,
-              left: 14.0,
+              left: 15.0,
             ),
             child: const Text(
               'Some Activities For You',
