@@ -21,12 +21,12 @@ class LoginPage extends StatelessWidget {
               children: [
                 // Part below app bar
                 Container(
-                  height: 10.0,
+                  height: 15.0,
                   width: double.infinity,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.elliptical(15, 10),
-                      bottomRight: Radius.elliptical(15, 10),
+                      bottomLeft: Radius.elliptical(12, 10),
+                      bottomRight: Radius.elliptical(12, 10),
                     ),
                     color: Color(0xff08b184),
                   ),

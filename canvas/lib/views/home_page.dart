@@ -29,8 +29,60 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(children: [
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Part below app bar
+          Stack(
+            children: [
+              Container(
+                height: 80.0,
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(12),
+                    bottomRight: Radius.circular(12),
+                  ),
+                  color: Color(0xff08b184),
+                ),
+              ),
+              Container(
+                height: 140.0,
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: Container(
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color(0xffe6e6e6),
+                        spreadRadius: 0.25,
+                        blurRadius: 0.5,
+                        offset: Offset(0, 1),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          // Main content
+          Container(
+            margin: const EdgeInsets.only(
+              top: 12.0,
+              left: 14.0,
+            ),
+            child: const Text(
+              'Some Activities For You',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.w600,
+                letterSpacing: 0.1,
+              ),
+            ),
+          ),
           Container(
             margin: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
@@ -78,7 +130,7 @@ class _HomePageState extends State<HomePage> {
                   )),
             ),
           ),
-        ]),
+        ],
       ),
     );
   }
