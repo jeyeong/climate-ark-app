@@ -58,29 +58,10 @@ class _LandingPageState extends State<LandingPage> {
           ),
         ),
         backgroundColor: const Color(0xff08b184),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.elliptical(15, 10),
-          ),
-        ),
         centerTitle: true,
-        bottom: PreferredSize(
-          child: Container(
-            height: 30.0,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.elliptical(15, 10),
-                bottomRight: Radius.elliptical(15, 10),
-              ),
-              color: Colors.orange,
-            ),
-          ),
-          preferredSize: const Size.fromHeight(30.0),
-        ),
+        elevation: 0,
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
+      body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
