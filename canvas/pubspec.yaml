@@ -32,8 +32,8 @@ flutter:
 assets:
     - images/carpool.jpg
     - images/laptop.jpg
-    - assets/dummy.png
-    - assets/icons/logo.png
+      - assets/
+      - assets/icons/
 
     # An image asset can refer to one or more resolution-specific "variants", see
     # https://flutter.dev/assets-and-images/#resolution-aware.
