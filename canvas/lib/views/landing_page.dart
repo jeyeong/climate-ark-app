@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
-
+import 'package:canvas/views/home_page.dart';
 import 'package:canvas/views/login_page.dart';
+import 'package:canvas/components/action_page/graph_image.dart';
+import 'package:canvas/main2.dart';
 
 class ProfilePic extends StatelessWidget {
   const ProfilePic({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const CircleAvatar(
-      radius: 25.0,
-      backgroundImage: AssetImage('assets/dummy.png'),
+    return Container(
+      child: const CircleAvatar(
+        radius: 20.0,
+        backgroundImage: AssetImage('assets/dummy.png'),
+      ),
+      margin: const EdgeInsets.all(10.0),
     );
   }
 }
@@ -27,18 +32,9 @@ class _LandingPageState extends State<LandingPage> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     LoginPage(),
-    Text(
-      'Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Action',
-      style: optionStyle,
-    ),
-    Text(
-      'Impact',
-      style: optionStyle,
-    ),
+    HomePage(),
+    SearchBarUI(),
+    GraphCard()
   ];
 
   void _onItemTapped(int index) {
@@ -51,17 +47,19 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('J A N U S'),
-        backgroundColor: const Color(0xff08b184),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.elliptical(15, 10),
+        leading: const ProfilePic(),
+        title: const Text(
+          'J A N U S',
+          style: TextStyle(
+            color: Color(0xff62cfb2),
+            fontWeight: FontWeight.bold,
           ),
         ),
+        backgroundColor: const Color(0xff08b184),
+        centerTitle: true,
+        elevation: 0,
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
+      body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

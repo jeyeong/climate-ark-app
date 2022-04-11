@@ -14,6 +14,7 @@ dependencies:
     material_floating_search_bar: ^0.3.7
 
     cupertino_icons: ^1.0.2
+    fl_chart: ^0.50.1
 
 dev_dependencies:
     flutter_test:
@@ -33,7 +34,7 @@ assets:
     - images/carpool.jpg
     - images/laptop.jpg
         - assets/
-        - assets/icons/
+        - assets/icons/logo.png
 
     # An image asset can refer to one or more resolution-specific "variants", see
     # https://flutter.dev/assets-and-images/#resolution-aware.

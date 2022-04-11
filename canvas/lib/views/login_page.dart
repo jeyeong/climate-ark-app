@@ -14,51 +14,66 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Container(
-            color: primaryWhite,
-            width: 400.0,
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Logo(width: 200.0),
-                    const InputField(title: 'Username'),
-                    const SizedBox(height: 20.0),
-                    const PasswordField(),
-                    const SizedBox(height: 20.0),
-                    LoginButton(),
-                    const SizedBox(height: 20.0),
-                    Row(
-                      children: [
-                        InkWell(
-                          child: const Text('Sign Up'),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const SignUpPage()),
-                            );
-                          },
-                        ),
-                        const Spacer(),
-                        InkWell(
-                          child: const Text('Forgot Password?'),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const ForgotPassPage()),
-                            );
-                          },
-                        ),
-                      ],
+        child: Container(
+          color: primaryWhite,
+          child: Center(
+            child: Column(
+              children: [
+                // Part below app bar
+                Container(
+                  height: 15.0,
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.elliptical(12, 10),
+                      bottomRight: Radius.elliptical(12, 10),
                     ),
-                  ],
+                    color: Color(0xff08b184),
+                  ),
                 ),
-              ),
+                // Main content
+                SizedBox(
+                  width: 400.0,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Logo(width: 200.0),
+                      const InputField(title: 'Username'),
+                      const SizedBox(height: 20.0),
+                      const PasswordField(),
+                      const SizedBox(height: 20.0),
+                      LoginButton(),
+                      const SizedBox(height: 20.0),
+                      Row(
+                        children: [
+                          InkWell(
+                            child: const Text('Sign Up'),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const SignUpPage()),
+                              );
+                            },
+                          ),
+                          const Spacer(),
+                          InkWell(
+                            child: const Text('Forgot Password?'),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ForgotPassPage()),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
         ),
