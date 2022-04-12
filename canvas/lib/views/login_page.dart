@@ -1,10 +1,13 @@
+import 'package:canvas/components/general/button.dart';
 import 'package:canvas/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:canvas/components/login/login_button.dart';
-import 'package:canvas/components/general/input_field.dart';
-import 'package:canvas/components/login/password_field.dart';
+
+import 'package:canvas/views/home_page.dart';
 import 'package:canvas/views/sign_up_page.dart';
 import 'package:canvas/views/forgot_pass_page.dart';
+
+import 'package:canvas/components/general/input_field.dart';
+import 'package:canvas/components/login/password_field.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -14,23 +17,29 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool loggedIn = false;
+
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-
-    // Start listening to changes.
-    nameController.addListener(_printLatestValue);
-  }
-
-  void _printLatestValue() {
-    print('Second text field: ${nameController.text}');
+  void printLoginCredentials() {
+    if (nameController.text == 'techteam' &&
+        passwordController.text == '1234') {
+      setState(() {
+        loggedIn = true;
+      });
+    } else {
+      print('Wrong user/pass!');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    /* Temporary simulation of a logging in */
+    if (loggedIn) {
+      return const HomePage();
+    }
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -45,8 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 30, horizontal: 20),
+                        padding: const EdgeInsets.fromLTRB(20, 20, 20, 30),
                         child: Image.asset('assets/hero.png'),
                       ),
                       InputField(
@@ -58,7 +66,10 @@ class _LoginPageState extends State<LoginPage> {
                         controller: passwordController,
                       ),
                       const SizedBox(height: 20.0),
-                      LoginButton(),
+                      Button(
+                        text: 'LOG-IN',
+                        callback: printLoginCredentials,
+                      ),
                       const SizedBox(height: 20.0),
                       Row(
                         children: [

@@ -44,44 +44,4 @@ class _PasswordFieldState extends State<PasswordField> {
       ),
     );
   }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Container(
-  //     child: Column(
-  //       children: <Widget>[
-  //         Container(
-  //           padding: const EdgeInsets.symmetric(horizontal: 20),
-  //           width: double.infinity,
-  //           decoration: BoxDecoration(
-  //               color: primaryLightestColor,
-  //               borderRadius: BorderRadius.circular(29)),
-  //           child: TextFormField(
-  //             cursorColor: primaryDarkColor,
-  //             // keyboardType: TextInputType.text,
-  //             decoration: const InputDecoration(
-  //               labelText: 'Password',
-  //               labelStyle: TextStyle(color: lightGrey),
-  //               border: InputBorder.none,
-  //               /*
-  //               icon: const Padding(
-  //                 padding: const EdgeInsets.only(top: 15.0),
-  //                 child: const Icon(Icons.lock),
-  //               ),*/
-  //             ),
-  //             onSaved: (val) => _password = val,
-  //             obscureText: _obscureText,
-  //           ),
-  //         ),
-  //         TextButton(
-  //           onPressed: _toggle,
-  //           child: Text(
-  //             _obscureText ? "Show" : "Hide",
-  //             style: const TextStyle(color: primaryDarkestColor),
-  //           ),
-  //         )
-  //       ],
-  //     ),
-  //   );
-  // }
 }
