@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    /* Temporary simulation of a logging in */
+    /* Temporary simulation of logging in */
     if (loggedIn) {
       return const HomePage();
     }
