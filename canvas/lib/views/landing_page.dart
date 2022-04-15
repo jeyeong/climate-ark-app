@@ -33,7 +33,7 @@ class _LandingPageState extends State<LandingPage> {
   static const List<Widget> _widgetOptions = <Widget>[
     LoginPage(),
     HomePage(),
-    SearchBarUI(),
+    SearchBarApp(),
     GraphCard()
   ];
 
