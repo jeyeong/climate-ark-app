@@ -1,3 +1,4 @@
+import 'package:canvas/views/actions_page.dart';
 import 'package:flutter/material.dart';
 import 'package:canvas/views/home_page.dart';
 import 'package:canvas/views/login_page.dart';
@@ -33,7 +34,7 @@ class _LandingPageState extends State<LandingPage> {
   static const List<Widget> _widgetOptions = <Widget>[
     LoginPage(),
     HomePage(),
-    SearchBarApp(),
+    ActionsPage(),
     GraphCard()
   ];
 
