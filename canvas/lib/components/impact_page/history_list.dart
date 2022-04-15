@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:canvas/components/action_page/history_item.dart';
+import 'package:canvas/components/impact_page/history_item.dart';
 
 class HistoryListCard extends StatelessWidget {
   const HistoryListCard({Key? key}) : super(key: key);

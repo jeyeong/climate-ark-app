@@ -24,12 +24,16 @@ class _ImpactBoxState extends State<ImpactBox> {
       child: Column(
         children: <Widget>[
           ToggleButtons(
-            children: const <Widget>[
-              // Text("Stats", style: TextStyle(
-              //   color : (isSelected[0] ? primaryWhite : primaryColor ))
-              //   ),
-              Text("Stats"),
-              Text("History"),
+            children: <Widget>[
+              Text("Stats", style: TextStyle(
+                fontSize: 20,
+                color : (isSelected[0] ? primaryWhite : primaryColor ))
+                ),
+              //Text("Stats"),
+              Text("History", style: TextStyle(
+                fontSize: 20,
+                color : (isSelected[1] ? primaryWhite : primaryColor ))
+                ),
             ],
             onPressed: (int index) {
               setState(() {
@@ -43,9 +47,13 @@ class _ImpactBoxState extends State<ImpactBox> {
               });
             },
             isSelected: isSelected,
-            constraints: BoxConstraints(minHeight: 50.0, maxHeight: 80.0, minWidth: 100.0, maxWidth: 200.0),
-            color: primaryColor,
-
+            constraints: BoxConstraints(minHeight: 40.0, maxHeight: 50.0, minWidth: 280.0, maxWidth: 500.0),
+            color: offsetWhite,
+            fillColor: primaryColor,
+            borderColor: primaryColor,
+            selectedBorderColor: primaryColor,
+            borderRadius: BorderRadius.circular(8),
+            borderWidth: 3,
           ),
           isSelected[0] ? GraphPack(passedType: Toggle.daily) : Expanded(child: HistoryListCard()),
 
