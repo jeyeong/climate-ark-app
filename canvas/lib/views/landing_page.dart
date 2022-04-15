@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:canvas/views/login_page.dart';
-import 'package:canvas/components/action_page/graph_image.dart';
+import 'package:canvas/components/impact_page/graph_image.dart';
+import 'package:canvas/components/impact_page/graph_toggle.dart';
+import 'package:canvas/components/impact_page/impact_box.dart';
 
 class ProfilePic extends StatelessWidget {
   const ProfilePic({Key? key}) : super(key: key);
@@ -22,6 +24,7 @@ class LandingPage extends StatefulWidget {
   State<LandingPage> createState() => _LandingPageState();
 }
 
+
 class _LandingPageState extends State<LandingPage> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
@@ -36,7 +39,8 @@ class _LandingPageState extends State<LandingPage> {
       'Action',
       style: optionStyle,
     ),
-    GraphCard()
+    //GraphPack(passedType: Toggle.daily)
+    ImpactBox()
   ];
 
   void _onItemTapped(int index) {
