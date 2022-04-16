@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:canvas/views/home_page.dart';
 import 'package:canvas/views/login_page.dart';
 import 'package:canvas/components/action_page/graph_image.dart';
-import 'package:canvas/main2.dart';
 
 class ProfilePic extends StatelessWidget {
   const ProfilePic({Key? key}) : super(key: key);
