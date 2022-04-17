@@ -2,6 +2,8 @@ import 'package:canvas/components/impact_page/graph_image.dart';
 import 'package:canvas/components/impact_page/graph_toggle.dart';
 import 'package:canvas/components/impact_page/history_list.dart';
 import 'package:canvas/components/impact_page/history_item.dart';
+import 'package:canvas/components/impact_page/leaf_fill.dart';
+
 
 
 import 'package:canvas/constants.dart';
@@ -55,7 +57,7 @@ class _ImpactBoxState extends State<ImpactBox> {
             borderRadius: BorderRadius.circular(8),
             borderWidth: 3,
           ),
-          isSelected[0] ? GraphPack(passedType: Toggle.daily) : Expanded(child: HistoryListCard()),
+          isSelected[0] ? GraphPack(passedType: Toggle.daily) :LeafBox(numSaved: 30, size: 350),
 
         ],
         )
