@@ -116,27 +116,29 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Row(
                           children: [
-                            Row(
-                              children: [
-                                Container(
-                                  color: Colors.red,
-                                  height: 20,
-                                  width: 20,
-                                ),
-                                const Text("7",
-                                    style: TextStyle(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                                const Text(" Days",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                    ))
-                              ],
-                            ),
                             Expanded(
                               flex: 8,
                               child: Container(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Container(
+                                      color: Colors.red,
+                                      height: 20,
+                                      width: 20,
+                                    ),
+                                    const Text("7",
+                                        style: TextStyle(
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                        )),
+                                    const Text(" Days",
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                        ))
+                                  ],
+                                ),
                                 color: Colors.amber,
                                 height: 40,
                               ),
