@@ -72,6 +72,42 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             Expanded(
                               child: Container(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            const Text("500",
+                                                style: TextStyle(
+                                                  fontSize: 35,
+                                                  fontWeight: FontWeight.bold,
+                                                )),
+                                            const Text(" Kgs CO2",
+                                                style: TextStyle(
+                                                  fontSize: 20,
+                                                ))
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text("Carbon Saved",
+                                                style: TextStyle(
+                                                  fontSize: 20,
+                                                ))
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                    Container(
+                                      color: Colors.red,
+                                      height: 30,
+                                      width: 30,
+                                    ),
+                                  ],
+                                ),
                                 color: Colors.green,
                                 height: 70,
                               ),
@@ -80,6 +116,24 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Row(
                           children: [
+                            Row(
+                              children: [
+                                Container(
+                                  color: Colors.red,
+                                  height: 20,
+                                  width: 20,
+                                ),
+                                const Text("7",
+                                    style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                                const Text(" Days",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ))
+                              ],
+                            ),
                             Expanded(
                               flex: 8,
                               child: Container(
@@ -94,6 +148,41 @@ class _HomePageState extends State<HomePage> {
                             Expanded(
                               flex: 15,
                               child: Container(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Container(
+                                      color: Colors.red,
+                                      height: 25,
+                                      width: 25,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(2.0),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              const Text("Actions Completed",
+                                                  style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                  )),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              const Text("+3 This Week",
+                                                  style: TextStyle(
+                                                    fontSize: 15,
+                                                  )),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                                 color: Colors.blue,
                                 height: 40,
                               ),
