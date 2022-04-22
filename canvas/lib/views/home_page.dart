@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:canvas/components/homepage/circle_with_text.dart';
-import 'package:canvas/components/homepage/current_days.dart';
+import 'package:canvas/constants.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,30 +13,61 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Climate Ark Canvas',
-      home: HomePage(),
+      home: MyHomePage(
+        title: 'Janus (Canvas)',
+      ),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  final String title;
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+        centerTitle: true,
+        backgroundColor: const Color(0xFF09BC8A),
+      ),
       body: Center(
         child: Column(children: [
           Container(
             margin: const EdgeInsets.all(16.0),
+            width: 500,
+            height: 200,
+            padding: const EdgeInsets.all(16.0),
+            child: Text('Hi, John!',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline4!
+                    .copyWith(color: Colors.white)),
             decoration: BoxDecoration(
+              color: primaryColor,
               border: Border.all(
                 width: 1.0,
-                color: const Color(0xFF000000),
+                color: primaryDarkerColor,
+              ),
+              borderRadius: const BorderRadius.only(
+                  bottomRight: Radius.circular(40.0),
+                  bottomLeft: Radius.circular(40.0)),
+//              borderRadius: const BorderRadius.all(Radius.circular(20)),
+              gradient: const LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment
+                    .bottomCenter, // 10% of the width, so there are ten blinds.
+                colors: <Color>[
+                  primaryColor,
+                  primaryDarkerColor
+                ], // red to yellow
               ),
             ),
           ),
@@ -47,12 +78,8 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: Colors.black38),
-                      borderRadius: const BorderRadius.all(Radius.circular(8)),
-                    ),
                     child: const Text(
-                      'Streak Days',
+                      '500kgs CO2 \nCarbon Saved',
                       style: TextStyle(fontSize: 25),
                     ),
                     margin: const EdgeInsets.all(4),
@@ -71,13 +98,22 @@ class _HomePageState extends State<HomePage> {
                 Icons.emoji_people,
                 color: Colors.teal,
               ),
-              title: Text('Activities Completed 8',
+              title: Text('7 days   12 Activities Completed',
                   style: TextStyle(
                     color: Colors.teal.shade900,
                     fontSize: 20.0,
                   )),
             ),
           ),
+          Container(
+              alignment: Alignment.bottomLeft,
+              margin: const EdgeInsets.all(10.0),
+              width: 500.0,
+              height: 40.0,
+              child: const Text('Some Activities for You',
+                  style: TextStyle(
+                    fontSize: 30.0,
+                  ))),
         ]),
       ),
     );
