@@ -120,8 +120,7 @@ class _HomePageState extends State<HomePage> {
                               flex: 8,
                               child: Container(
                                 child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Container(
                                       color: Colors.red,
