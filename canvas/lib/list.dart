@@ -15,7 +15,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       margin: EdgeInsets.only(top: 130),
       child: ListView.builder(
           padding: const EdgeInsets.all(8),
-          itemCount: litems.length,
+          itemCount: TaskBrain.currList.length,
           itemBuilder: (BuildContext context, int index) {
             return Column(
               children: <Widget>[
@@ -23,22 +23,22 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   height: 50.0,
                 ),
                 CheckboxListTile(
-                  title: Text(litems[index].tasktitle),
-                  subtitle: Text(litems[index].tasksub),
+                  title: Text(TaskBrain.currList[index].tasktitle),
+                  subtitle: Text(TaskBrain.currList[index].tasksub),
                   tileColor: const Color(0xFF84ddc4),
                   checkColor: Color(0xFFFFFFFF),
                   activeColor: Color(0xFF045e45),
-                  value: litems[index].isComplete,
+                  value: TaskBrain.currList[index].isComplete,
                   onChanged: (bool? value) {
                     setState(() {
-                      litems[index].isComplete = value!;
+                      TaskBrain.currList[index].isComplete = value!;
                     });
                   },
                   secondary: Container(
                     height: 50,
                     width: 50,
                     child: Image.asset(
-                      litems[index].imageicon,
+                      TaskBrain.currList[index].imageicon,
                       fit: BoxFit.cover,
                     ),
                   ),

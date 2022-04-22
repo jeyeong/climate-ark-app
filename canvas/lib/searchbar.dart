@@ -13,7 +13,7 @@ class _SearchBarUIState extends State<SearchBarUI> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 60, color: Colors.teal, child: buildFloatingSearchBar());
+        height: 60, color: primaryColor, child: buildFloatingSearchBar());
   }
 
   Widget buildFloatingSearchBar() {

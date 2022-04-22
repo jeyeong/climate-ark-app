@@ -11,9 +11,10 @@ class ActionsPage extends StatelessWidget {
     return Container(
       child: Stack(
         children: [
-          Home(),
-          const SearchBarUI(),
+          Home_(),
           MyStatefulWidget(),
+          SearchBarUI(),
+          
         ],
       ),
     );
