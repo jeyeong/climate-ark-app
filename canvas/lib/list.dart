@@ -23,26 +23,24 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 Container(
                   height: 20.0,
                 ),
-<<<<<<< HEAD
-                CheckboxListTile(
-                  title: Text(TaskBrain.currList[index].tasktitle),
-                  subtitle: Text(TaskBrain.currList[index].tasksub),
-                  tileColor: const Color(0xFF84ddc4),
-                  checkColor: Color(0xFFFFFFFF),
-                  activeColor: Color(0xFF045e45),
-                  value: TaskBrain.currList[index].isComplete,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      TaskBrain.currList[index].isComplete = value!;
-                    });
-                  },
-                  secondary: Container(
-                    height: 50,
-                    width: 50,
-                    child: Image.asset(
-                      TaskBrain.currList[index].imageicon,
-                      fit: BoxFit.cover,
-=======
+                //CheckboxListTile(
+                // title: Text(TaskBrain.currList[index].tasktitle),
+                // subtitle: Text(TaskBrain.currList[index].tasksub),
+                // tileColor: const Color(0xFF84ddc4),
+                // checkColor: Color(0xFFFFFFFF),
+                // activeColor: Color(0xFF045e45),
+                // value: TaskBrain.currList[index].isComplete,
+                // onChanged: (bool? value) {
+                //   setState(() {
+                //     TaskBrain.currList[index].isComplete = value!;
+                //   });
+                // },
+                // secondary: Container(
+                //   height: 50,
+                //   width: 50,
+                //   child: Image.asset(
+                //     TaskBrain.currList[index].imageicon,
+                //     fit: BoxFit.cover,
                 Container(
                   height: 70.0,
                   decoration: BoxDecoration(
@@ -50,25 +48,24 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: CheckboxListTile(
-                    title: Text(litems[index].tasktitle),
-                    subtitle: Text(litems[index].tasksub),
+                    title: Text(TaskBrain.currList[index].tasktitle),
+                    subtitle: Text(TaskBrain.currList[index].tasksub),
                     tileColor: Color(0xFFFAFAFA),
                     checkColor: Color(0xFFFFFFFF),
                     activeColor: Color(0xFF045e45),
-                    value: litems[index].isComplete,
+                    value: TaskBrain.currList[index].isComplete,
                     onChanged: (bool? value) {
                       setState(() {
-                        litems[index].isComplete = value!;
+                        TaskBrain.currList[index].isComplete = value!;
                       });
                     },
                     secondary: Container(
                       height: 50,
                       width: 50,
                       child: Image.asset(
-                        litems[index].imageicon,
+                        TaskBrain.currList[index].imageicon,
                         fit: BoxFit.cover,
                       ),
->>>>>>> 6d66620ba39da7d8b372e33e024d964e1dfd8457
                     ),
                   ),
                 ),
