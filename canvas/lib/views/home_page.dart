@@ -221,44 +221,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          Card(
-            margin:
-                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: Colors.black38),
-                      borderRadius: const BorderRadius.all(Radius.circular(8)),
-                    ),
-                    child: const Text(
-                      'Streak Days',
-                      style: TextStyle(fontSize: 25),
-                    ),
-                    margin: const EdgeInsets.all(4),
-                  ),
-                  const CircleWithText(
-                    title: '4',
-                    radius: 50.0,
-                  ),
-                ]),
-          ),
-          Card(
-            margin:
-                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-            child: ListTile(
-              leading: const Icon(
-                Icons.emoji_people,
-                color: Colors.teal,
-              ),
-              title: Text('Activities Completed 8',
-                  style: TextStyle(
-                    color: Colors.teal.shade900,
-                    fontSize: 20.0,
-                  )),
-            ),
-          ),
         ],
       ),
     );
