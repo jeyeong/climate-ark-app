@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:canvas/components/homepage/circle_with_text.dart';
-import 'package:canvas/components/homepage/current_days.dart';
+import 'package:canvas/components/homepage/swipe_cards.dart';
 
 void main() {
   runApp(const MyApp());
@@ -210,6 +209,15 @@ class _HomePageState extends State<HomePage> {
                 fontWeight: FontWeight.w600,
                 letterSpacing: 0.1,
               ),
+            ),
+          ),
+          SizedBox(
+            width: 250,
+            height: 250,
+            child: Stack(
+              children: <Widget>[
+                ExampleSwipe(),
+              ],
             ),
           ),
           Container(
