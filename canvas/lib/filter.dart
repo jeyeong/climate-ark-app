@@ -1,4 +1,5 @@
 import 'package:canvas/constants.dart';
+import 'package:canvas/list.dart';
 import 'package:flutter/material.dart';
 import 'package:canvas/classes.dart';
 
@@ -21,7 +22,8 @@ class _Home_State extends State<Home_> {
           onPressed: () {
             setState(() {
               TaskBrain.filterbyType(filt: txt);
-              print(TaskBrain.currList[0].tasktitle);
+              MyStatefulWidget();
+              //print(TaskBrain.currList[0].tasktitle);
             });
             
           },
