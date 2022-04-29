@@ -123,9 +123,16 @@ class _HomePageState extends State<HomePage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Container(
-                                      color: Colors.red,
-                                      height: 20,
-                                      width: 20,
+                                      height: 20.0,
+                                      width: 20.0,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image:
+                                              AssetImage('assets/firesign.png'),
+                                          fit: BoxFit.fill,
+                                        ),
+                                        shape: BoxShape.circle,
+                                      ),
                                     ),
                                     const Text("7",
                                         style: TextStyle(
