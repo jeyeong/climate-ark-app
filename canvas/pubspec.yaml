@@ -36,6 +36,7 @@ dependencies:
     fl_chart: ^0.50.1
     bezier: any
     fluttericon: ^2.0.0
+    material_floating_search_bar: ^0.3.7
 
 dev_dependencies:
     flutter_test:
