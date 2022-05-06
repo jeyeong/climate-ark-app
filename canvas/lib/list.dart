@@ -10,6 +10,7 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  double ht = 130.0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,34 +22,51 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             return Column(
               children: <Widget>[
                 Container(
-                  height: 20.0,
+                  height: 10.0,
                 ),
-
                 Container(
-                  height: 70.0,
                   decoration: BoxDecoration(
                     border: Border.all(color: Color(0xFF09bc8a)),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: CheckboxListTile(
-                    title: Text(TaskBrain.currList[index].tasktitle),
-                    subtitle: Text(TaskBrain.currList[index].tasksub),
-                    tileColor: Color(0xFFFAFAFA),
-                    checkColor: Color(0xFFFFFFFF),
-                    activeColor: Color(0xFF045e45),
-                    value: TaskBrain.currList[index].isComplete,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        TaskBrain.currList[index].isComplete = value!;
-                      });
-                    },
-                    secondary: Container(
-                      height: 50,
-                      width: 50,
-                      child: Image.asset(
-                        TaskBrain.currList[index].imageicon,
-                        fit: BoxFit.cover,
-                      ),
+                  // child: CheckboxListTile(
+                  //   title: Text(TaskBrain.currList[index].tasktitle),
+                  //   subtitle: Text(TaskBrain.currList[index].tasksub),
+                  //   tileColor: Color(0xFFFAFAFA),
+                  //   checkColor: Color(0xFFFFFFFF),
+                  //   activeColor: Color(0xFF045e45),
+                  //   value: TaskBrain.currList[index].isComplete,
+                  //   onChanged: (bool? value) {
+                  //     setState(() {
+                  //       TaskBrain.currList[index].isComplete = value!;
+                  //     });
+                  //   },
+                  //   secondary: Container(
+                  //     height: 50,
+                  //     width: 50,
+                  //     child: Image.asset(
+                  //       TaskBrain.currList[index].imageicon,
+                  //       fit: BoxFit.cover,
+                  //     ),
+                  child: Card(
+                    child: ExpansionTile(
+                      title: Text(TaskBrain.currList[index].tasktitle),
+                      subtitle: Text(TaskBrain.currList[index].tasksub),
+                      leading: Container(
+                          height: ht,
+                          width: 50,
+                          child: Image.asset(
+                            TaskBrain.currList[index].imageicon,
+                            fit: BoxFit.cover,
+                          )),
+                      children: <Widget>[
+                        Text('stuff 1'),
+                        Text('stuff 2'),
+                        Text('stuff 3'),
+                      ],
+                      onExpansionChanged: (bool expanded) {
+                        setState(() => ht = 300.0);
+                      },
                     ),
                   ),
                 ),

@@ -22,8 +22,8 @@ class _Home_State extends State<Home_> {
           onPressed: () {
             setState(() {
               TaskBrain.filterbyType(filt: txt);
-              MyStatefulWidget();
-              //print(TaskBrain.currList[0].tasktitle);
+              
+              print(TaskBrain.currList[0].tasktitle);
             });
             
           },
@@ -36,32 +36,36 @@ class _Home_State extends State<Home_> {
     );
   }
 
-  @override
+@override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+    return Stack(
+      //crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Container(width: 0, height: 60, color: Colors.teal),
-        Container(
-          color: primaryColor,
-          height: 70,
-          child: ListView(
-            padding: const EdgeInsets.all(8),
-            scrollDirection: Axis.horizontal,
-            children: [
-            
-              //BuildFilterButton(txt: 'Reset'),
-              BuildFilterButton(txt: 'Electricity'),
-              BuildFilterButton(txt: 'Emissions'),
-              BuildFilterButton(txt: 'filter3'),
-              BuildFilterButton(txt: 'filter4'),
-              BuildFilterButton(txt: 'filter5'),
-              BuildFilterButton(txt: 'filter6'),
-              BuildFilterButton(txt: 'filter7'),
-              BuildFilterButton(txt: 'filter8'),
-            ],
-          ),
+        
+        Column(
+          children: [
+            Container(width: 0, height: 60, color: Colors.teal),
+            Container(
+              color: primaryColor,
+              height: 70,
+              child: ListView(
+                padding: const EdgeInsets.all(8),
+                scrollDirection: Axis.horizontal,
+                children: [
+                  BuildFilterButton(txt: 'Electricity'),
+                  BuildFilterButton(txt: 'Emissions'),
+                  BuildFilterButton(txt: 'filter3'),
+                  BuildFilterButton(txt: 'filter4'),
+                  BuildFilterButton(txt: 'filter5'),
+                  BuildFilterButton(txt: 'filter6'),
+                  BuildFilterButton(txt: 'filter7'),
+                  BuildFilterButton(txt: 'filter8'),
+                ],
+              ),
+            ),
+          ],
         ),
+        MyStatefulWidget(),
       ],
     );
   }
