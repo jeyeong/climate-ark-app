@@ -12,7 +12,7 @@ class ActionsPage extends StatelessWidget {
       child: Stack(
         children: [
           Home_(),
-          MyStatefulWidget(),
+          // MyStatefulWidget(),
           SearchBarUI(),
           
         ],
