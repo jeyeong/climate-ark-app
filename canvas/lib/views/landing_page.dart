@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:canvas/views/home_page.dart';
 import 'package:canvas/views/login_page.dart';
+import 'package:canvas/views/impact_page.dart';
 
 import 'package:canvas/components/impact_page/graph_image.dart';
 import 'package:canvas/components/impact_page/graph_toggle.dart';
 import 'package:canvas/components/impact_page/impact_box.dart';
-import 'package:canvas/components/action_page/graph_image.dart';
 import 'package:canvas/main2.dart';
 
 class ProfilePic extends StatelessWidget {
@@ -46,10 +46,10 @@ class _LandingPageState extends State<LandingPage> {
       style: optionStyle,
     ),
     //GraphPack(passedType: Toggle.daily)
-    ImpactBox()
+    ImpactPage(),
     HomePage(),
     SearchBarUI(),
-    GraphCard()
+    GraphCard(),
   ];
 
   void _onItemTapped(int index) {
