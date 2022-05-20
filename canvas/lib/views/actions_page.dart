@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:canvas/searchbar.dart';
-import 'package:canvas/list.dart';
-import 'package:canvas/filter.dart';
+import 'package:canvas/list_sc.dart';
+import 'package:canvas/filter_sc.dart';
 
 class ActionsPage extends StatelessWidget {
   const ActionsPage({Key? key}) : super(key: key);
