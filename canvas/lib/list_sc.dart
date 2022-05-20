@@ -1,3 +1,5 @@
+// ignore_for_file: equal_elements_in_set
+
 import 'package:flutter/material.dart';
 import 'package:canvas/classes.dart';
 import 'package:canvas/constants.dart';
@@ -35,38 +37,49 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       subtitle: Text(TaskBrain.currList[index].tasksub),
                       leading: Container(
                           height: ht,
-                          width: 50,
+                          width: 100.0,
                           child: Image.asset(
                             TaskBrain.currList[index].imageicon,
                             fit: BoxFit.cover,
                           )),
                       children: <Widget>[
-                        CheckboxListTile(
-                          tileColor: Color(0xFF09bc8a),
-                          title: Text(
-                            'Completed',
-                            style: TextStyle(
-                              color: Colors.white,
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: CheckboxListTile(
+                            tileColor: Color(0xFF09bc8a),
+                            title: Text(
+                              '(TODO: having trouble putting this & stuff below in a Row widget!)',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
                             ),
+                            checkColor: Colors.white,
+                            //fillColor: Color(0xFF045e45),
+                            value: TaskBrain.currList[index].isComplete,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                TaskBrain.currList[index].isComplete = value!;
+                              });
+                            },
                           ),
-                          checkColor: Colors.white,
-                          //fillColor: Color(0xFF045e45),
-                          value: TaskBrain.currList[index].isComplete,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              TaskBrain.currList[index].isComplete = value!;
-                            });
-                          },
                         ),
-                        Container(
-                          color: Color(0xFF045e45),
-                          height: 1,
-                          width: 1,
-                          child: Text(TaskBrain.currList[index].taskimpact),
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 4.0, horizontal: 20.0),
+                            color: Color(0xFF045e45),
+                            child: Text(TaskBrain.currList[index].taskimpact),
+                          ),
                         ),
-                        Container(
-                          color: Color(0xFFcdf1e7),
-                          child: Text(TaskBrain.currList[index].dollarssaved),
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 4.0, horizontal: 20.0),
+                            color: Color(0xFFcdf1e7),
+                            child: Text(TaskBrain.currList[index].dollarssaved),
+                          ),
                         ),
                       ],
                       onExpansionChanged: (bool expanded) {
