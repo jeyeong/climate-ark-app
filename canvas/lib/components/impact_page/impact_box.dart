@@ -58,7 +58,7 @@ class _ImpactBoxState extends State<ImpactBox> {
             borderRadius: BorderRadius.circular(8),
             borderWidth: 3,
           ),
-          isSelected[0] ? GraphPack(passedType: Toggle.daily) :  HistoryListCard(),
+          isSelected[0] ? GraphPack(passedType: Toggle.daily) :   LeafBox(numSaved: 70, size: 100), //HistoryListCard(),
 
         ],
         )

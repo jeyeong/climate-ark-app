@@ -24,7 +24,7 @@ class _LeafState extends State<LeafBox> {
   List<bool> isSelected = [true, false];
   @override
   Widget build(BuildContext context) {
-    return Padding(padding: const EdgeInsets.symmetric(vertical: 40.0),
+    return Padding(padding: const EdgeInsets.symmetric(vertical: 5.0),
     child: Stack(
       alignment: Alignment.center,
       children: [
