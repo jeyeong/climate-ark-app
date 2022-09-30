@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:canvas/views/home_page.dart';
 import 'package:canvas/views/login_page.dart';
-
-import 'package:canvas/components/impact_page/graph_image.dart';
-import 'package:canvas/components/impact_page/graph_toggle.dart';
-import 'package:canvas/components/impact_page/impact_box.dart';
-import 'package:canvas/components/action_page/graph_image.dart';
-import 'package:canvas/main2.dart';
+import 'package:canvas/views/impact_page.dart';
 
 class ProfilePic extends StatelessWidget {
   const ProfilePic({Key? key}) : super(key: key);
@@ -30,26 +25,18 @@ class LandingPage extends StatefulWidget {
   State<LandingPage> createState() => _LandingPageState();
 }
 
-
 class _LandingPageState extends State<LandingPage> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     LoginPage(),
-    Text(
-      'Home',
-      style: optionStyle,
-    ),
+    HomePage(),
     Text(
       'Action',
       style: optionStyle,
     ),
-    //GraphPack(passedType: Toggle.daily)
-    ImpactBox()
-    HomePage(),
-    SearchBarUI(),
-    GraphCard()
+    ImpactPage(),
   ];
 
   void _onItemTapped(int index) {

@@ -14,9 +14,7 @@ class HexColor extends Color {
 }
 */
 
-/****************************************************
- *  COLORS
- ****************************************************/
+///  COLORS  ///
 
 // Primarys
 const primaryDarkestColor = Color(0xFF01251b);

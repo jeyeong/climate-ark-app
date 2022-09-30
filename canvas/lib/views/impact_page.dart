@@ -11,12 +11,15 @@ class ImpactPage extends StatelessWidget {
         body: SafeArea(
             child: Center(
                 child: Container(
-                  child: Column(children: [
-                    FunFact(text: "Saving emissions worth a flight \nbetween Delhi and Bangalore", height: 80.0, icon: Icon(Icons.airplanemode_on), col: Colors.white), 
-                    ImpactBox()]),
-    )
-    )
-    )
-    );
+      child: Column(children: [
+        FunFact(
+            text:
+                "Saving emissions worth a flight \nbetween Delhi and Bangalore",
+            height: 80.0,
+            icon: Icon(Icons.airplanemode_on),
+            col: Colors.white),
+        ImpactBox()
+      ]),
+    ))));
   }
 }
