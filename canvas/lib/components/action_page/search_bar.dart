@@ -1,3 +1,4 @@
+import 'package:canvas/main.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
@@ -11,18 +12,12 @@ class SearchBar extends StatefulWidget {
 class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // This is handled by the search bar itself.
-      resizeToAvoidBottomInset: false,
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          //MyApp(),
-          buildFloatingSearchBar(),
-          // Background()
-        ],
-      ),
-    );
+    return Container(
+        child: Container(
+      height: MediaQuery.of(context).size.height - 120,
+      width: double.infinity,
+      child: buildFloatingSearchBar(),
+    ));
   }
 
   Widget buildFloatingSearchBar() {
