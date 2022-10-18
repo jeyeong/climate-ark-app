@@ -1,3 +1,4 @@
+import 'package:canvas/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:canvas/views/home_page.dart';
 import 'package:canvas/views/login_page.dart';
@@ -48,6 +49,7 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: primaryWhite,
       appBar: AppBar(
         leading: const ProfilePic(),
         title: const Text(
