@@ -14,7 +14,7 @@ class _SearchBarState extends State<SearchBar> {
   Widget build(BuildContext context) {
     return Container(
         child: Container(
-      height: MediaQuery.of(context).size.height - 120,
+      height: MediaQuery.of(context).size.height - 500,
       width: double.infinity,
       child: buildFloatingSearchBar(),
     ));

@@ -13,6 +13,7 @@ class ActionPage extends StatelessWidget {
     return Container(
         child: Column(children: [
       SearchBar(),
+      SuggestionBox(),
     ]));
   }
 }
