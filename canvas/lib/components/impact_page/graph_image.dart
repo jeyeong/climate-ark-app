@@ -131,7 +131,7 @@ class GraphCard extends StatelessWidget {
       //color: Color(0xff000000),
       color: darkGrey,
       fontWeight: FontWeight.bold,
-      fontSize: 16,
+      fontSize: 12,
     );
     Widget text = Text(value.toString(), style: style);
     return Padding(child: text, padding: const EdgeInsets.only(top: 10.0));
@@ -149,7 +149,7 @@ class GraphCard extends StatelessWidget {
       //color: Color(0xff000000),
       color: darkGrey,
       fontWeight: FontWeight.bold,
-      fontSize: 14,
+      fontSize: 12,
     );
     String text = (value.toInt()%150 == 0) ? value.toString(): "";
     

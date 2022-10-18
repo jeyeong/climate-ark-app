@@ -29,7 +29,7 @@ class GraphPackState extends State<GraphPack> {
       // padding: const EdgeInsets.symmetric(horizontal: 20),
       // margin: const EdgeInsets.symmetric(horizontal: 8.0),
       width: double.infinity,
-      height: 450,
+      height: 200,
       padding: EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 10.0), 
       // decoration: BoxDecoration(
       //     color: primaryLightestColor, borderRadius: BorderRadius.circular(29)),
@@ -39,10 +39,12 @@ class GraphPackState extends State<GraphPack> {
         children: <Widget>[
           Align(
             alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40.0),
-              child: makeButton(),
-            ),
+            child: Container( 
+              height: 40,
+              width: 100, 
+              child: makeButton()
+
+            )
           ),
           Expanded(
             child: LineChart(sampleData1)),
