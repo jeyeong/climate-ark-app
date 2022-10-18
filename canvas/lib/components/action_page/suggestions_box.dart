@@ -16,31 +16,67 @@ class _SuggestionBoxState extends State<SuggestionBox> {
         child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Container(
                   width: 160.0,
-                  height: 100,
-                  color: Colors.red,
+                  height: 50,
+                  color: Colors.grey[400],
+                  child: Center(
+                    child: Text(
+                      'Plastic',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ),
                 Container(
                   width: 160.0,
-                  height: 100,
+                  height: 50,
                   color: Colors.blue,
+                  child: Center(
+                    child: Text(
+                      'Water',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ),
                 Container(
                   width: 160.0,
-                  height: 100,
+                  height: 50,
                   color: Colors.green,
+                  child: Center(
+                    child: Text(
+                      'Household',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ),
                 Container(
                   width: 160.0,
-                  height: 100,
+                  height: 50,
                   color: Colors.yellow,
+                  child: Center(
+                    child: Text(
+                      'Electricity',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ),
                 Container(
                   width: 160.0,
-                  height: 100,
+                  height: 50,
                   color: Colors.orange,
+                  child: Center(
+                    child: Text(
+                      'Transportation',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ),
               ],
             )));
