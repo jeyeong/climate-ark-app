@@ -25,7 +25,7 @@ class _LeafState extends State<LeafBox> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 40.0),
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -56,11 +56,11 @@ class _LeafState extends State<LeafBox> {
             ),
           ),
           // from https://www.fluttericon.com/
-          Icon(
-            MyFlutterApp.leaf,
-            color: primaryColor,
-            size: size / 4,
-          ),
+          Container(
+          width: size / 3,
+          height: size / 3,
+          child: Image(image: AssetImage('assets/leaf.png')),
+        ),
         ],
       ),
     );

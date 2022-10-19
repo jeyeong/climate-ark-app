@@ -5,7 +5,10 @@ class HistoryListCard extends StatelessWidget {
   const HistoryListCard({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Material(
+    return Container(
+      width: double.infinity,
+      height: 250,
+      child:Material(
         child: ListView.builder(
           itemCount: 1,
           itemBuilder: (BuildContext context, int index) {
@@ -38,7 +41,7 @@ class HistoryListCard extends StatelessWidget {
               )
             ,
             ]);
-          }));
+          }))
     // return Scaffold(
     //   body: ListView(
     //       children: <Widget>[
@@ -47,5 +50,6 @@ class HistoryListCard extends StatelessWidget {
     //       ],
     //     ),
     // );
+    );
   }
 }

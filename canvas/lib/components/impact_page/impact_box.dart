@@ -23,6 +23,7 @@ class _ImpactBoxState extends State<ImpactBox> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       child: Column(
         children: <Widget>[
           ToggleButtons(
@@ -49,7 +50,9 @@ class _ImpactBoxState extends State<ImpactBox> {
               });
             },
             isSelected: isSelected,
-            constraints: BoxConstraints(minHeight: 40.0, maxHeight: 50.0, minWidth: 280.0, maxWidth: 500.0),
+            constraints: BoxConstraints(
+              minHeight: 30.0, maxHeight: 50.0, 
+              minWidth: (MediaQuery.of(context).size.width - 20) /2),//200.0, maxWidth: 500.0),
             color: offsetWhite,
             fillColor: primaryColor,
             borderColor: primaryColor,
@@ -57,7 +60,7 @@ class _ImpactBoxState extends State<ImpactBox> {
             borderRadius: BorderRadius.circular(8),
             borderWidth: 3,
           ),
-          isSelected[0] ? GraphPack(passedType: Toggle.daily) :LeafBox(numSaved: 30, size: 350),
+          isSelected[0] ? GraphPack(passedType: Toggle.daily) : HistoryListCard(), //HistoryListCard(),
 
         ],
         )
