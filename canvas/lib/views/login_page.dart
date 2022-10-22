@@ -48,11 +48,21 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.all(20),
                 child: Image.asset('assets/hero.png'),
               ),
-              InputField(title: 'Username', controller: usernameController),
+              InputField(
+                title: 'Username',
+                controller: usernameController,
+              ),
               const SizedBox(height: 20.0),
-              InputField(title: 'Password', controller: passwordController),
+              InputField(
+                title: 'Password',
+                controller: passwordController,
+                obscure: true,
+              ),
               const SizedBox(height: 20.0),
-              Button(text: 'LOG-IN', callback: checkLoginCredentials),
+              Button(
+                text: 'LOG-IN',
+                callback: checkLoginCredentials,
+              ),
               const SizedBox(height: 20.0),
               InkWell(
                 child: const Text(
@@ -71,72 +81,5 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     ));
-
-    // return Scaffold(
-    //   body: SafeArea(
-    //     child: SingleChildScrollView(
-    //       child: Container(
-    //         margin: const EdgeInsets.symmetric(horizontal: 30),
-    //         color: primaryWhite,
-    //         child: Column(
-    //           children: [
-    //             // Main content
-    //             SizedBox(
-    //               child: Column(
-    //                 mainAxisAlignment: MainAxisAlignment.center,
-    //                 children: [
-    //                   Padding(
-    //                     padding: const EdgeInsets.fromLTRB(20, 20, 20, 30),
-    //                     child: Image.asset('assets/hero.png'),
-    //                   ),
-    //                   InputField(
-    //                     title: 'Username',
-    //                     controller: usernameController,
-    //                   ),
-    //                   const SizedBox(height: 20.0),
-    //                   PasswordField(
-    //                     controller: passwordController,
-    //                   ),
-    //                   const SizedBox(height: 20.0),
-    //                   Button(
-    //                     text: 'LOG-IN',
-    //                     callback: printLoginCredentials,
-    //                   ),
-    //                   const SizedBox(height: 20.0),
-    //                   Row(
-    //                     children: [
-    //                       InkWell(
-    //                         child: const Text('Sign Up'),
-    //                         onTap: () {
-    //                           Navigator.push(
-    //                             context,
-    //                             MaterialPageRoute(
-    //                                 builder: (context) => const SignUpPage()),
-    //                           );
-    //                         },
-    //                       ),
-    //                       const Spacer(),
-    //                       InkWell(
-    //                         child: const Text('Forgot Password?'),
-    //                         onTap: () {
-    //                           Navigator.push(
-    //                             context,
-    //                             MaterialPageRoute(
-    //                                 builder: (context) =>
-    //                                     const ForgotPassPage()),
-    //                           );
-    //                         },
-    //                       ),
-    //                     ],
-    //                   ),
-    //                 ],
-    //               ),
-    //             )
-    //           ],
-    //         ),
-    //       ),
-    //     ),
-    //   ),
-    // );
   }
 }
