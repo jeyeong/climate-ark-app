@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:canvas/views/home_page.dart';
 import 'package:canvas/views/login_page.dart';
 import 'package:canvas/views/impact_page.dart';
+import 'package:canvas/components/general/app_bar.dart';
 
 class ProfilePic extends StatelessWidget {
   const ProfilePic({Key? key}) : super(key: key);
@@ -50,18 +51,9 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: primaryWhite,
-      appBar: AppBar(
-        leading: const ProfilePic(),
-        title: const Text(
-          'J A N U S',
-          style: TextStyle(
-            color: Color(0xff62cfb2),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: const Color(0xff08b184),
-        centerTitle: true,
-        elevation: 0,
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(50),
+        child: JanusAppBar(),
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(

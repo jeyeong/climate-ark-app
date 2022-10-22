@@ -40,19 +40,34 @@ class _LoginPageState extends State<LoginPage> {
       margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
       child: Form(
         key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(20),
-              child: Image.asset('assets/hero.png'),
-            ),
-            InputField(title: 'Username', controller: usernameController),
-            const SizedBox(height: 20.0),
-            InputField(title: 'Password', controller: passwordController),
-            const SizedBox(height: 20.0),
-            Button(text: 'LOG-IN', callback: checkLoginCredentials),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(20),
+                child: Image.asset('assets/hero.png'),
+              ),
+              InputField(title: 'Username', controller: usernameController),
+              const SizedBox(height: 20.0),
+              InputField(title: 'Password', controller: passwordController),
+              const SizedBox(height: 20.0),
+              Button(text: 'LOG-IN', callback: checkLoginCredentials),
+              const SizedBox(height: 20.0),
+              InkWell(
+                child: const Text(
+                  'Sign Up',
+                  style: TextStyle(fontSize: 16),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SignUpPage()),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     ));

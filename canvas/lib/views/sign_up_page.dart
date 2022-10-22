@@ -2,7 +2,7 @@ import 'package:canvas/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:canvas/components/sign_up/sign_up_button.dart';
 import 'package:canvas/components/general/input_field.dart';
-import 'package:canvas/components/general/logo.dart';
+import 'package:canvas/components/general/app_bar.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -10,9 +10,9 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: primaryDarkColor,
-        title: const Logo(width: 60.0),
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(50),
+        child: JanusAppBar(),
       ),
       body: SafeArea(
         child: Center(
