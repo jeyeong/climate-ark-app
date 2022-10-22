@@ -17,94 +17,69 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool loggedIn = false;
+  final _formKey = GlobalKey<FormState>();
 
-  TextEditingController nameController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  void printLoginCredentials() {
-    if (nameController.text == 'techteam' &&
+  void checkLoginCredentials() {
+    if (usernameController.text == 'techteam' &&
         passwordController.text == '1234') {
-      setState(() {
-        loggedIn = true;
-      });
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('Logged in.')));
     } else {
-      print('Wrong user/pass!');
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Wrong username/password.')));
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    /* Temporary simulation of logging in */
-    if (loggedIn) {
-      return const HomePage();
-    }
-
-    return Scaffold(
-      body: SafeArea(
+    return SafeArea(
+        child: Container(
+      margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+      child: Form(
+        key: _formKey,
         child: SingleChildScrollView(
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 30),
-            color: primaryWhite,
-            child: Column(
-              children: [
-                // Main content
-                SizedBox(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 20, 20, 30),
-                        child: Image.asset('assets/hero.png'),
-                      ),
-                      InputField(
-                        title: 'Username',
-                        controller: nameController,
-                      ),
-                      const SizedBox(height: 20.0),
-                      PasswordField(
-                        controller: passwordController,
-                      ),
-                      const SizedBox(height: 20.0),
-                      Button(
-                        text: 'LOG-IN',
-                        callback: printLoginCredentials,
-                      ),
-                      const SizedBox(height: 20.0),
-                      Row(
-                        children: [
-                          InkWell(
-                            child: const Text('Sign Up'),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const SignUpPage()),
-                              );
-                            },
-                          ),
-                          const Spacer(),
-                          InkWell(
-                            child: const Text('Forgot Password?'),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ForgotPassPage()),
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(20),
+                child: Image.asset('assets/hero.png'),
+              ),
+              InputField(
+                title: 'Username',
+                controller: usernameController,
+              ),
+              const SizedBox(height: 20.0),
+              InputField(
+                title: 'Password',
+                controller: passwordController,
+                obscure: true,
+              ),
+              const SizedBox(height: 20.0),
+              Button(
+                text: 'LOG-IN',
+                callback: checkLoginCredentials,
+              ),
+              const SizedBox(height: 20.0),
+              InkWell(
+                child: const Text(
+                  'Sign Up',
+                  style: TextStyle(fontSize: 16),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SignUpPage()),
+                  );
+                },
+              ),
+            ],
           ),
         ),
       ),
-    );
+    ));
   }
 }
