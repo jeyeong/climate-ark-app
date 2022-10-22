@@ -46,7 +46,10 @@ class SignUpPage extends StatelessWidget {
               children: [
                 const Text(
                   'Sign Up',
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 20.0),
                 InputField(title: 'Username', controller: usernameController),
