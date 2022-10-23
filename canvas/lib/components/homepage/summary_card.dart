@@ -1,107 +1,176 @@
 import 'package:canvas/constants.dart';
 import 'package:flutter/material.dart';
 
-class SummaryCard extends StatelessWidget {
-  const SummaryCard({Key? key}) : super(key: key);
+class Streak extends StatelessWidget {
+  final String streakDays;
+
+  const Streak({Key? key, required this.streakDays}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.symmetric(horizontal: 15),
-        padding: const EdgeInsets.all(10),
-        height: 140.0,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: primaryWhite,
-          borderRadius: const BorderRadius.all(Radius.circular(15)),
-          border: Border.all(color: Colors.grey.withOpacity(0.3)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.3),
-              spreadRadius: 1,
-              blurRadius: 3,
-              offset: const Offset(0, 3),
-            )
+      width: 150,
+      height: 60,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            Colors.amber.shade700,
+            Colors.amber.shade300,
           ],
         ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              flex: 3,
-              child: Container(
-                height: 70,
-                color: Colors.blue,
-              ),
+        borderRadius: const BorderRadius.all(Radius.circular(15)),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Icon(
+            Icons.local_fire_department,
+            color: Colors.white,
+            size: 30,
+          ),
+          const SizedBox(
+            width: 5,
+          ),
+          Text(
+            streakDays,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
             ),
-            Expanded(
-              flex: 7,
-              child: Container(
-                height: 70,
-                color: Colors.green,
-              ),
+          ),
+          const SizedBox(
+            width: 5,
+          ),
+          const Text(
+            "Days",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
             ),
-          ],
-        ));
+          )
+        ],
+      ),
+    );
+  }
+}
 
-    // Container(
-    //   height: 140.0,
-    //   width: double.infinity,
-    //   padding: const EdgeInsets.symmetric(horizontal: 14.0),
-    //   child: Container(
-    //     width: double.infinity,
-    //     decoration: const BoxDecoration(
-    //       borderRadius: BorderRadius.all(Radius.circular(15)),
-    //       color: Colors.white,
-    //       boxShadow: [
-    //         BoxShadow(
-    //           color: Color(0xffe6e6e6),
-    //           spreadRadius: 0.25,
-    //           blurRadius: 0.5,
-    //           offset: Offset(0, 1),
-    //         )
-    //       ],
-    //     ),
-    //     child: Padding(
-    //       padding: const EdgeInsets.all(15.0),
-    //       child: Column(
-    //         children: [
-    //           Row(
-    //             children: [
-    //               Expanded(
-    //                 child: Container(
-    //                   color: Colors.green,
-    //                   height: 70,
-    //                 ),
-    //               ),
-    //             ],
-    //           ),
-    //           Row(
-    //             children: [
-    //               Expanded(
-    //                 flex: 8,
-    //                 child: Container(
-    //                   color: Colors.amber,
-    //                   height: 40,
-    //                 ),
-    //               ),
-    //               Expanded(
-    //                 flex: 1,
-    //                 child: Container(),
-    //               ),
-    //               Expanded(
-    //                 flex: 15,
-    //                 child: Container(
-    //                   color: Colors.blue,
-    //                   height: 40,
-    //                 ),
-    //               ),
-    //             ],
-    //           ),
-    //         ],
-    //       ),
-    //     ),
-    //   ),
-    // );
+class ActionsCompleted extends StatelessWidget {
+  final String actionsCompleted;
+
+  const ActionsCompleted({Key? key, required this.actionsCompleted})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 60,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 12,
+        vertical: 8,
+      ),
+      decoration: const BoxDecoration(
+        color: primaryLightestColor,
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+      ),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: const BoxDecoration(
+              color: primaryColor,
+              borderRadius: BorderRadius.all(Radius.circular(8)),
+            ),
+            child: Text(
+              actionsCompleted,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          const SizedBox(width: 15),
+          const Text(
+            "Actions Completed",
+            style: TextStyle(
+              color: primaryColor,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 0.5,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class SummaryCard extends StatelessWidget {
+  final String carbonSaved;
+  final String streakDays;
+  final String actionsCompleted;
+
+  const SummaryCard({
+    Key? key,
+    required this.carbonSaved,
+    required this.streakDays,
+    required this.actionsCompleted,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.all(15),
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: primaryWhite,
+        borderRadius: const BorderRadius.all(Radius.circular(15)),
+        border: Border.all(color: Colors.grey.withOpacity(0.3)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.3),
+            spreadRadius: 1,
+            blurRadius: 3,
+            offset: const Offset(0, 3),
+          )
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                carbonSaved,
+                style: const TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const Text("Kgs Carbon Saved")
+            ],
+          ),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Streak(
+                streakDays: streakDays,
+              ),
+              const SizedBox(width: 20),
+              ActionsCompleted(
+                actionsCompleted: actionsCompleted,
+              ),
+            ],
+          )
+        ],
+      ),
+    );
   }
 }
