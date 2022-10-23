@@ -34,10 +34,17 @@ class _HomePageState extends State<HomePage> {
         child: Column(
       children: [
         const SizedBox(height: 15),
+<<<<<<< HEAD
         SummaryCard(
           carbonSaved: carbonSaved.toString(),
           streakDays: fakeAccountData.streak.toString(),
           actionsCompleted: completedActions.length.toString(),
+=======
+        const SummaryCard(
+          carbonSaved: "500",
+          streakDays: "7",
+          actionsCompleted: "12",
+>>>>>>> b78a02b (Completed summary card)
         ),
       ],
     ));
