@@ -15,7 +15,11 @@ class _HomePageState extends State<HomePage> {
         child: Column(
       children: [
         const SizedBox(height: 15),
-        const SummaryCard(),
+        const SummaryCard(
+          carbonSaved: "500",
+          streakDays: "7",
+          actionsCompleted: "12",
+        ),
       ],
     ));
   }
