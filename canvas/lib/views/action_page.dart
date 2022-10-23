@@ -10,13 +10,14 @@ class ActionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Scaffold(
         //replace line 15 Stack with Column to see scrollable functionality
-        child: Column(children: [
-      //SearchBar(),
-      Positioned.fill(child: SearchBar()),
-      Positioned(top: 60, child: SuggestionBox()),
-      //Positioned.fill(child: SearchBar()),
-    ]));
+        body: new Container(
+            color: primaryColor,
+            child: Column(children: [
+              //SearchBar(),
+              Positioned.fill(child: SearchBar()),
+              Positioned(top: 60, child: SuggestionBox()),
+            ])));
   }
 }
