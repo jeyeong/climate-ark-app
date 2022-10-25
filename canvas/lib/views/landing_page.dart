@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:canvas/views/home_page.dart';
 import 'package:canvas/views/login_page.dart';
 import 'package:canvas/views/impact_page.dart';
+import 'package:canvas/views/profile_page.dart';
 
 class ProfilePic extends StatelessWidget {
   const ProfilePic({Key? key}) : super(key: key);
@@ -9,9 +10,17 @@ class ProfilePic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: const CircleAvatar(
-        radius: 20.0,
-        backgroundImage: AssetImage('assets/dummy.png'),
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ProfilePage()),
+          );
+        },
+        child: const CircleAvatar(
+          radius: 20.0,
+          backgroundImage: AssetImage('assets/dummy.png'),
+        ),
       ),
       margin: const EdgeInsets.all(10.0),
     );
