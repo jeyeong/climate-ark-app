@@ -23,7 +23,7 @@ class ProfilePic extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ProfilePage()));
+                          builder: (context) => const ProfilePage(name: 'John Doe')));
                 },
                 child: Container(
                     decoration: BoxDecoration(

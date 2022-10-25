@@ -16,9 +16,9 @@ class ImpactPage extends StatelessWidget {
             text:
                 "Saving emissions worth a flight \nbetween Delhi and Bangalore",
             height: 80.0,
-            icon: Icon(Icons.airplanemode_on),
+            icon: const Icon(Icons.airplanemode_on),
             col: Colors.white),
-        ImpactBox()
+        const ImpactBox(),
       ]),
     ))));
   }
