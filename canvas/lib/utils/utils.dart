@@ -1,13 +1,13 @@
 import 'package:canvas/data.dart';
 
-List<Action> getCompletedActions(
-    List<Action?> actions, List<int> completedActionIdList) {
-  List<Action> completedActions = [];
+List<CarbonAction> getCompletedActions(
+    List<CarbonAction?> actions, List<int> completedActionIdList) {
+  List<CarbonAction> completedActions = [];
 
   for (int id in completedActionIdList) {
-    Action? action = actions.firstWhere(
+    CarbonAction? action = actions.firstWhere(
       (element) => element?.id == id,
-      orElse: () => null as Action,
+      orElse: () => null as CarbonAction,
     );
 
     if (action != null) {
@@ -18,10 +18,10 @@ List<Action> getCompletedActions(
   return completedActions;
 }
 
-int calculateCarbonSaved(List<Action> completedActions) {
+int calculateCarbonSaved(List<CarbonAction> completedActions) {
   int carbonSaved = 0;
 
-  for (Action action in completedActions) {
+  for (CarbonAction action in completedActions) {
     carbonSaved += action.carbonScore;
   }
 

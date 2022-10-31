@@ -13,7 +13,7 @@ class AccountData {
   );
 }
 
-class Action {
+class CarbonAction {
   final int id;
   final String actionName;
   final String actionDescription;
@@ -21,7 +21,7 @@ class Action {
   final int amountSavedAnnually;
   bool completed = false;
 
-  Action(
+  CarbonAction(
     this.id,
     this.actionName,
     this.actionDescription,
@@ -37,71 +37,71 @@ AccountData fakeAccountData = AccountData(
   [0, 8, 9],
 );
 
-List<Action> fakeActions = [
-  Action(
+List<CarbonAction> fakeActions = [
+  CarbonAction(
     0,
     'Turn Off Lights',
     'When not in use, switch off the lights.',
     5,
     10,
   ),
-  Action(
+  CarbonAction(
     1,
     'Use A Reusable Bottle',
     'Reduce plastic waste and the carbon that comes with it.',
     5,
     20,
   ),
-  Action(
+  CarbonAction(
     2,
     'Walk/Bike to Work',
     "Driving releases a lot of carbon!",
     80,
     150,
   ),
-  Action(
+  CarbonAction(
     3,
     'Do Laundry in Full Loads',
     "Reduce the frequency of laundry.",
     15,
     30,
   ),
-  Action(
+  CarbonAction(
     4,
     'Set Thermostat to 78 in Summer',
     "Less cooling reduces carbon!",
     40,
     100,
   ),
-  Action(
+  CarbonAction(
     5,
     'Set Thermostat to 67 in Winter',
     "Less heating reduces carbon!",
     40,
     100,
   ),
-  Action(
+  CarbonAction(
     6,
     'Unplug Devices When Not in Use',
     "Plugged-in devices use energy unnecessarily.",
     5,
     10,
   ),
-  Action(
+  CarbonAction(
     7,
     'Go Thrift Shopping',
     "Buy used clothes instead of new ones.",
     10,
     50,
   ),
-  Action(
+  CarbonAction(
     8,
     'LED Light Bulbs',
     "Switch out your non-LED light bulbs for LED ones.",
     15,
     40,
   ),
-  Action(
+  CarbonAction(
     9,
     'Change Laptop Settings',
     "Ensuring that your computers and monitors are turned off.",
