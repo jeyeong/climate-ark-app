@@ -1,21 +1,5 @@
 import 'package:flutter/material.dart';
 
-// For hex color usage, use this class
-/* For Eas
-class HexColor extends Color {
-  static int _getColorFromHex(String hexColor) {
-    hexColor = hexColor.toUpperCase().replaceAll("#", "");
-    if (hexColor.length == 6) {
-      hexColor = "FF" + hexColor;
-    }
-    return int.parse(hexColor, radix: 16);
-  }
-  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
-}
-*/
-
-///  COLORS  ///
-
 // Primarys
 const primaryDarkestColor = Color(0xFF01251b);
 const primaryDarkerColor = Color(0xFF045e45);
