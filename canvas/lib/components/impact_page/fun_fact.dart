@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:canvas/constants.dart';
 
 class FunFact extends StatelessWidget{
   final String text;
@@ -16,7 +17,18 @@ class FunFact extends StatelessWidget{
       padding: EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 10.0), 
       // margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
       child: Center(
-        child: ListTile(
+        child: Container(
+          //color: col,
+          decoration: BoxDecoration(
+            color: col,
+            borderRadius: BorderRadius.circular(15),
+            shape : BoxShape.rectangle,
+            border: Border.all(
+              color: Colors.black,
+              width: 1,
+            ),
+          ),
+          child: ListTile(
           tileColor: col,
           leading: Transform.scale(
             scale: 2.0,
@@ -29,11 +41,13 @@ class FunFact extends StatelessWidget{
           title: Text(text,
               style: TextStyle(
                 fontSize: height/4,
-                fontWeight: FontWeight.bold, ),
+                //fontWeight: FontWeight.bold, ),
+                color: primaryWhite),
               textAlign: TextAlign.center,
               ),
         ),
-      )
+        ),
+      ),
     );
   }
 }

@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class InputField extends StatelessWidget {
   final String title;
   final TextEditingController controller;
+  final bool obscure;
 
   const InputField({
     Key? key,
     required this.title,
     required this.controller,
+    this.obscure = false,
   }) : super(key: key);
 
   @override
@@ -20,6 +22,7 @@ class InputField extends StatelessWidget {
         ),
         labelText: title,
       ),
+      obscureText: obscure,
     );
   }
 }
