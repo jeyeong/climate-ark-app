@@ -4,6 +4,7 @@ import 'package:canvas/components/general/app_bar.dart';
 
 import 'package:canvas/data.dart';
 import 'package:canvas/components/homepage/summary_card.dart';
+import 'package:canvas/components/homepage/home_page_card.dart';
 
 import 'package:canvas/data.dart';
 import 'package:canvas/utils/utils.dart';
@@ -46,6 +47,13 @@ class _HomePageState extends State<HomePage> {
           actionsCompleted: "12",
 >>>>>>> b78a02b (Completed summary card)
         ),
+        Column(
+          children: const [
+            HomePageCard(),
+            HomePageCard(),
+            HomePageCard(),
+          ],
+        )
       ],
     ));
   }
