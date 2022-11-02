@@ -3,6 +3,7 @@ import 'package:canvas/components/homepage/summary_card.dart';
 
 import 'package:canvas/data.dart';
 import 'package:canvas/utils/utils.dart';
+import 'package:canvas/components/homepage/home_page_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -28,6 +29,13 @@ class _HomePageState extends State<HomePage> {
           streakDays: fakeAccountData.streak.toString(),
           actionsCompleted: completedActions.length.toString(),
         ),
+        Column(
+          children: const [
+            HomePageCard(),
+            HomePageCard(),
+            HomePageCard(),
+          ],
+        )
       ],
     ));
   }
