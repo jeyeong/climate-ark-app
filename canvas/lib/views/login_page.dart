@@ -1,13 +1,11 @@
-import 'package:canvas/components/general/button.dart';
 import 'package:canvas/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:canvas/views/home_page.dart';
 import 'package:canvas/views/sign_up_page.dart';
-import 'package:canvas/views/forgot_pass_page.dart';
 
 import 'package:canvas/components/general/input_field.dart';
-import 'package:canvas/components/login/password_field.dart';
+import 'package:canvas/components/general/button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

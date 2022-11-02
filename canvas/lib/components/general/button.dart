@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:canvas/constants.dart';
 
 class Button extends StatelessWidget {
   final String text;
   final VoidCallback callback;
+  final Color color;
 
-  Button({
+  const Button({
     Key? key,
     required this.text,
     required this.callback,
+    this.color = primaryColor,
   }) : super(key: key);
-
-  final ButtonStyle buttonStyle = TextButton.styleFrom(
-    backgroundColor: const Color(0xff09bc8a),
-    padding: const EdgeInsets.symmetric(
-      vertical: 24.0,
-      horizontal: 40.0,
-    ),
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +31,17 @@ class Button extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
         child: TextButton(
-          style: buttonStyle,
+          style: TextButton.styleFrom(
+            backgroundColor: color,
+            padding: const EdgeInsets.symmetric(
+              vertical: 24.0,
+              horizontal: 40.0,
+            ),
+          ),
           onPressed: callback,
           child: Text(
             text,
-            style: const TextStyle(color: Color(0xffffffff)),
+            style: const TextStyle(color: primaryWhite),
           ),
         ),
       ),
