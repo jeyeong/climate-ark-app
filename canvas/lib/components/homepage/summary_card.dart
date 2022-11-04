@@ -9,7 +9,7 @@ class Streak extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
+      width: MediaQuery.of(context).size.width * 0.35,
       height: 60,
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -68,6 +68,7 @@ class ActionsCompleted extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 60,
+      width: MediaQuery.of(context).size.width * 0.45,
       padding: const EdgeInsets.symmetric(
         horizontal: 12,
         vertical: 8,
@@ -79,28 +80,35 @@ class ActionsCompleted extends StatelessWidget {
       child: Row(
         children: [
           Container(
+            height: 40,
+            width: 35,
             padding: const EdgeInsets.all(8),
             decoration: const BoxDecoration(
               color: primaryColor,
               borderRadius: BorderRadius.all(Radius.circular(8)),
             ),
-            child: Text(
-              actionsCompleted,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+            child: Center(
+              child: Text(
+                actionsCompleted,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
           const SizedBox(width: 15),
-          const Text(
-            "Actions Completed",
-            style: TextStyle(
-              color: primaryColor,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 0.5,
+          // Flexible is used for wrapping.
+          const Flexible(
+            child: Text(
+              "Actions Completed",
+              style: TextStyle(
+                color: primaryColor,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 0.5,
+              ),
             ),
           )
         ],
@@ -158,12 +166,11 @@ class SummaryCard extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Streak(
                 streakDays: streakDays,
               ),
-              const SizedBox(width: 20),
               ActionsCompleted(
                 actionsCompleted: actionsCompleted,
               ),
