@@ -1,7 +1,7 @@
 import 'package:canvas/constants.dart';
 import 'package:flutter/material.dart';
 
-import 'package:canvas/views/home_page.dart';
+import 'package:canvas/views/actual_landing_page.dart';
 import 'package:canvas/views/sign_up_page.dart';
 import 'package:canvas/components/general/input_field.dart';
 import 'package:canvas/components/general/button.dart';
@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => HomePage(
+          builder: (context) => LandingPage(
             accountData: accountData,
             actions: actions,
           ),
