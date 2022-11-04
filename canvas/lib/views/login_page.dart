@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 import 'package:canvas/views/home_page.dart';
 import 'package:canvas/views/sign_up_page.dart';
-
 import 'package:canvas/components/general/input_field.dart';
 import 'package:canvas/components/general/button.dart';
+import 'package:canvas/data.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -21,10 +21,19 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController passwordController = TextEditingController();
 
   void checkLoginCredentials() {
-    if (usernameController.text == 'techteam' &&
-        passwordController.text == '1234') {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Logged in.')));
+    if (usernameController.text == 'tt' && passwordController.text == '123') {
+      // Simulate getting data.
+      final accountData = fakeAccountData;
+      final actions = fakeActions;
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomePage(
+            accountData: accountData,
+            actions: actions,
+          ),
+        ),
+      );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Wrong username/password.')));

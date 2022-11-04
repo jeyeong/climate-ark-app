@@ -1,10 +1,12 @@
-import 'package:canvas/components/general/button.dart';
 import 'package:flutter/material.dart';
 import 'package:canvas/constants.dart';
 import 'package:canvas/views/home_page.dart';
 import 'package:canvas/views/login_page.dart';
 import 'package:canvas/views/impact_page.dart';
 import 'package:canvas/components/general/app_bar.dart';
+
+import 'package:canvas/data.dart';
+
 class LandingPage extends StatefulWidget {
   const LandingPage({Key? key}) : super(key: key);
 
@@ -16,14 +18,17 @@ class _LandingPageState extends State<LandingPage> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    LoginPage(),
-    HomePage(),
-    Text(
+  static final List<Widget> _widgetOptions = <Widget>[
+    const LoginPage(),
+    HomePage(
+      accountData: fakeAccountData,
+      actions: fakeActions,
+    ),
+    const Text(
       'Action',
       style: optionStyle,
     ),
-    ImpactPage(),
+    const ImpactPage(),
   ];
 
   void _onItemTapped(int index) {

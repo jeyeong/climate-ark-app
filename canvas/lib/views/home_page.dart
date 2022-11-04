@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:canvas/components/homepage/circle_with_text.dart';
+import 'package:canvas/components/general/app_bar.dart';
+
+import 'package:canvas/data.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({
+    Key? key,
+    required this.accountData,
+    required this.actions,
+  }) : super(key: key);
+
+  final AccountData accountData;
+  final List<CarbonAction> actions;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -12,6 +22,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(50),
+        child: JanusAppBar(),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
