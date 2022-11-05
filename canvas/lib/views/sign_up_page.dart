@@ -44,28 +44,32 @@ class SignUpPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text(
-                  'Sign Up',
-                  style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                const Text('Sign Up',
+                    style:
+                        TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 20.0),
-                InputField(title: 'Username', controller: usernameController),
+                InputFieldTest(
+                    title: 'What should we call you?',
+                    controller: usernameController,
+                    hint: 'Full Name...'),
                 const SizedBox(height: 20.0),
-                InputField(title: 'Email', controller: emailController),
+                InputFieldTest(
+                    title: 'E-mail',
+                    controller: emailController,
+                    hint: 'e.g. abc@example.com'),
                 const SizedBox(height: 20.0),
-                InputField(
-                  title: 'Password',
+                InputFieldTest(
+                  title: 'Set a Password',
                   controller: passwordController,
                   obscure: true,
+                  isPassword: true,
                 ),
                 const SizedBox(height: 20.0),
-                InputField(
+                InputFieldTest(
                   title: 'Confirm Password',
                   controller: confirmPasswordController,
                   obscure: true,
+                  isPassword: true,
                 ),
                 const SizedBox(height: 20.0),
                 Button(text: 'SIGN UP', callback: checkSignUpCredentials)
@@ -74,6 +78,48 @@ class SignUpPage extends StatelessWidget {
           ),
         ),
       )),
+    );
+  }
+}
+
+class InputFieldTest extends StatelessWidget {
+  final String title;
+  final TextEditingController controller;
+  final bool obscure;
+  final String hint;
+  final bool isPassword;
+
+  const InputFieldTest({
+    Key? key,
+    required this.title,
+    required this.controller,
+    this.hint = '',
+    this.obscure = false,
+    this.isPassword = false,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          prefixIcon: (isPassword)
+              ? const Padding(
+                  padding: EdgeInsets.only(left: 5),
+                  child: Icon(IconData(0xf197, fontFamily: 'MaterialIcons')),
+                )
+              : null,
+          suffixIconColor: primaryColor,
+          labelText: title,
+          labelStyle: const TextStyle(color: primaryColor, fontSize: 18),
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          floatingLabelAlignment: FloatingLabelAlignment.start,
+          hintText: hint,
+          hintStyle: const TextStyle(color: darkGrey, fontSize: 15)),
+      obscureText: obscure,
     );
   }
 }
