@@ -32,8 +32,8 @@ class CarbonAction {
 }
 
 AccountData fakeAccountData = AccountData(
-  'John',
-  'Wick',
+  'James',
+  'Soh',
   5,
   [0, 8, 9],
 );
