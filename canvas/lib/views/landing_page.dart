@@ -25,7 +25,10 @@ class _LandingPageState extends State<LandingPage> {
       accountData: fakeAccountData,
       actions: fakeActions,
     ),
-    const ActionPage(),
+    ActionPage(
+      accountData: fakeAccountData,
+      actions: fakeActions,
+    ),
     const ImpactPage(),
   ];
 
