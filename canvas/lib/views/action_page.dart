@@ -21,16 +21,26 @@ class ActionPage extends StatefulWidget {
 }
 
 class _ActionPageState extends State<ActionPage> {
-  late List<CarbonAction> actionsToShow = widget.actions;
+  String searchQuery = '';
+  String category = '';
 
-  void updateActionsToShow(List<CarbonAction> filteredActions) {
+  void updateSearchQuery(String newSearchQuery) {
     setState(() {
-      actionsToShow = filteredActions;
+      searchQuery = newSearchQuery;
+    });
+  }
+
+  void updateCategory(String newCategory) {
+    setState(() {
+      category = newCategory;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    /* Some function that filters actions to show based on search query and category filter. */
+    late List<CarbonAction> actionsToShow = widget.actions;
+
     return Scaffold(
       //replace line 15 Stack with Column to see scrollable functionality
       body: Column(
@@ -50,11 +60,15 @@ class _ActionPageState extends State<ActionPage> {
               children: [
                 Positioned.fill(
                   child: SearchBar(
-                    actions: widget.actions,
-                    updateActionsToShow: updateActionsToShow,
+                    updateSearchQuery: updateSearchQuery,
                   ),
                 ),
-                const Positioned(top: 20, child: SuggestionBox()),
+                Positioned(
+                  top: 20,
+                  child: SuggestionBox(
+                    updateCategory: updateCategory,
+                  ),
+                ),
                 const Positioned(child: ActionsCard()),
               ],
             ),

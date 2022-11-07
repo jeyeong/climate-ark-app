@@ -4,7 +4,12 @@ import 'package:flutter/gestures.dart';
 import 'dart:collection';
 
 class SuggestionBox extends StatefulWidget {
-  const SuggestionBox({Key? key}) : super(key: key);
+  const SuggestionBox({
+    Key? key,
+    required this.updateCategory,
+  }) : super(key: key);
+
+  final Function updateCategory;
 
   @override
   State<SuggestionBox> createState() => _SuggestionBoxState();

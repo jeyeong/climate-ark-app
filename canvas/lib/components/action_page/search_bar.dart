@@ -6,12 +6,10 @@ import 'package:canvas/constants.dart';
 class SearchBar extends StatefulWidget {
   const SearchBar({
     Key? key,
-    required this.actions,
-    required this.updateActionsToShow,
+    required this.updateSearchQuery,
   }) : super(key: key);
 
-  final List<CarbonAction> actions;
-  final Function updateActionsToShow;
+  final Function updateSearchQuery;
 
   @override
   State<SearchBar> createState() => _SearchBarState();
@@ -29,11 +27,14 @@ class _SearchBarState extends State<SearchBar> {
         ),
         child: TextField(
           decoration: InputDecoration(
-              prefixIcon: const Icon(Icons.search),
-              suffixIcon:
-                  IconButton(icon: const Icon(Icons.clear), onPressed: () {}),
-              hintText: 'Search',
-              border: InputBorder.none),
+            prefixIcon: const Icon(Icons.search),
+            suffixIcon: IconButton(
+              icon: const Icon(Icons.clear),
+              onPressed: () {},
+            ),
+            hintText: 'Search',
+            border: InputBorder.none,
+          ),
         ),
       ),
     );
