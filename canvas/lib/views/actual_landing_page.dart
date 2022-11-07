@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:canvas/constants.dart';
 import 'package:canvas/views/home_page.dart';
-import 'package:canvas/views/login_page.dart';
 import 'package:canvas/views/impact_page.dart';
 import 'package:canvas/components/general/app_bar.dart';
 
