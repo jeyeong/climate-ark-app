@@ -16,6 +16,12 @@ class SearchBar extends StatefulWidget {
 }
 
 class _SearchBarState extends State<SearchBar> {
+  final fieldText = TextEditingController();
+
+  void clearText() {
+    fieldText.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,11 +36,18 @@ class _SearchBarState extends State<SearchBar> {
             prefixIcon: const Icon(Icons.search),
             suffixIcon: IconButton(
               icon: const Icon(Icons.clear),
-              onPressed: () {},
+              onPressed: () {
+                widget.updateSearchQuery('');
+                clearText();
+              },
             ),
             hintText: 'Search',
             border: InputBorder.none,
           ),
+          onChanged: (string) {
+            widget.updateSearchQuery(string);
+          },
+          controller: fieldText,
         ),
       ),
     );

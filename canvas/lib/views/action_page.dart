@@ -26,6 +26,7 @@ class _ActionPageState extends State<ActionPage> {
   List<String> category = [];
   void updateSearchQuery(String newSearchQuery) {
     setState(() {
+      print(newSearchQuery);
       searchQuery = newSearchQuery;
     });
   }
@@ -52,6 +53,12 @@ class _ActionPageState extends State<ActionPage> {
     actionsToShow = category.isEmpty
         ? fakeActions
         : fakeActions.where((i) => category.contains(i.category)).toList();
+
+    actionsToShow = actionsToShow
+        .where((i) =>
+            i.actionDescription.contains(searchQuery) ||
+            i.actionName.contains(searchQuery))
+        .toList();
 
     return Scaffold(
         body: SafeArea(
