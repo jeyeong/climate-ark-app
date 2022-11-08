@@ -22,28 +22,30 @@ class _SuggestionBoxState extends State<SuggestionBox> {
     return Container(
         child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                // children: <Widget>[
-                //   GestureDetector(
-                //     onTap: () {
-                //       widget.updateCategory('Plastic');
-                //     },
-                //     child: SingleSuggestion(sugg: 'Plastic'),
-                //   ),
-                //   SingleSuggestion(sugg: 'Water'),
-                //   SingleSuggestion(sugg: 'Household'),
-                //   SingleSuggestion(sugg: 'Electricity'),
-                //   SingleSuggestion(sugg: 'Transportation'),
-                // ],
-                children: [
-                  for (var i in categories)
-                    GestureDetector(
-                        onTap: () {
-                          widget.updateCategory(i);
-                          // print(i);
-                        },
-                        child: SingleSuggestion(sugg: i))
-                ])));
+            child:
+                Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children:
+                    // [
+                    //   for (var i in categories)
+                    //     GestureDetector(
+                    //         onTap: () {
+                    //           widget.updateCategory(i);
+                    //           // print(i);
+                    //         },
+                    //         child: SingleSuggestion(sugg: i))
+                    // ]
+                    [
+              for (String key in categoryMap.keys)
+                GestureDetector(
+                    onTap: () {
+                      widget.updateCategory(key);
+                      categoryMap[key] = !categoryMap[key]!;
+                      // print(i);
+                    },
+                    child: SingleSuggestion(
+                      sugg: key,
+                      isPressed: categoryMap[key]!,
+                    ))
+            ])));
   }
 
   List<String> categories = const [
@@ -53,4 +55,11 @@ class _SuggestionBoxState extends State<SuggestionBox> {
     "Electricity",
     "Transportation"
   ];
+  var categoryMap = {
+    "Plastic": false,
+    "Water": false,
+    "Household": false,
+    "Electricity": false,
+    "Transportation": false,
+  };
 }

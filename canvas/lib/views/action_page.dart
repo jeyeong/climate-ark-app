@@ -32,7 +32,11 @@ class _ActionPageState extends State<ActionPage> {
 
   void updateCategory(String newCategory) {
     setState(() {
-      category = newCategory;
+      if (newCategory == category) {
+        category = '';
+      } else {
+        category = newCategory;
+      }
     });
   }
 

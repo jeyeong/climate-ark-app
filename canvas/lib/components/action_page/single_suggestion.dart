@@ -5,7 +5,10 @@ import 'dart:collection';
 
 class SingleSuggestion extends StatelessWidget {
   final String sugg;
-  const SingleSuggestion({required this.sugg, Key? key}) : super(key: key);
+  final bool isPressed;
+  const SingleSuggestion(
+      {required this.sugg, required this.isPressed, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +18,7 @@ class SingleSuggestion extends StatelessWidget {
         height: 60,
         child: Container(
           decoration: BoxDecoration(
+            color: isPressed ? primaryDarkColor : Colors.transparent,
             border: Border.all(color: offsetWhite),
             borderRadius: BorderRadius.all(Radius.circular(5)),
           ),
