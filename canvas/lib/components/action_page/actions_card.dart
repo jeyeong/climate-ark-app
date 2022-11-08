@@ -36,14 +36,13 @@ class ActionsCard extends StatelessWidget {
                       fontSize: 20,
                       color: Colors.grey)),
               Container(
-                  width: 425,
-                  child: Flexible(
-                    child: Text(
-                      actionDescription,
-                      overflow: TextOverflow.visible,
-                      //'Instead of driving solo, carpool & save some money & the planet :)')
-                    ),
-                  )),
+                width: 425,
+                child: Text(
+                  actionDescription,
+                  overflow: TextOverflow.visible,
+                  //'Instead of driving solo, carpool & save some money & the planet :)')
+                ),
+              ),
             ],
           ),
         ],

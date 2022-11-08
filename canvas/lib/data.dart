@@ -138,7 +138,7 @@ List<CarbonAction> fakeActions = [
   CarbonAction(
     12,
     "Plastic water bottles",
-    "Carry your own glass/metal bottle everywhere you go, Switch off laptops on weekends",
+    "Carry your own glass/metal bottle everywhere you go.",
     "Plastic",
     2,
     1,

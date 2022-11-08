@@ -22,8 +22,8 @@ class ActionPage extends StatefulWidget {
 
 class _ActionPageState extends State<ActionPage> {
   String searchQuery = '';
-  String category = '';
-
+  //String category = '';
+  List<String> category = [];
   void updateSearchQuery(String newSearchQuery) {
     setState(() {
       searchQuery = newSearchQuery;
@@ -32,10 +32,15 @@ class _ActionPageState extends State<ActionPage> {
 
   void updateCategory(String newCategory) {
     setState(() {
-      if (newCategory == category) {
-        category = '';
+      // if (newCategory == category) {
+      //   category = '';
+      // } else {
+      //   category = newCategory;
+      // }
+      if (category.contains(newCategory)) {
+        category.remove(newCategory);
       } else {
-        category = newCategory;
+        category.add(newCategory);
       }
     });
   }
@@ -44,9 +49,9 @@ class _ActionPageState extends State<ActionPage> {
   Widget build(BuildContext context) {
     /* Some function that filters actions to show based on search query and category filter. */
     late List<CarbonAction> actionsToShow = widget.actions;
-    actionsToShow = category == ''
+    actionsToShow = category.isEmpty
         ? fakeActions
-        : fakeActions.where((i) => i.category == category).toList();
+        : fakeActions.where((i) => category.contains(i.category)).toList();
 
     return Scaffold(
         body: SafeArea(
@@ -54,7 +59,7 @@ class _ActionPageState extends State<ActionPage> {
                 child: Column(
       children: [
         Container(
-            height: MediaQuery.of(context).size.height * 0.15,
+            height: MediaQuery.of(context).size.height * 0.15 + 5,
             width: double.infinity,
             decoration: const BoxDecoration(
               color: primaryColor,
@@ -81,8 +86,7 @@ class _ActionPageState extends State<ActionPage> {
         // const Positioned(child: ActionsCard()),
 
         Container(
-            width: MediaQuery.of(context).size.width - 20,
-            height: 490,
+            height: MediaQuery.of(context).size.height * 0.70 - 10,
             child: Material(
                 child: ListView.builder(
                     itemCount: actionsToShow.length,
