@@ -7,14 +7,14 @@ import 'package:canvas/constants.dart';
 import 'package:canvas/data.dart';
 
 class ActionPage extends StatefulWidget {
+  final AccountData accountData;
+  final List<CarbonAction> actions;
+
   const ActionPage({
     Key? key,
     required this.accountData,
     required this.actions,
   }) : super(key: key);
-
-  final AccountData accountData;
-  final List<CarbonAction> actions;
 
   @override
   State<ActionPage> createState() => _ActionPageState();
@@ -40,12 +40,16 @@ class _ActionPageState extends State<ActionPage> {
   Widget build(BuildContext context) {
     /* Some function that filters actions to show based on search query and category filter. */
     late List<CarbonAction> actionsToShow = widget.actions;
+    actionsToShow = category == ''
+        ? fakeActions
+        : fakeActions.where((i) => i.category == category).toList();
 
     return Scaffold(
-      //replace line 15 Stack with Column to see scrollable functionality
-      body: Column(
-        children: [
-          Container(
+        body: SafeArea(
+            child: Center(
+                child: Column(
+      children: [
+        Container(
             height: MediaQuery.of(context).size.height * 0.15,
             width: double.infinity,
             decoration: const BoxDecoration(
@@ -56,26 +60,38 @@ class _ActionPageState extends State<ActionPage> {
               ),
             ),
             child: Column(
-              // ignore: prefer_const_literals_to_create_immutables
-              children: [
-                Positioned.fill(
-                  child: SearchBar(
-                    updateSearchQuery: updateSearchQuery,
+                // ignore: prefer_const_literals_to_create_immutables
+                children: [
+                  Container(
+                    child: SearchBar(
+                      updateSearchQuery: updateSearchQuery,
+                    ),
                   ),
-                ),
-                Positioned(
-                  top: 20,
-                  child: SuggestionBox(
-                    updateCategory: updateCategory,
+                  Container(
+                    // top: 20,
+                    child: SuggestionBox(
+                      updateCategory: updateCategory,
+                    ),
                   ),
-                ),
-                const Positioned(child: ActionsCard()),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+                ])),
+        // const Positioned(child: ActionsCard()),
+
+        Container(
+            width: MediaQuery.of(context).size.width - 20,
+            height: 490,
+            child: Material(
+                child: ListView.builder(
+                    itemCount: actionsToShow.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ActionsCard(
+                        actionName: actionsToShow[index].actionName,
+                        actionDescription:
+                            actionsToShow[index].actionDescription,
+                        actionType: actionsToShow[index].category,
+                      );
+                    }))),
+      ],
+    ))));
   }
 }
 

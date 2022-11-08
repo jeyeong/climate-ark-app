@@ -1,16 +1,18 @@
 import 'package:canvas/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'dart:collection';
 
-class ActionsCard extends StatefulWidget {
-  const ActionsCard({Key? key}) : super(key: key);
+class ActionsCard extends StatelessWidget {
+  final String actionName;
+  final String actionDescription;
+  final String actionType;
+  const ActionsCard(
+      {Key? key,
+      required this.actionName,
+      required this.actionDescription,
+      required this.actionType})
+      : super(key: key);
 
-  @override
-  State<ActionsCard> createState() => _ActionsCardState();
-}
-
-class _ActionsCardState extends State<ActionsCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,22 +24,38 @@ class _ActionsCardState extends State<ActionsCard> {
           borderRadius: BorderRadius.all(Radius.circular(20))),
       child: Row(
         children: [
-          Image.asset('assets/carpool.jpg'),
+          imageMaker(actionType),
+          //Image.asset('assets/carpool.jpg'),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Carpooling',
+              Text(actionName, //'Carpooling',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                       color: Colors.grey)),
-              Text(
-                  'Instead of driving solo, carpool & save some money & the planet :)')
+              Container(
+                  width: 425,
+                  child: Flexible(
+                    child: Text(
+                      actionDescription,
+                      overflow: TextOverflow.visible,
+                      //'Instead of driving solo, carpool & save some money & the planet :)')
+                    ),
+                  )),
             ],
           ),
         ],
       ),
     );
+  }
+
+  Widget imageMaker(String category) {
+    if (actionType == "Transportation") {
+      return Image.asset('assets/carpool.jpg');
+    } else {
+      return Image.asset('assets/water.jpeg');
+    }
   }
 }
