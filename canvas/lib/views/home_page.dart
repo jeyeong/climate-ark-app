@@ -31,6 +31,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     int carbonSaved = calculateCarbonSaved(completedActions);
 
+    // Think of how we want to filter out the actions to show.
+    List<CarbonAction> actionsToShow = widget.actions.sublist(0, 3);
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -40,12 +43,17 @@ class _HomePageState extends State<HomePage> {
             streakDays: fakeAccountData.streak.toString(),
             actionsCompleted: completedActions.length.toString(),
           ),
-          Column(
-            children: const [
-              HomePageCard(),
-              HomePageCard(),
-              HomePageCard(),
-            ],
+          Container(
+            height: 500,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: actionsToShow.length,
+              itemBuilder: (BuildContext context, int index) {
+                return HomePageCard(
+                  action: actionsToShow[index],
+                );
+              },
+            ),
           ),
         ],
       ),

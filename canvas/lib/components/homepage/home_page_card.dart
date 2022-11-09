@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:canvas/constants.dart';
 
+import 'package:canvas/data.dart';
+
 class HomeImage extends StatefulWidget {
   const HomeImage({Key? key}) : super(key: key);
 
@@ -25,7 +27,14 @@ class _HomeImageState extends State<HomeImage> {
 }
 
 class HomeText extends StatefulWidget {
-  const HomeText({Key? key}) : super(key: key);
+  const HomeText({
+    Key? key,
+    required this.name,
+    required this.description,
+  }) : super(key: key);
+
+  final String name;
+  final String description;
 
   @override
   State<HomeText> createState() => _HomeTextState();
@@ -39,9 +48,9 @@ class _HomeTextState extends State<HomeText> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Text(
-              "Change Laptop Settings",
+              widget.name,
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 25,
@@ -51,7 +60,7 @@ class _HomeTextState extends State<HomeText> {
             ),
             SizedBox(height: 10),
             Text(
-              "Ensuring that your computers and monitors are turned off.",
+              widget.description,
               style: TextStyle(
                 color: lightGrey,
                 fontSize: 18,
@@ -113,7 +122,12 @@ class _HomeButtonsState extends State<HomeButtons> {
 }
 
 class HomePageCard extends StatefulWidget {
-  const HomePageCard({Key? key}) : super(key: key);
+  const HomePageCard({
+    Key? key,
+    required this.action,
+  }) : super(key: key);
+
+  final CarbonAction action;
 
   @override
   State<HomePageCard> createState() => _HomePageCardState();
@@ -123,31 +137,35 @@ class _HomePageCardState extends State<HomePageCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Padding(
-      padding: const EdgeInsets.only(top: 8.0),
-      child: SizedBox(
-        width: 400.0,
-        height: 500.0,
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          elevation: 50,
-          shadowColor: primaryDarkestColor,
-          color: offsetWhite,
-          child: SizedBox(
-            width: 400,
-            height: 550,
-            child: Column(
-              children: const [
-                HomeImage(),
-                HomeText(),
-                HomeButtons(),
-              ],
+      child: Padding(
+        padding: const EdgeInsets.only(top: 8.0),
+        child: SizedBox(
+          width: 400.0,
+          height: 500.0,
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            elevation: 50,
+            shadowColor: primaryDarkestColor,
+            color: offsetWhite,
+            child: SizedBox(
+              width: 400,
+              height: 550,
+              child: Column(
+                children: [
+                  HomeImage(),
+                  HomeText(
+                    name: widget.action.actionName,
+                    description: widget.action.actionDescription,
+                  ),
+                  HomeButtons(),
+                ],
+              ),
             ),
           ),
         ),
       ),
-    ));
+    );
   }
 }
