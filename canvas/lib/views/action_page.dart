@@ -42,12 +42,11 @@ class _ActionPageState extends State<ActionPage> {
     late List<CarbonAction> actionsToShow = widget.actions;
 
     return Scaffold(
-      //replace line 15 Stack with Column to see scrollable functionality
       body: Column(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.15,
             width: double.infinity,
+            padding: const EdgeInsets.only(top: 5),
             decoration: const BoxDecoration(
               color: primaryColor,
               borderRadius: BorderRadius.only(
@@ -56,21 +55,23 @@ class _ActionPageState extends State<ActionPage> {
               ),
             ),
             child: Column(
-              // ignore: prefer_const_literals_to_create_immutables
               children: [
-                Positioned.fill(
-                  child: SearchBar(
-                    updateSearchQuery: updateSearchQuery,
-                  ),
+                SearchBar(
+                  updateSearchQuery: updateSearchQuery,
                 ),
-                Positioned(
-                  top: 20,
-                  child: SuggestionBox(
-                    updateCategory: updateCategory,
-                  ),
+                SuggestionBox(
+                  updateCategory: updateCategory,
                 ),
-                const Positioned(child: ActionsCard()),
               ],
+            ),
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height - 225,
+            child: ListView.builder(
+              itemCount: actionsToShow.length,
+              itemBuilder: (BuildContext ctxt, int index) {
+                return ActionsCard();
+              },
             ),
           ),
         ],
