@@ -69,8 +69,10 @@ class _ActionPageState extends State<ActionPage> {
             height: MediaQuery.of(context).size.height - 225,
             child: ListView.builder(
               itemCount: actionsToShow.length,
-              itemBuilder: (BuildContext ctxt, int index) {
-                return ActionsCard();
+              itemBuilder: (BuildContext context, int index) {
+                return ActionsCard(
+                  action: actionsToShow[index],
+                );
               },
             ),
           ),

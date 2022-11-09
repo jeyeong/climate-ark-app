@@ -3,8 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:collection';
 
+import 'package:canvas/data.dart';
+
 class ActionsCard extends StatefulWidget {
-  const ActionsCard({Key? key}) : super(key: key);
+  const ActionsCard({
+    Key? key,
+    required this.action,
+  }) : super(key: key);
+
+  final CarbonAction action;
 
   @override
   State<ActionsCard> createState() => _ActionsCardState();
@@ -16,25 +23,39 @@ class _ActionsCardState extends State<ActionsCard> {
     return Container(
       height: 100,
       margin: const EdgeInsets.all(15.0),
-      padding: const EdgeInsets.symmetric(horizontal: 40),
+      padding: const EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(
           border: Border.all(color: primaryColor),
           borderRadius: BorderRadius.all(Radius.circular(20))),
       child: Row(
         children: [
           Image.asset('assets/carpool.jpg'),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Carpooling',
-                  style: TextStyle(
+          // Expanded, with its flex property, is used to "fill out the
+          // rest of the space" in the row.
+          Expanded(
+            flex: 1,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Flexible is used to wrap text when it is too long.
+                Flexible(
+                  child: Text(
+                    widget.action.actionName,
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
-                      color: Colors.grey)),
-              Text(
-                  'Instead of driving solo, carpool & save some money & the planet :)')
-            ],
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
+                Flexible(
+                  child: Text(
+                    widget.action.actionDescription,
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
