@@ -1,3 +1,4 @@
+import 'package:canvas/components/action_page/single_suggestion.dart';
 import 'package:canvas/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
@@ -21,101 +22,44 @@ class _SuggestionBoxState extends State<SuggestionBox> {
     return Container(
         child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Container(
-                    padding: const EdgeInsets.all(10),
-                    width: 130.0,
-                    height: 60,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: offsetWhite),
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Plastic',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, color: offsetWhite),
-                        ),
-                      ),
-                    )),
-                Container(
-                    padding: const EdgeInsets.all(10),
-                    width: 130.0,
-                    height: 60,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: offsetWhite),
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Water',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, color: offsetWhite),
-                        ),
-                      ),
-                    )),
-                Container(
-                    padding: const EdgeInsets.all(10),
-                    width: 130.0,
-                    height: 60,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: offsetWhite),
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Household',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, color: offsetWhite),
-                        ),
-                      ),
-                    )),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  width: 130.0,
-                  height: 60,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: offsetWhite),
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Electricity',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: offsetWhite),
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                    padding: const EdgeInsets.all(10),
-                    width: 130.0,
-                    height: 60,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: offsetWhite),
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Transportation',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, color: offsetWhite),
-                        ),
-                      ),
-                    )),
-              ],
-            )));
+            child:
+                Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children:
+                    // [
+                    //   for (var i in categories)
+                    //     GestureDetector(
+                    //         onTap: () {
+                    //           widget.updateCategory(i);
+                    //           // print(i);
+                    //         },
+                    //         child: SingleSuggestion(sugg: i))
+                    // ]
+                    [
+              for (String key in categoryMap.keys)
+                GestureDetector(
+                    onTap: () {
+                      widget.updateCategory(key);
+                      categoryMap[key] = !categoryMap[key]!;
+                      // print(i);
+                    },
+                    child: SingleSuggestion(
+                      sugg: key,
+                      isPressed: categoryMap[key]!,
+                    ))
+            ])));
   }
+
+  List<String> categories = const [
+    "Plastic",
+    "Water",
+    "Household",
+    "Electronics",
+    "Commute"
+  ];
+  var categoryMap = {
+    "Plastic": false,
+    "Water": false,
+    "Household": false,
+    "Electronics": false,
+    "Commute": false,
+  };
 }

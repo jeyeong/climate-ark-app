@@ -22,7 +22,7 @@ class ActionPage extends StatefulWidget {
 
 class _ActionPageState extends State<ActionPage> {
   String searchQuery = '';
-  String category = '';
+  List<String> category = [];
 
   void updateSearchQuery(String newSearchQuery) {
     setState(() {
@@ -32,14 +32,23 @@ class _ActionPageState extends State<ActionPage> {
 
   void updateCategory(String newCategory) {
     setState(() {
-      category = newCategory;
+      if (category.contains(newCategory)) {
+        category.remove(newCategory);
+      } else {
+        category.add(newCategory);
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
     /* Some function that filters actions to show based on search query and category filter. */
-    late List<CarbonAction> actionsToShow = widget.actions;
+    late List<CarbonAction> actionsToShow = widget.actions
+        .where((i) =>
+            (category.isEmpty || category.contains(i.category)) &&
+            (i.actionDescription.contains(searchQuery) ||
+                i.actionName.contains(searchQuery)))
+        .toList();
 
     return Scaffold(
       body: Column(
