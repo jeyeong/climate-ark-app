@@ -32,13 +32,15 @@ class _HomePageState extends State<HomePage> {
     int carbonSaved = calculateCarbonSaved(completedActions);
 
     // Think of how we want to filter out the actions to show.
-    List<CarbonAction> actionsToShow = widget.actions.sublist(0, 3);
+    widget.actions
+        .shuffle(); // display ordering of actions differently on renders
+    List<CarbonAction> actionsToShow = widget.actions.sublist(0, 5);
 
     return SingleChildScrollView(
       child: Column(
         children: [
           Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color(0xff08b184),
                 //color: primaryWhite,
                 //borderRadius: BorderRadius.circular(50),
@@ -57,13 +59,13 @@ class _HomePageState extends State<HomePage> {
                   )))),
           Container(
               margin: const EdgeInsets.only(left: 10.0, top: 10),
-              child: Align(
+              child: const Align(
                 alignment: Alignment.centerLeft,
                 child: Text("Some Activities For You",
                     style: TextStyle(fontSize: 25)),
               )),
           Container(
-            height: 500,
+            height: 480,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: actionsToShow.length,
@@ -73,6 +75,9 @@ class _HomePageState extends State<HomePage> {
                 );
               },
             ),
+          ),
+          const SizedBox(
+            height: 20,
           ),
         ],
       ),

@@ -4,7 +4,12 @@ import 'package:canvas/constants.dart';
 import 'package:canvas/data.dart';
 
 class HomeImage extends StatefulWidget {
-  const HomeImage({Key? key}) : super(key: key);
+  const HomeImage({
+    Key? key,
+    required this.imageFile,
+  }) : super(key: key);
+
+  final String imageFile;
 
   @override
   State<HomeImage> createState() => _HomeImageState();
@@ -14,12 +19,13 @@ class _HomeImageState extends State<HomeImage> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 250,
         child: Padding(
       padding: const EdgeInsets.all(16.0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20.0),
         child: const Image(
-          image: AssetImage('assets/laptop.jpg'),
+          image: AssetImage('assets/images/laptop.jpg'),
         ),
       ),
     ));
@@ -89,28 +95,40 @@ class _HomeButtonsState extends State<HomeButtons> {
         padding: const EdgeInsets.all(16.0),
         child: Row(
           children: [
-            const Expanded(
-              flex: 3,
-              child: ClipRRect(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(32),
-                  bottomLeft: Radius.circular(32),
-                  topRight: Radius.circular(32),
-                  bottomRight: Radius.circular(32),
+            Expanded(
+              flex: 6,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16.0),
+                  color: Color.fromARGB(255, 209, 244, 217),
                 ),
-                child: ListTile(
-                  tileColor: primaryLightColor,
-                  leading: Icon(Icons.check, color: primaryColor),
-                  title: Text('Complete'),
+                child: const ListTile(
+                  leading: Icon(Icons.check, color: primaryDarkColor),
+                  title: Text('Complete',
+                      style: TextStyle(
+                          color: primaryDarkColor,
+                          fontWeight: FontWeight.bold)),
                 ),
               ),
             ),
+            const Expanded(
+                flex: 1,
+                child: SizedBox(
+                  width: 10,
+                )),
             Expanded(
-              flex: 1,
+              flex: 2,
               child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16.0),
+                  color: Color.fromARGB(255, 255, 191, 201),
+                ),
+                padding: const EdgeInsets.all(5.0),
                 child: IconButton(
-                  icon: Icon(Icons.close, color: Colors.red),
+                  icon: const Icon(Icons.close),
                   onPressed: () {},
+                  color: Colors.red,
+                  highlightColor: Colors.redAccent.shade100,
                 ),
               ),
             ),
@@ -137,6 +155,7 @@ class _HomePageCardState extends State<HomePageCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width,
       child: Padding(
         padding: const EdgeInsets.only(top: 8.0),
         child: SizedBox(
@@ -154,12 +173,12 @@ class _HomePageCardState extends State<HomePageCard> {
               height: 550,
               child: Column(
                 children: [
-                  HomeImage(),
+                  HomeImage(imageFile: widget.action.imageFile),
                   HomeText(
                     name: widget.action.actionName,
                     description: widget.action.actionDescription,
                   ),
-                  HomeButtons(),
+                  const HomeButtons(),
                 ],
               ),
             ),
