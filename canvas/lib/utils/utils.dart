@@ -18,8 +18,8 @@ List<CarbonAction> getCompletedActions(
   return completedActions;
 }
 
-int calculateCarbonSaved(List<CarbonAction> completedActions) {
-  int carbonSaved = 0;
+double calculateCarbonSaved(List<CarbonAction> completedActions) {
+  double carbonSaved = 0;
 
   for (CarbonAction action in completedActions) {
     carbonSaved += action.carbonScore;

@@ -20,7 +20,7 @@ class ImpactPage extends StatelessWidget {
             Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height / 2 - 80,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Color(0xff08b184),
                   //color: primaryWhite,
                   //borderRadius: BorderRadius.circular(50),
@@ -32,7 +32,7 @@ class ImpactPage extends StatelessWidget {
                 ),
               child: Column(
                 children: [
-                  LeafBox(numSaved: 70, size: 100),
+                  const LeafBox(numSaved: 70, size: 100),
                   Text.rich( TextSpan (
                     text: '',
                     children: <TextSpan>[
@@ -43,7 +43,6 @@ class ImpactPage extends StatelessWidget {
                   Text("Carbon Saved", style: TextStyle(
                       fontSize: 20, color: primaryWhite,)), 
                   FunFact(text: "Saving emissions worth a flight \nbetween Delhi and Bangalore", height: 70.0, icon: Icon(Icons.airplanemode_on), col: primaryLightColor), 
-              
                 ],
               ),
             ),
