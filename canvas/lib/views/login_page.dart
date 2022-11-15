@@ -6,6 +6,9 @@ import 'package:canvas/views/sign_up_page.dart';
 import 'package:canvas/components/general/input_field.dart';
 import 'package:canvas/components/general/button.dart';
 import 'package:canvas/data.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+final db = FirebaseFirestore.instance;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -20,11 +23,28 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  void checkLoginCredentials() {
+  void checkLoginCredentials() async {
     if (usernameController.text == 'tt' && passwordController.text == '123') {
-      // Simulate getting data.
-      final accountData = fakeAccountData;
-      final actions = fakeActions;
+      // Get data.
+      final AccountData accountData = fakeAccountData;
+      final List<CarbonAction> actions = [];
+
+      await db.collection("carbon-actions").get().then((event) {
+        for (var doc in event.docs) {
+          var data = doc.data();
+          actions.add(
+            CarbonAction(
+                data['id'],
+                data['actionName'],
+                data['actionDescription'],
+                data['category'],
+                data['carbonScore'],
+                data['amountSavedAnnually']),
+          );
+        }
+      });
+
+      // Move to home page.
       Navigator.push(
         context,
         MaterialPageRoute(
