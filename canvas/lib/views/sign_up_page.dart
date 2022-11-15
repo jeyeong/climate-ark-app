@@ -3,6 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:canvas/components/general/button.dart';
 import 'package:canvas/components/general/input_field.dart';
 import 'package:canvas/components/general/app_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+final db = FirebaseFirestore.instance;
+
+final user = <String, dynamic>{
+  "first": "Ada",
+  "last": "Lovelace",
+  "born": 1815
+};
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -16,7 +26,7 @@ class SignUpPage extends StatelessWidget {
     TextEditingController passwordController = TextEditingController();
     TextEditingController confirmPasswordController = TextEditingController();
 
-    void checkSignUpCredentials() {
+    void checkSignUpCredentials() async {
       if (passwordController.text != confirmPasswordController.text) {
         ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Passwords do not match.')));
@@ -26,7 +36,19 @@ class SignUpPage extends StatelessWidget {
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text('Account created.')));
 
-      Navigator.pop(context);
+      try {
+        final credential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: 'test@email.com',
+          password: '123456',
+        );
+
+        print(credential);
+      } catch (e) {
+        print(e);
+      }
+
+      // Navigator.pop(context);
     }
 
     return Scaffold(
