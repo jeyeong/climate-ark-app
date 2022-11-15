@@ -37,12 +37,24 @@ class _HomePageState extends State<HomePage> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const SizedBox(height: 15),
-          SummaryCard(
-            carbonSaved: carbonSaved.toString(),
-            streakDays: fakeAccountData.streak.toString(),
-            actionsCompleted: completedActions.length.toString(),
-          ),
+          Container(
+              decoration: BoxDecoration(
+                color: Color(0xff08b184),
+                //color: primaryWhite,
+                //borderRadius: BorderRadius.circular(50),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(25),
+                  bottomRight: Radius.circular(25),
+                ),
+              ),
+              child: Container(
+                  margin: const EdgeInsets.only(top: 20.0, bottom: 40.0),
+                  child: (SummaryCard(
+                    carbonSaved: carbonSaved.toString(),
+                    streakDays: fakeAccountData.streak.toString(),
+                    actionsCompleted: completedActions.length.toString(),
+                  )))),
           Container(
             height: 500,
             child: ListView.builder(
