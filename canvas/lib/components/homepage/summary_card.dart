@@ -1,5 +1,6 @@
 import 'package:canvas/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:canvas/components/impact_page/leaf_fill.dart';
 
 class Streak extends StatelessWidget {
   final String streakDays;
@@ -151,19 +152,22 @@ class SummaryCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                carbonSaved,
-                style: const TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.w600,
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  carbonSaved,
+                  style: const TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-              ),
-              const Text("Kgs Carbon Saved")
-            ],
-          ),
+                const Text("Kgs Carbon Saved")
+              ],
+            ),
+            LeafBox(numSaved: 70, size: 100)
+          ]),
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
