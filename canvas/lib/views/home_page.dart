@@ -56,6 +56,13 @@ class _HomePageState extends State<HomePage> {
                     actionsCompleted: completedActions.length.toString(),
                   )))),
           Container(
+              margin: const EdgeInsets.only(left: 10.0, top: 10),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text("Some Activities For You",
+                    style: TextStyle(fontSize: 25)),
+              )),
+          Container(
             height: 500,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
