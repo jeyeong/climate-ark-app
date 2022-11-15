@@ -55,6 +55,9 @@ class _HomeTextState extends State<HomeText> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(
+              width: double.infinity,
+            ),
             Text(
               widget.name,
               style: TextStyle(
@@ -155,7 +158,7 @@ class _HomePageCardState extends State<HomePageCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
+      width: 400,
       child: Padding(
         padding: const EdgeInsets.only(top: 8.0),
         child: SizedBox(
@@ -170,13 +173,17 @@ class _HomePageCardState extends State<HomePageCard> {
             color: offsetWhite,
             child: SizedBox(
               width: 400,
-              height: 550,
+              height: 520,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   HomeImage(imageFile: 'assets/images/laptop.jpg'),
-                  HomeText(
-                    name: widget.action.actionName,
-                    description: widget.action.actionDescription,
+                  Expanded(
+                    flex: 1,
+                    child: HomeText(
+                      name: widget.action.actionName,
+                      description: widget.action.actionDescription,
+                    ),
                   ),
                   const HomeButtons(),
                 ],

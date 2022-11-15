@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(fontSize: 25)),
               )),
           Container(
-            height: 480,
+            height: 510,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: actionsToShow.length,
