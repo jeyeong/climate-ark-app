@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:canvas/constants.dart';
 import 'package:canvas/views/home_page.dart';
+import 'package:canvas/views/action_page.dart';
 import 'package:canvas/views/impact_page.dart';
 import 'package:canvas/components/general/app_bar.dart';
 
@@ -31,9 +32,9 @@ class _LandingPageState extends State<LandingPage> {
       accountData: widget.accountData,
       actions: widget.actions,
     ),
-    const Text(
-      'Action',
-      style: optionStyle,
+    ActionPage(
+      accountData: fakeAccountData,
+      actions: fakeActions,
     ),
     const ImpactPage(),
   ];
