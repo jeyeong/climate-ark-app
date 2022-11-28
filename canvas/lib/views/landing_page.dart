@@ -4,6 +4,7 @@ import 'package:canvas/views/home_page.dart';
 import 'package:canvas/views/login_page.dart';
 import 'package:canvas/views/impact_page.dart';
 import 'package:canvas/components/general/app_bar.dart';
+import 'package:canvas/views/action_page.dart';
 
 import 'package:canvas/data.dart';
 
@@ -24,9 +25,9 @@ class _LandingPageState extends State<LandingPage> {
       accountData: fakeAccountData,
       actions: fakeActions,
     ),
-    const Text(
-      'Action',
-      style: optionStyle,
+    ActionPage(
+      accountData: fakeAccountData,
+      actions: fakeActions,
     ),
     const ImpactPage(),
   ];
