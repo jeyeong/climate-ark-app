@@ -24,7 +24,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late List<CarbonAction> completedActions = getCompletedActions(
     widget.actions,
-    widget.accountData.actionsCompleted,
+    widget.accountData.actionsCompletedToday,
   );
 
   @override

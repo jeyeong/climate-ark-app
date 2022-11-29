@@ -1,15 +1,20 @@
 class AccountData {
+  int accountID;
+
   String firstName;
   String lastName;
 
   int streak;
-  List<int> actionsCompleted;
+  List<List<Object>> actionsCompleted;
+  List<int> actionsCompletedToday;
 
   AccountData(
+    this.accountID,
     this.firstName,
     this.lastName,
     this.streak,
     this.actionsCompleted,
+    this.actionsCompletedToday,
   );
 }
 
@@ -32,10 +37,22 @@ class CarbonAction {
 }
 
 AccountData fakeAccountData = AccountData(
+  123,
   'James',
   'Soh',
   5,
-  [0, 8, 9],
+  [
+    [DateTime.utc(2022, 11, 21), 2],
+    [DateTime.utc(2022, 11, 21), 3],
+    [DateTime.utc(2022, 11, 22), 2],
+    [DateTime.utc(2022, 11, 23), 7],
+    [DateTime.utc(2022, 11, 25), 1],
+    [DateTime.utc(2022, 11, 27), 3],
+    [DateTime.utc(2022, 11, 27), 5],
+    [DateTime.now(), 2],
+    [DateTime.now(), 3],
+  ],
+  [2, 3],
 );
 
 List<CarbonAction> fakeActions = [

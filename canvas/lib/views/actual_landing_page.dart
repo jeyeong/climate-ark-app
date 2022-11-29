@@ -24,9 +24,6 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
   int _selectedIndex = 0;
 
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-
   late final List<Widget> _widgetOptions = <Widget>[
     HomePage(
       accountData: widget.accountData,

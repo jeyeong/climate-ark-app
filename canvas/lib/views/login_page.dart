@@ -29,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
       final AccountData accountData = fakeAccountData;
       final List<CarbonAction> actions = [];
 
+      // Process actions data.
       await db.collection("carbon-actions").get().then((event) {
         for (var doc in event.docs) {
           var data = doc.data();

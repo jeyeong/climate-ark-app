@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:canvas/constants.dart';
 
 import 'package:canvas/data.dart';
+import 'package:canvas/utils/completionHandlers.dart';
 
 class HomeImage extends StatefulWidget {
   const HomeImage({
@@ -84,13 +85,30 @@ class _HomeTextState extends State<HomeText> {
 }
 
 class HomeButtons extends StatefulWidget {
-  const HomeButtons({Key? key}) : super(key: key);
+  int actionID;
+
+  HomeButtons({
+    Key? key,
+    required this.actionID,
+  }) : super(key: key);
 
   @override
   State<HomeButtons> createState() => _HomeButtonsState();
 }
 
 class _HomeButtonsState extends State<HomeButtons> {
+  ListTile generateListTile() {
+    return ListTile(
+      leading: const Icon(Icons.check, color: primaryDarkColor),
+      title: const Text('Complete',
+          style:
+              TextStyle(color: primaryDarkColor, fontWeight: FontWeight.bold)),
+      onTap: addCompletedAction(
+        '${DateTime.now().millisecondsSinceEpoch.toString()},${widget.actionID}',
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -105,13 +123,7 @@ class _HomeButtonsState extends State<HomeButtons> {
                   borderRadius: BorderRadius.circular(16.0),
                   color: Color.fromARGB(255, 209, 244, 217),
                 ),
-                child: const ListTile(
-                  leading: Icon(Icons.check, color: primaryDarkColor),
-                  title: Text('Complete',
-                      style: TextStyle(
-                          color: primaryDarkColor,
-                          fontWeight: FontWeight.bold)),
-                ),
+                child: generateListTile(),
               ),
             ),
             const Expanded(
@@ -185,7 +197,9 @@ class _HomePageCardState extends State<HomePageCard> {
                       description: widget.action.actionDescription,
                     ),
                   ),
-                  const HomeButtons(),
+                  HomeButtons(
+                    actionID: widget.action.id,
+                  ),
                 ],
               ),
             ),
