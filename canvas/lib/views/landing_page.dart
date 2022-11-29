@@ -29,7 +29,10 @@ class _LandingPageState extends State<LandingPage> {
       accountData: fakeAccountData,
       actions: fakeActions,
     ),
-    const ImpactPage(),
+    ImpactPage(
+      accountData: fakeAccountData,
+      actions: fakeActions,
+    ),
   ];
 
   void _onItemTapped(int index) {

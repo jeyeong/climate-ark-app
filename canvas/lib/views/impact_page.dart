@@ -6,12 +6,25 @@ import 'package:canvas/components/impact_page/fun_fact.dart';
 import 'package:canvas/constants.dart';
 import 'package:canvas/components/impact_page/leaf_fill.dart';
 import 'package:canvas/constants.dart';
+import 'package:canvas/data.dart';
 
 import '../components/impact_page/streak_card.dart';
 
-class ImpactPage extends StatelessWidget {
-  const ImpactPage({Key? key}) : super(key: key);
+class ImpactPage extends StatefulWidget {
+  const ImpactPage({
+    Key? key,
+    required this.accountData,
+    required this.actions,
+  }) : super(key: key);
 
+  final AccountData accountData;
+  final List<CarbonAction> actions;
+
+  @override
+  State<ImpactPage> createState() => _ImpactPageState();
+}
+
+class _ImpactPageState extends State<ImpactPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
