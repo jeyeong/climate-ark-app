@@ -24,7 +24,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late List<CarbonAction> completedActions = getCompletedActions(
     widget.actions,
-    widget.accountData.actionsCompletedToday,
+    widget.accountData.actionsCompletedToday
+        .map((List<Object> action) => action[1] as int)
+        .toList(),
   );
 
   @override
@@ -54,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                   margin: const EdgeInsets.only(top: 20.0, bottom: 40.0),
                   child: (SummaryCard(
                     carbonSaved: carbonSaved.toString(),
-                    streakDays: fakeAccountData.streak.toString(),
+                    streakDays: widget.accountData.streak.toString(),
                     actionsCompleted: completedActions.length.toString(),
                   )))),
           Container(

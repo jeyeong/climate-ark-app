@@ -163,7 +163,7 @@ class SummaryCard extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const Text("Kgs Carbon Saved")
+                const Text("Kgs Carbon Saved Today")
               ],
             ),
             LeafBox(numSaved: 70, size: 100)

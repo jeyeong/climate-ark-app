@@ -25,8 +25,62 @@ class _LoginPageState extends State<LoginPage> {
 
   void checkLoginCredentials() async {
     if (usernameController.text == 'tt' && passwordController.text == '123') {
-      // Get data.
-      final AccountData accountData = fakeAccountData;
+      // Get account data.
+      AccountData accountData = AccountData(0, '', '', 0, [], []);
+
+      await db
+          .collection("users")
+          .where('accountID', isEqualTo: 123)
+          .get()
+          .then((snapshot) {
+        QueryDocumentSnapshot doc = snapshot.docs[0];
+        Map data = doc.data() as Map;
+
+        // Process actions.
+        List<List<Object>> actionsCompleted = [];
+        List<List<Object>> actionsCompletedToday = [];
+        DateTime now = DateTime.now();
+
+        int streak = 0;
+        DateTime nextStreakDate = DateTime(now.year, now.month, now.day - 1);
+
+        for (String stamp in data['completedActions'].reversed.toList()) {
+          final splitStamp = stamp.split(',');
+          DateTime dt = DateTime.fromMillisecondsSinceEpoch(
+            int.parse(splitStamp[0]),
+          );
+          int actionID = int.parse(splitStamp[1]);
+
+          // Check for actions completed today.
+          if (now.day == dt.day &&
+              now.month == dt.month &&
+              now.year == dt.year) {
+            actionsCompletedToday.add([dt, actionID]);
+          }
+
+          // Check for streak.
+          if (nextStreakDate.day == dt.day &&
+              nextStreakDate.month == dt.month &&
+              nextStreakDate.year == dt.year) {
+            streak += 1;
+            nextStreakDate.subtract(const Duration(days: 1));
+          }
+
+          actionsCompleted.add([dt, actionID]);
+        }
+
+        accountData = AccountData(
+          data['accountID'],
+          data['firstName'],
+          data['lastName'],
+          streak,
+          actionsCompleted,
+          actionsCompletedToday,
+        );
+      });
+
+      print(accountData.streak);
+
       final List<CarbonAction> actions = [];
 
       // Process actions data.
