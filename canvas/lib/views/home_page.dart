@@ -13,11 +13,13 @@ class HomePage extends StatefulWidget {
     required this.accountData,
     required this.actions,
     required this.addCompletedAction,
+    required this.removeCompletedAction,
   }) : super(key: key);
 
   final AccountData accountData;
   final List<CarbonAction> actions;
   final Function addCompletedAction;
+  final Function removeCompletedAction;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -91,6 +93,7 @@ class _HomePageState extends State<HomePage> {
                   completedStamp:
                       completionStampMap[actionsToShow[index].id] ?? '',
                   addCompletedAction: widget.addCompletedAction,
+                  removeCompletedAction: widget.removeCompletedAction,
                 );
               },
             ),

@@ -26,6 +26,7 @@ class _LandingPageState extends State<LandingPage> {
   // Action modification logic.
   late AccountData __accountData = widget.accountData;
 
+  // Handler for adding completed action.
   void addCompletedAction(int actionID) {
     DateTime dt = DateTime.now();
     String completedActionStamp = '${dt.millisecondsSinceEpoch},$actionID';
@@ -53,6 +54,43 @@ class _LandingPageState extends State<LandingPage> {
     addCompletedActionToDB(completedActionStamp);
   }
 
+  // Handler for removing completed action.
+  void removeCompletedAction(String completedActionStamp) {
+    // Update state.
+    setState(() {
+      List<List<Object>> newActionsCompleted =
+          List.from(__accountData.actionsCompleted)
+            ..removeWhere((element) {
+              DateTime dt = element[0] as DateTime;
+              int actionID = element[1] as int;
+              return '${dt.millisecondsSinceEpoch},$actionID' ==
+                  completedActionStamp;
+            });
+      List<List<Object>> newActionsCompletedToday =
+          List.from(__accountData.actionsCompletedToday)
+            ..removeWhere((element) {
+              DateTime dt = element[0] as DateTime;
+              int actionID = element[1] as int;
+              return '${dt.millisecondsSinceEpoch},$actionID' ==
+                  completedActionStamp;
+            });
+
+      AccountData newAccountData = AccountData(
+        __accountData.accountID,
+        __accountData.firstName,
+        __accountData.lastName,
+        __accountData.streak,
+        newActionsCompleted,
+        newActionsCompletedToday,
+      );
+
+      __accountData = newAccountData;
+    });
+
+    // Remove from DB.
+    removeCompletedActionFromDB(completedActionStamp);
+  }
+
   // Navigation bar logic.
   int _selectedIndex = 0;
 
@@ -69,6 +107,7 @@ class _LandingPageState extends State<LandingPage> {
         accountData: __accountData,
         actions: widget.actions,
         addCompletedAction: addCompletedAction,
+        removeCompletedAction: removeCompletedAction,
       ),
       ActionPage(
         accountData: __accountData,

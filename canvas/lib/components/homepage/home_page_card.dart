@@ -89,6 +89,7 @@ class HomeButtons extends StatefulWidget {
   final bool completed;
   final String completedStamp;
   final Function addCompletedAction;
+  final Function removeCompletedAction;
 
   const HomeButtons({
     Key? key,
@@ -96,6 +97,7 @@ class HomeButtons extends StatefulWidget {
     required this.completed,
     required this.completedStamp,
     required this.addCompletedAction,
+    required this.removeCompletedAction,
   }) : super(key: key);
 
   @override
@@ -116,7 +118,7 @@ class _HomeButtonsState extends State<HomeButtons> {
                 style: TextStyle(
                     color: primaryLightColor, fontWeight: FontWeight.bold)),
             onTap: () {
-              widget.addCompletedAction(widget.actionID);
+              widget.removeCompletedAction(widget.completedStamp);
             },
           ));
     } else {
@@ -184,12 +186,14 @@ class HomePageCard extends StatefulWidget {
     required this.completed,
     required this.completedStamp,
     required this.addCompletedAction,
+    required this.removeCompletedAction,
   }) : super(key: key);
 
   final CarbonAction action;
   final bool completed;
   final String completedStamp; // used for the DB to mark as completed
   final Function addCompletedAction;
+  final Function removeCompletedAction;
 
   @override
   State<HomePageCard> createState() => _HomePageCardState();
@@ -231,6 +235,7 @@ class _HomePageCardState extends State<HomePageCard> {
                     completed: widget.completed,
                     completedStamp: widget.completedStamp,
                     addCompletedAction: widget.addCompletedAction,
+                    removeCompletedAction: widget.removeCompletedAction,
                   ),
                 ],
               ),
