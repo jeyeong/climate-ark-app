@@ -88,12 +88,14 @@ class HomeButtons extends StatefulWidget {
   final int actionID;
   final bool completed;
   final String completedStamp;
+  final Function addCompletedAction;
 
-  HomeButtons({
+  const HomeButtons({
     Key? key,
     required this.actionID,
     required this.completed,
     required this.completedStamp,
+    required this.addCompletedAction,
   }) : super(key: key);
 
   @override
@@ -113,9 +115,9 @@ class _HomeButtonsState extends State<HomeButtons> {
             title: const Text('Completed',
                 style: TextStyle(
                     color: primaryLightColor, fontWeight: FontWeight.bold)),
-            onTap: addCompletedAction(
-              '${DateTime.now().millisecondsSinceEpoch.toString()},${widget.actionID}',
-            ),
+            onTap: () {
+              widget.addCompletedAction(widget.actionID);
+            },
           ));
     } else {
       return Container(
@@ -128,9 +130,9 @@ class _HomeButtonsState extends State<HomeButtons> {
           title: const Text('Complete',
               style: TextStyle(
                   color: primaryDarkColor, fontWeight: FontWeight.bold)),
-          onTap: addCompletedAction(
-            '${DateTime.now().millisecondsSinceEpoch.toString()},${widget.actionID}',
-          ),
+          onTap: () {
+            widget.addCompletedAction(widget.actionID);
+          },
         ),
       );
     }
@@ -181,11 +183,13 @@ class HomePageCard extends StatefulWidget {
     required this.action,
     required this.completed,
     required this.completedStamp,
+    required this.addCompletedAction,
   }) : super(key: key);
 
   final CarbonAction action;
   final bool completed;
   final String completedStamp; // used for the DB to mark as completed
+  final Function addCompletedAction;
 
   @override
   State<HomePageCard> createState() => _HomePageCardState();
@@ -226,6 +230,7 @@ class _HomePageCardState extends State<HomePageCard> {
                     actionID: widget.action.id,
                     completed: widget.completed,
                     completedStamp: widget.completedStamp,
+                    addCompletedAction: widget.addCompletedAction,
                   ),
                 ],
               ),
