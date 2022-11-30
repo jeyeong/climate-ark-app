@@ -12,29 +12,45 @@ class HomePage extends StatefulWidget {
     Key? key,
     required this.accountData,
     required this.actions,
+    required this.addCompletedAction,
+    required this.removeCompletedAction,
   }) : super(key: key);
 
   final AccountData accountData;
   final List<CarbonAction> actions;
+  final Function addCompletedAction;
+  final Function removeCompletedAction;
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  late List<CarbonAction> completedActions = getCompletedActions(
-    widget.actions,
-    widget.accountData.actionsCompletedToday,
-  );
+  late List<CarbonAction> actionsToShow =
+      (widget.actions.toList()..shuffle()).sublist(0, 5);
 
   @override
   Widget build(BuildContext context) {
-    double carbonSaved = calculateCarbonSaved(completedActions);
+    // Get IDs of completed actions.
+    List<int> IDsOfCompletedActions = widget.accountData.actionsCompletedToday
+        .map((List<Object> action) => action[1] as int)
+        .toList();
 
-    // Think of how we want to filter out the actions to show.
-    widget.actions
-        .shuffle(); // display ordering of actions differently on renders
-    List<CarbonAction> actionsToShow = widget.actions.sublist(0, 5);
+    // Get completed actions.
+    List<CarbonAction> completedActions = getCompletedActions(
+      widget.actions,
+      IDsOfCompletedActions,
+    );
+
+    // Create map of action ID : stamp.
+    Map<int, String> completionStampMap = Map.fromIterable(
+      widget.accountData.actionsCompletedToday,
+      key: (element) => element[1] as int,
+      value: (element) => '${element[0].millisecondsSinceEpoch},${element[1]}',
+    );
+
+    // Calculate carbon saved.
+    double carbonSaved = calculateCarbonSaved(completedActions);
 
     return SingleChildScrollView(
       child: Column(
@@ -54,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                   margin: const EdgeInsets.only(top: 20.0, bottom: 40.0),
                   child: (SummaryCard(
                     carbonSaved: carbonSaved.toString(),
-                    streakDays: fakeAccountData.streak.toString(),
+                    streakDays: widget.accountData.streak.toString(),
                     actionsCompleted: completedActions.length.toString(),
                   )))),
           Container(
@@ -72,6 +88,12 @@ class _HomePageState extends State<HomePage> {
               itemBuilder: (BuildContext context, int index) {
                 return HomePageCard(
                   action: actionsToShow[index],
+                  completed:
+                      completionStampMap.containsKey(actionsToShow[index].id),
+                  completedStamp:
+                      completionStampMap[actionsToShow[index].id] ?? '',
+                  addCompletedAction: widget.addCompletedAction,
+                  removeCompletedAction: widget.removeCompletedAction,
                 );
               },
             ),

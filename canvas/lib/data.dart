@@ -6,7 +6,7 @@ class AccountData {
 
   int streak;
   List<List<Object>> actionsCompleted;
-  List<int> actionsCompletedToday;
+  List<List<Object>> actionsCompletedToday;
 
   AccountData(
     this.accountID,
@@ -52,7 +52,10 @@ AccountData fakeAccountData = AccountData(
     [DateTime.now(), 2],
     [DateTime.now(), 3],
   ],
-  [2, 3],
+  [
+    [DateTime.now(), 2],
+    [DateTime.now(), 3],
+  ],
 );
 
 List<CarbonAction> fakeActions = [
