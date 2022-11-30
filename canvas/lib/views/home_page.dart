@@ -22,11 +22,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late List<int> IDsOfCompletedActions = widget
+      .accountData.actionsCompletedToday
+      .map((List<Object> action) => action[1] as int)
+      .toList();
+
   late List<CarbonAction> completedActions = getCompletedActions(
     widget.actions,
-    widget.accountData.actionsCompletedToday
-        .map((List<Object> action) => action[1] as int)
-        .toList(),
+    IDsOfCompletedActions,
+  );
+
+  late Map<int, String> completionStampMap = Map.fromIterable(
+    widget.accountData.actionsCompletedToday,
+    key: (element) => element[1] as int,
+    value: (element) => '${element[0].millisecondsSinceEpoch},${element[1]}',
   );
 
   @override
@@ -74,6 +83,10 @@ class _HomePageState extends State<HomePage> {
               itemBuilder: (BuildContext context, int index) {
                 return HomePageCard(
                   action: actionsToShow[index],
+                  completed:
+                      completionStampMap.containsKey(actionsToShow[index].id),
+                  completedStamp:
+                      completionStampMap[actionsToShow[index].id] ?? '',
                 );
               },
             ),

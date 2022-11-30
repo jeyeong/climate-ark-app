@@ -79,8 +79,6 @@ class _LoginPageState extends State<LoginPage> {
         );
       });
 
-      print(accountData.streak);
-
       final List<CarbonAction> actions = [];
 
       // Process actions data.

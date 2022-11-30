@@ -85,11 +85,15 @@ class _HomeTextState extends State<HomeText> {
 }
 
 class HomeButtons extends StatefulWidget {
-  int actionID;
+  final int actionID;
+  final bool completed;
+  final String completedStamp;
 
   HomeButtons({
     Key? key,
     required this.actionID,
+    required this.completed,
+    required this.completedStamp,
   }) : super(key: key);
 
   @override
@@ -97,16 +101,39 @@ class HomeButtons extends StatefulWidget {
 }
 
 class _HomeButtonsState extends State<HomeButtons> {
-  ListTile generateListTile() {
-    return ListTile(
-      leading: const Icon(Icons.check, color: primaryDarkColor),
-      title: const Text('Complete',
-          style:
-              TextStyle(color: primaryDarkColor, fontWeight: FontWeight.bold)),
-      onTap: addCompletedAction(
-        '${DateTime.now().millisecondsSinceEpoch.toString()},${widget.actionID}',
-      ),
-    );
+  Container generateCompletedButton() {
+    if (widget.completed) {
+      return Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16.0),
+            color: primaryDarkColor,
+          ),
+          child: ListTile(
+            leading: const Icon(Icons.check, color: primaryLightColor),
+            title: const Text('Completed',
+                style: TextStyle(
+                    color: primaryLightColor, fontWeight: FontWeight.bold)),
+            onTap: addCompletedAction(
+              '${DateTime.now().millisecondsSinceEpoch.toString()},${widget.actionID}',
+            ),
+          ));
+    } else {
+      return Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16.0),
+          color: Color.fromARGB(255, 209, 244, 217),
+        ),
+        child: ListTile(
+          leading: const Icon(Icons.check, color: primaryDarkColor),
+          title: const Text('Complete',
+              style: TextStyle(
+                  color: primaryDarkColor, fontWeight: FontWeight.bold)),
+          onTap: addCompletedAction(
+            '${DateTime.now().millisecondsSinceEpoch.toString()},${widget.actionID}',
+          ),
+        ),
+      );
+    }
   }
 
   @override
@@ -118,13 +145,7 @@ class _HomeButtonsState extends State<HomeButtons> {
           children: [
             Expanded(
               flex: 6,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16.0),
-                  color: Color.fromARGB(255, 209, 244, 217),
-                ),
-                child: generateListTile(),
-              ),
+              child: generateCompletedButton(),
             ),
             const Expanded(
                 flex: 1,
@@ -158,9 +179,13 @@ class HomePageCard extends StatefulWidget {
   const HomePageCard({
     Key? key,
     required this.action,
+    required this.completed,
+    required this.completedStamp,
   }) : super(key: key);
 
   final CarbonAction action;
+  final bool completed;
+  final String completedStamp; // used for the DB to mark as completed
 
   @override
   State<HomePageCard> createState() => _HomePageCardState();
@@ -199,6 +224,8 @@ class _HomePageCardState extends State<HomePageCard> {
                   ),
                   HomeButtons(
                     actionID: widget.action.id,
+                    completed: widget.completed,
+                    completedStamp: widget.completedStamp,
                   ),
                 ],
               ),
