@@ -1,3 +1,4 @@
+import 'package:canvas/data.dart';
 import 'package:flutter/material.dart';
 import 'package:canvas/constants.dart';
 
@@ -8,10 +9,12 @@ class StreakActionCard extends StatefulWidget {
   final int streakDays;
   final double boxHeight;
   final int numActionsCompleted;
+  final int numActionsThisWeek;
 
   const StreakActionCard(
       {required this.streakDays,
       required this.numActionsCompleted,
+      required this.numActionsThisWeek,
       required this.boxHeight,
       Key? key})
       : super(key: key);
@@ -20,6 +23,7 @@ class StreakActionCard extends StatefulWidget {
   _StreakActionCardState createState() => _StreakActionCardState(
       streakDays: this.streakDays,
       numActionsCompleted: this.numActionsCompleted,
+      numActionsThisWeek: this.numActionsThisWeek,
       boxHeight: this.boxHeight);
 }
 
@@ -27,9 +31,11 @@ class _StreakActionCardState extends State<StreakActionCard> {
   int streakDays;
   double boxHeight;
   int numActionsCompleted;
+  int numActionsThisWeek;
   _StreakActionCardState({
     required this.streakDays,
     required this.numActionsCompleted,
+    required this.numActionsThisWeek,
     required this.boxHeight,
   });
   @override
@@ -45,6 +51,7 @@ class _StreakActionCardState extends State<StreakActionCard> {
               boxHeight: boxHeight),
           ActionCard(
             numActionsCompleted: numActionsCompleted,
+            thisWeek: numActionsThisWeek,
             boxHeight: boxHeight,
             boxWidth: MediaQuery.of(context).size.width * 0.55,
           )

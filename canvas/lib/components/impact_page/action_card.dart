@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 
 class ActionCard extends StatefulWidget {
   final int numActionsCompleted;
+  final int thisWeek;
   final double boxHeight;
   final double boxWidth;
   const ActionCard(
       {required this.numActionsCompleted,
+      required this.thisWeek,
       required this.boxHeight,
       required this.boxWidth,
       Key? key})
@@ -15,17 +17,20 @@ class ActionCard extends StatefulWidget {
   @override
   _ActionCardState createState() => _ActionCardState(
       numActionsCompleted: this.numActionsCompleted,
+      thisWeek: this.thisWeek,
       boxHeight: this.boxHeight,
       boxWidth: boxWidth);
 }
 
 class _ActionCardState extends State<ActionCard> {
   int numActionsCompleted;
+  int thisWeek;
   double boxHeight;
   double boxWidth;
 
   _ActionCardState(
       {required this.numActionsCompleted,
+      required this.thisWeek,
       required this.boxHeight,
       required this.boxWidth});
 
@@ -66,7 +71,7 @@ class _ActionCardState extends State<ActionCard> {
                       color: Color(0xff09bc8a),
                       fontFamily: 'Poppins')),
               TextSpan(
-                  text: '+3 This Week',
+                  text: '+ ' + thisWeek.toString() + ' This Week',
                   style: TextStyle(
                       fontSize: 12, color: darkGrey, fontFamily: 'Poppins')),
             ],

@@ -7,6 +7,7 @@ import 'package:canvas/constants.dart';
 import 'package:canvas/components/impact_page/leaf_fill.dart';
 import 'package:canvas/constants.dart';
 import 'package:canvas/data.dart';
+import '../utils/utils.dart';
 
 import '../components/impact_page/streak_card.dart';
 
@@ -27,6 +28,30 @@ class ImpactPage extends StatefulWidget {
 class _ImpactPageState extends State<ImpactPage> {
   @override
   Widget build(BuildContext context) {
+    List<List<Object>> actionsCompleted = widget.accountData.actionsCompleted;
+    late AccountData thisAccountInfo = widget.accountData;
+
+    List<int> IDsOfCompletedActions = widget.accountData.actionsCompleted
+        .map((List<Object> action) => action[1] as int)
+        .toList();
+
+    DateTime now = DateTime.now();
+    int currentDay = now.weekday;
+    DateTime firstDayOfWeek = now.subtract(Duration(days: currentDay));
+    List<List<Object>> thisWeek = actionsCompleted.where((i) {
+      DateTime dayInfo = i[0] as DateTime;
+      return dayInfo.day >= firstDayOfWeek.day &&
+          dayInfo.month == firstDayOfWeek.month &&
+          dayInfo.year == firstDayOfWeek.year;
+    }).toList();
+
+    // Get completed actions.
+    List<CarbonAction> completedActions = getCompletedActions(
+      widget.actions,
+      IDsOfCompletedActions,
+    );
+    double carbonSaved = calculateCarbonSaved(completedActions);
+
     return Scaffold(
         body: SafeArea(
             child: Center(
@@ -51,7 +76,7 @@ class _ImpactPageState extends State<ImpactPage> {
                   text: '',
                   children: <TextSpan>[
                     TextSpan(
-                        text: '500 ',
+                        text: carbonSaved.toString() + ' ',
                         style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
@@ -88,11 +113,12 @@ class _ImpactPageState extends State<ImpactPage> {
           Container(
             child: Column(children: [
               StreakActionCard(
-                streakDays: 7,
-                numActionsCompleted: 12,
+                streakDays: thisAccountInfo.streak,
+                numActionsCompleted: completedActions.length,
+                numActionsThisWeek: thisWeek.length,
                 boxHeight: 50,
               ),
-              ImpactBox(),
+              ImpactBox(accountData: thisAccountInfo, actions: widget.actions),
             ]),
           ),
         ],

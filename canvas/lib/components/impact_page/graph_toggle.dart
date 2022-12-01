@@ -3,11 +3,22 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:canvas/constants.dart';
 import 'dart:math';
 
+import '../../data.dart';
+import '../../utils/utils.dart';
+
 enum Toggle { daily, weekly, monthly }
 
 class GraphPack extends StatefulWidget {
   final Toggle passedType;
-  const GraphPack({Key? key, required this.passedType}) : super(key: key);
+  final AccountData accountData;
+  final List<CarbonAction> actions;
+
+  const GraphPack({
+    Key? key,
+    required this.passedType,
+    required this.accountData,
+    required this.actions,
+  }) : super(key: key);
   @override
   GraphPackState createState() => GraphPackState(passedType: this.passedType);
 }
@@ -25,14 +36,9 @@ class GraphPackState extends State<GraphPack> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        // padding: const EdgeInsets.symmetric(horizontal: 20),
-        // margin: const EdgeInsets.symmetric(horizontal: 8.0),
         width: double.infinity,
         height: 230,
         padding: EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 10.0),
-        // decoration: BoxDecoration(
-        //     color: primaryLightestColor, borderRadius: BorderRadius.circular(29)),
-        //child: LineChart(sampleData1),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
@@ -51,8 +57,10 @@ class GraphPackState extends State<GraphPack> {
         borderData: borderData,
         lineBarsData: lineBarsData1,
         minX: 0,
-        maxX: 9, // should be number of data points that will be in the set
-        maxY: 600,
+        maxX: 6, // should be number of data points that will be in the set
+        // maxY: 600,
+        maxY: ((valuesToUse.map<double>((e) => e.y).reduce(max) + 99) / 100) *
+            100,
         minY: 0,
         extraLinesData: extraLineData1,
       );
@@ -100,43 +108,9 @@ class GraphPackState extends State<GraphPack> {
             end: Alignment.bottomCenter,
           ),
         ),
-        spots: (passedType == Toggle.daily)
-            ? spot1
-            : (passedType == Toggle.weekly)
-                ? spot2
-                : spot3,
+        spots: valuesToUse,
+        // spots: dailyValues,
       );
-
-  List<FlSpot> spot1 = const [
-    FlSpot(0, 450),
-    FlSpot(1, 540),
-    FlSpot(2, 450),
-    FlSpot(3, 550),
-    FlSpot(4, 400),
-    FlSpot(5, 280),
-    FlSpot(6, 300),
-    FlSpot(7, 290),
-    FlSpot(8, 600),
-    FlSpot(9, 350),
-  ];
-  List<FlSpot> spot2 = const [
-    FlSpot(0, 250),
-    FlSpot(1, 100),
-    FlSpot(2, 300),
-    FlSpot(3, 550),
-    FlSpot(4, 600),
-    FlSpot(5, 450),
-    FlSpot(6, 300),
-    FlSpot(7, 290),
-    FlSpot(8, 10),
-    FlSpot(9, 350),
-  ];
-
-  List<FlSpot> get spot3 => List<FlSpot>.generate(10, (int index) {
-        var random = Random();
-        double randomNumber = random.nextInt(600).toDouble();
-        return FlSpot(index.toDouble(), randomNumber);
-      });
 
   FlGridData get gridData1 => FlGridData(
         show: false,
@@ -161,15 +135,92 @@ class GraphPackState extends State<GraphPack> {
       showTitles: true,
       interval: 1,
       reservedSize: 32);
+  List<FlSpot> get dailyValues => List<FlSpot>.generate(7, (int index) {
+        DateTime dayMatch = now.subtract(Duration(days: 6 - index));
+        List<List<Object>> tasksDone =
+            widget.accountData.actionsCompleted.where((i) {
+          DateTime dayInfo = i[0] as DateTime;
+          return dayInfo.difference(dayMatch).inDays == 0;
+        }).toList();
+        List<int> IDsOfCompletedActions =
+            tasksDone.map((List<Object> action) => action[1] as int).toList();
+        List<CarbonAction> actionsDone =
+            getCompletedActions(widget.actions, IDsOfCompletedActions);
+        double score = calculateCarbonSaved(actionsDone);
+        // print('(' + index.toString() + ', ' + score.toString() + ')');
+        return FlSpot(index.toDouble(), score);
+      });
+
+  List<FlSpot> get weeklyValues => List<FlSpot>.generate(7, (int index) {
+        DateTime dayMatch =
+            firstDayOfWeek.subtract(Duration(days: (6 - index) * 7));
+        // print(dayMatch);
+        List<List<Object>> tasksDone =
+            widget.accountData.actionsCompleted.where((i) {
+          DateTime dayInfo = i[0] as DateTime;
+          return dayInfo.difference(dayMatch).inDays < 6;
+        }).toList();
+        List<int> IDsOfCompletedActions =
+            tasksDone.map((List<Object> action) => action[1] as int).toList();
+        // print(IDsOfCompletedActions);
+        List<CarbonAction> actionsDone =
+            getCompletedActions(widget.actions, IDsOfCompletedActions);
+        double score = calculateCarbonSaved(actionsDone);
+        // print('(' + index.toString() + ', ' + score.toString() + ')');
+        return FlSpot(index.toDouble(), score);
+      });
+
+  List<FlSpot> get monthlyValues => List<FlSpot>.generate(7, (int index) {
+        DateTime dayMatch = now.subtract(Duration(days: (6 - index) * 30));
+        // print(dayMatch);
+        List<List<Object>> tasksDone =
+            widget.accountData.actionsCompleted.where((i) {
+          DateTime dayInfo = i[0] as DateTime;
+          return dayInfo.month == dayMatch.month;
+        }).toList();
+        List<int> IDsOfCompletedActions =
+            tasksDone.map((List<Object> action) => action[1] as int).toList();
+        // print(IDsOfCompletedActions);
+        List<CarbonAction> actionsDone =
+            getCompletedActions(widget.actions, IDsOfCompletedActions);
+        double score = calculateCarbonSaved(actionsDone);
+        // print('(' + index.toString() + ', ' + score.toString() + ')');
+        return FlSpot(index.toDouble(), score);
+      });
+  List<FlSpot> get valuesToUse => (passedType == Toggle.daily)
+      ? dailyValues
+      : (passedType == Toggle.weekly)
+          ? weeklyValues
+          : monthlyValues;
+  DateTime now = DateTime.now();
+  late int currentDay = now.weekday;
+  late DateTime firstDayOfWeek = now.subtract(Duration(days: currentDay));
+
+  List<String> get bottomTitleGenerate => List<String>.generate(7, (int index) {
+        int firstNum = (passedType == Toggle.monthly)
+            ? now.subtract(Duration(days: 30 * index)).month
+            : (passedType == Toggle.weekly)
+                ? firstDayOfWeek.subtract(Duration(days: 7 * index)).month
+                : now.subtract(Duration(days: index)).month;
+        int secNum = (passedType == Toggle.monthly)
+            ? now.day
+            : (passedType == Toggle.weekly)
+                ? firstDayOfWeek.subtract(Duration(days: 7 * index)).day
+                : now.subtract(Duration(days: index)).day;
+        return firstNum.toString() + "/" + secNum.toString();
+      });
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
+    final titles = bottomTitleGenerate.reversed.toList();
+
     const style = TextStyle(
       //color: Color(0xff000000),
       color: darkGrey,
-      fontWeight: FontWeight.bold,
+      fontFamily: "Poppins",
+      fontWeight: FontWeight.w500,
       fontSize: 16,
     );
-    Widget text = Text(value.toString(), style: style);
+    Widget text = Text(titles[value.toInt()], style: style);
     return Padding(child: text, padding: const EdgeInsets.only(top: 10.0));
   }
 
@@ -182,11 +233,16 @@ class GraphPackState extends State<GraphPack> {
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
-      //color: Color(0xff000000),
       color: darkGrey,
-      fontWeight: FontWeight.bold,
+      fontFamily: "Poppins",
       fontSize: 14,
     );
+    // double maxVal = valuesToUse.map<double>((e) => e.y).reduce(max);
+
+    // int interval = ((maxVal ~/ 3) ~/ 50) * 50 + 50;
+    // print(interval);
+    // int interval = ((maxVal ~/ 3) / 50).floor() * 50;
+    // int interval = maxVal ~/ 3;
     String text = (value.toInt() % 150 == 0) ? value.toString() : "";
 
     return Text(text, style: style, textAlign: TextAlign.center);
@@ -212,7 +268,10 @@ class GraphPackState extends State<GraphPack> {
         items: Toggle.values.map((Toggle value) {
           return DropdownMenuItem<Toggle>(
             value: value,
-            child: Text(capitalize(value.name) + " CO2 Emissions Saved"),
+            child: Text(
+              capitalize(value.name) + " CO2 Emissions Saved",
+              style: const TextStyle(fontFamily: "Poppins", fontSize: 12),
+            ),
           );
         }).toList(),
       );

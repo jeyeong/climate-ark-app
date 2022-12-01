@@ -7,18 +7,30 @@ import 'package:canvas/components/impact_page/history_list.dart';
 import 'package:canvas/components/impact_page/history_item.dart';
 import 'package:canvas/components/impact_page/leaf_fill.dart';
 
+import '../../data.dart';
+
 enum View { stats, history }
 
 class ImpactBox extends StatefulWidget {
-  const ImpactBox({Key? key}) : super(key: key);
+  const ImpactBox({
+    Key? key,
+    required this.accountData,
+    required this.actions,
+  }) : super(key: key);
+
+  final AccountData accountData;
+  final List<CarbonAction> actions;
 
   _ImpactBoxState createState() => _ImpactBoxState();
 }
 
 class _ImpactBoxState extends State<ImpactBox> {
   List<bool> isSelected = [true, false];
+
   @override
   Widget build(BuildContext context) {
+    AccountData accountData = widget.accountData;
+    List<CarbonAction> actions = widget.actions;
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 10),
         width: double.infinity,
@@ -61,8 +73,11 @@ class _ImpactBoxState extends State<ImpactBox> {
               borderWidth: 3,
             ),
             isSelected[0]
-                ? GraphPack(passedType: Toggle.daily)
-                : HistoryListCard(),
+                ? GraphPack(
+                    passedType: Toggle.daily,
+                    accountData: accountData,
+                    actions: actions)
+                : HistoryListCard(accountData: accountData, actions: actions),
           ],
         ));
   }
