@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:canvas/constants.dart';
 import 'package:canvas/views/home_page.dart';
+import 'package:canvas/views/action_page.dart';
 import 'package:canvas/views/impact_page.dart';
 import 'package:canvas/components/general/app_bar.dart';
 
 import 'package:canvas/data.dart';
+import 'package:canvas/utils/completionHandlers.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({
@@ -21,22 +23,76 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
+  // Action modification logic.
+  late AccountData __accountData = widget.accountData;
+
+  // Handler for adding completed action.
+  void addCompletedAction(int actionID) {
+    DateTime dt = DateTime.now();
+    String completedActionStamp = '${dt.millisecondsSinceEpoch},$actionID';
+
+    // Update state.
+    setState(() {
+      List<List<Object>> newActionsCompleted =
+          List.from(__accountData.actionsCompleted)..add([dt, actionID]);
+      List<List<Object>> newActionsCompletedToday =
+          List.from(__accountData.actionsCompletedToday)..add([dt, actionID]);
+
+      AccountData newAccountData = AccountData(
+        __accountData.accountID,
+        __accountData.firstName,
+        __accountData.lastName,
+        __accountData.streak,
+        newActionsCompleted,
+        newActionsCompletedToday,
+      );
+
+      __accountData = newAccountData;
+    });
+
+    // Add to DB.
+    addCompletedActionToDB(completedActionStamp);
+  }
+
+  // Handler for removing completed action.
+  void removeCompletedAction(String completedActionStamp) {
+    // Update state.
+    setState(() {
+      List<List<Object>> newActionsCompleted =
+          List.from(__accountData.actionsCompleted)
+            ..removeWhere((element) {
+              DateTime dt = element[0] as DateTime;
+              int actionID = element[1] as int;
+              return '${dt.millisecondsSinceEpoch},$actionID' ==
+                  completedActionStamp;
+            });
+      List<List<Object>> newActionsCompletedToday =
+          List.from(__accountData.actionsCompletedToday)
+            ..removeWhere((element) {
+              DateTime dt = element[0] as DateTime;
+              int actionID = element[1] as int;
+              return '${dt.millisecondsSinceEpoch},$actionID' ==
+                  completedActionStamp;
+            });
+
+      AccountData newAccountData = AccountData(
+        __accountData.accountID,
+        __accountData.firstName,
+        __accountData.lastName,
+        __accountData.streak,
+        newActionsCompleted,
+        newActionsCompletedToday,
+      );
+
+      __accountData = newAccountData;
+    });
+
+    // Remove from DB.
+    removeCompletedActionFromDB(completedActionStamp);
+  }
+
+  // Navigation bar logic.
   int _selectedIndex = 0;
-
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-
-  late final List<Widget> _widgetOptions = <Widget>[
-    HomePage(
-      accountData: widget.accountData,
-      actions: widget.actions,
-    ),
-    const Text(
-      'Action',
-      style: optionStyle,
-    ),
-    const ImpactPage(),
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -46,6 +102,23 @@ class _LandingPageState extends State<LandingPage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> _widgetOptions = <Widget>[
+      HomePage(
+        accountData: __accountData,
+        actions: widget.actions,
+        addCompletedAction: addCompletedAction,
+        removeCompletedAction: removeCompletedAction,
+      ),
+      ActionPage(
+        accountData: __accountData,
+        actions: fakeActions,
+      ),
+      ImpactPage(
+        accountData: __accountData,
+        actions: fakeActions,
+      ),
+    ];
+
     return Scaffold(
       backgroundColor: primaryWhite,
       appBar: const PreferredSize(

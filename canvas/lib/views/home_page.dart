@@ -2,162 +2,107 @@ import 'package:flutter/material.dart';
 import 'package:canvas/components/homepage/circle_with_text.dart';
 
 import 'package:canvas/data.dart';
+import 'package:canvas/components/homepage/summary_card.dart';
+import 'package:canvas/components/homepage/home_page_card.dart';
+
+import 'package:canvas/utils/utils.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
     Key? key,
     required this.accountData,
     required this.actions,
+    required this.addCompletedAction,
+    required this.removeCompletedAction,
   }) : super(key: key);
 
   final AccountData accountData;
   final List<CarbonAction> actions;
+  final Function addCompletedAction;
+  final Function removeCompletedAction;
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  late List<CarbonAction> actionsToShow =
+      (widget.actions.toList()..shuffle()).sublist(0, 5);
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Part below app bar
-        Stack(
-          children: [
-            Container(
-              height: 80.0,
-              width: double.infinity,
+    // Get IDs of completed actions.
+    List<int> IDsOfCompletedActions = widget.accountData.actionsCompletedToday
+        .map((List<Object> action) => action[1] as int)
+        .toList();
+
+    // Get completed actions.
+    List<CarbonAction> completedActions = getCompletedActions(
+      widget.actions,
+      IDsOfCompletedActions,
+    );
+
+    // Create map of action ID : stamp.
+    Map<int, String> completionStampMap = Map.fromIterable(
+      widget.accountData.actionsCompletedToday,
+      key: (element) => element[1] as int,
+      value: (element) => '${element[0].millisecondsSinceEpoch},${element[1]}',
+    );
+
+    // Calculate carbon saved.
+    double carbonSaved = calculateCarbonSaved(completedActions);
+
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Container(
               decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(12),
-                  bottomRight: Radius.circular(12),
-                ),
                 color: Color(0xff08b184),
+                //color: primaryWhite,
+                //borderRadius: BorderRadius.circular(50),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(25),
+                  bottomRight: Radius.circular(25),
+                ),
               ),
-            ),
-            Container(
-              height: 140.0,
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 14.0),
               child: Container(
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color(0xffe6e6e6),
-                      spreadRadius: 0.25,
-                      blurRadius: 0.5,
-                      offset: Offset(0, 1),
-                    )
-                  ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              color: Colors.green,
-                              height: 70,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 8,
-                            child: Container(
-                              color: Colors.amber,
-                              height: 40,
-                            ),
-                          ),
-                          Expanded(
-                            flex: 1,
-                            child: Container(),
-                          ),
-                          Expanded(
-                            flex: 15,
-                            child: Container(
-                              color: Colors.blue,
-                              height: 40,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-        // Main content
-        Container(
-          margin: const EdgeInsets.only(
-            top: 12.0,
-            left: 15.0,
-          ),
-          child: const Text(
-            'Some Activities For You',
-            style: TextStyle(
-              fontSize: 18.0,
-              fontWeight: FontWeight.w600,
-              letterSpacing: 0.1,
+                  margin: const EdgeInsets.only(top: 20.0, bottom: 40.0),
+                  child: (SummaryCard(
+                    carbonSaved: carbonSaved.toString(),
+                    streakDays: widget.accountData.streak.toString(),
+                    actionsCompleted: completedActions.length.toString(),
+                  )))),
+          Container(
+              margin: const EdgeInsets.only(left: 10.0, top: 10),
+              child: const Align(
+                alignment: Alignment.centerLeft,
+                child: Text("Some Activities For You",
+                    style: TextStyle(fontSize: 25)),
+              )),
+          Container(
+            height: 510,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: actionsToShow.length,
+              itemBuilder: (BuildContext context, int index) {
+                return HomePageCard(
+                  action: actionsToShow[index],
+                  completed:
+                      completionStampMap.containsKey(actionsToShow[index].id),
+                  completedStamp:
+                      completionStampMap[actionsToShow[index].id] ?? '',
+                  addCompletedAction: widget.addCompletedAction,
+                  removeCompletedAction: widget.removeCompletedAction,
+                );
+              },
             ),
           ),
-        ),
-        Container(
-          margin: const EdgeInsets.all(16.0),
-          decoration: BoxDecoration(
-            border: Border.all(
-              width: 1.0,
-              color: const Color(0xFF000000),
-            ),
+          const SizedBox(
+            height: 20,
           ),
-        ),
-        Card(
-          margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(width: 1, color: Colors.black38),
-                borderRadius: const BorderRadius.all(Radius.circular(8)),
-              ),
-              child: const Text(
-                'Streak Days',
-                style: TextStyle(fontSize: 25),
-              ),
-              margin: const EdgeInsets.all(4),
-            ),
-            const CircleWithText(
-              title: '4',
-              radius: 50.0,
-            ),
-          ]),
-        ),
-        Card(
-          margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-          child: ListTile(
-            leading: const Icon(
-              Icons.emoji_people,
-              color: Colors.teal,
-            ),
-            title: Text('Activities Completed 8',
-                style: TextStyle(
-                  color: Colors.teal.shade900,
-                  fontSize: 20.0,
-                )),
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

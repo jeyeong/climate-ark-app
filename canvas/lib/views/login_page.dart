@@ -6,6 +6,9 @@ import 'package:canvas/views/sign_up_page.dart';
 import 'package:canvas/components/general/input_field.dart';
 import 'package:canvas/components/general/button.dart';
 import 'package:canvas/data.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+final db = FirebaseFirestore.instance;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -20,11 +23,81 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  void checkLoginCredentials() {
+  void checkLoginCredentials() async {
     if (usernameController.text == 'tt' && passwordController.text == '123') {
-      // Simulate getting data.
-      final accountData = fakeAccountData;
-      final actions = fakeActions;
+      // Get account data.
+      AccountData accountData = AccountData(0, '', '', 0, [], []);
+
+      await db
+          .collection("users")
+          .where('accountID', isEqualTo: 123)
+          .get()
+          .then((snapshot) {
+        QueryDocumentSnapshot doc = snapshot.docs[0];
+        Map data = doc.data() as Map;
+
+        // Process actions.
+        List<List<Object>> actionsCompleted = [];
+        List<List<Object>> actionsCompletedToday = [];
+        DateTime now = DateTime.now();
+
+        int streak = 0;
+        DateTime nextStreakDate = DateTime(now.year, now.month, now.day - 1);
+
+        for (String stamp in data['completedActions'].reversed.toList()) {
+          final splitStamp = stamp.split(',');
+          DateTime dt = DateTime.fromMillisecondsSinceEpoch(
+            int.parse(splitStamp[0]),
+          );
+          int actionID = int.parse(splitStamp[1]);
+
+          // Check for actions completed today.
+          if (now.day == dt.day &&
+              now.month == dt.month &&
+              now.year == dt.year) {
+            actionsCompletedToday.add([dt, actionID]);
+          }
+
+          // Check for streak.
+          if (nextStreakDate.day == dt.day &&
+              nextStreakDate.month == dt.month &&
+              nextStreakDate.year == dt.year) {
+            streak += 1;
+            nextStreakDate.subtract(const Duration(days: 1));
+          }
+
+          actionsCompleted.add([dt, actionID]);
+        }
+
+        accountData = AccountData(
+          data['accountID'],
+          data['firstName'],
+          data['lastName'],
+          streak,
+          actionsCompleted,
+          actionsCompletedToday,
+        );
+      });
+
+      final List<CarbonAction> actions = [];
+
+      // Process actions data.
+      await db.collection("carbon-actions").get().then((event) {
+        for (var doc in event.docs) {
+          var data = doc.data();
+          actions.add(
+            CarbonAction(
+                data['id'],
+                data['actionName'],
+                data['actionDescription'],
+                data['category'],
+                data['carbonScore'],
+                data['amountSavedAnnually']),
+          );
+        }
+      });
+
+      // Move to home page.
       Navigator.push(
         context,
         MaterialPageRoute(

@@ -34,7 +34,7 @@ class _LeafState extends State<LeafBox> {
             height: size,
             decoration: BoxDecoration(
               color: primaryLightestColor,
-              borderRadius: BorderRadius.circular(size / 7),
+              borderRadius: BorderRadius.circular(size / 5),
               shape: BoxShape.rectangle,
             ),
           ),
@@ -57,10 +57,10 @@ class _LeafState extends State<LeafBox> {
           ),
           // from https://www.fluttericon.com/
           Container(
-          width: size / 3,
-          height: size / 3,
-          child: Image(image: AssetImage('assets/leaf.png')),
-        ),
+            width: size / 3,
+            height: size / 3,
+            child: Image(image: AssetImage('assets/leaf.png')),
+          ),
         ],
       ),
     );
@@ -71,7 +71,7 @@ class NativeClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     Path path = Path();
-    double rdRad = 2 * size.height / 7;
+    double rdRad = 2 * size.height / 5;
     double fillHeight = size.height * 0.2;
     path.lineTo(0, size.height - rdRad);
     path.quadraticBezierTo(0, size.height, rdRad, size.height);

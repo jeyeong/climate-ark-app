@@ -3,6 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:canvas/components/general/button.dart';
 import 'package:canvas/components/general/input_field.dart';
 import 'package:canvas/components/general/app_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+final db = FirebaseFirestore.instance;
+
+final user = <String, dynamic>{
+  "first": "Ada",
+  "last": "Lovelace",
+  "born": 1815
+};
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -13,10 +23,12 @@ class SignUpPage extends StatelessWidget {
 
     TextEditingController usernameController = TextEditingController();
     TextEditingController emailController = TextEditingController();
+    TextEditingController firstNameController = TextEditingController();
+    TextEditingController lastNameController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
     TextEditingController confirmPasswordController = TextEditingController();
 
-    void checkSignUpCredentials() {
+    void checkSignUpCredentials() async {
       if (passwordController.text != confirmPasswordController.text) {
         ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Passwords do not match.')));
@@ -25,6 +37,18 @@ class SignUpPage extends StatelessWidget {
 
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text('Account created.')));
+
+      // try {
+      //   final credential =
+      //       await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      //     email: 'test@email.com',
+      //     password: '123456',
+      //   );
+
+      //   print(credential);
+      // } catch (e) {
+      //   print(e);
+      // }
 
       Navigator.pop(context);
     }
@@ -52,9 +76,25 @@ class SignUpPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20.0),
-                InputField(title: 'Username', controller: usernameController),
+                InputField(
+                  title: 'First Name',
+                  controller: firstNameController,
+                ),
                 const SizedBox(height: 20.0),
-                InputField(title: 'Email', controller: emailController),
+                InputField(
+                  title: 'Last Name',
+                  controller: lastNameController,
+                ),
+                const SizedBox(height: 60.0),
+                InputField(
+                  title: 'Username',
+                  controller: usernameController,
+                ),
+                const SizedBox(height: 20.0),
+                InputField(
+                  title: 'Email',
+                  controller: emailController,
+                ),
                 const SizedBox(height: 20.0),
                 InputField(
                   title: 'Password',
@@ -67,7 +107,7 @@ class SignUpPage extends StatelessWidget {
                   controller: confirmPasswordController,
                   obscure: true,
                 ),
-                const SizedBox(height: 20.0),
+                const SizedBox(height: 60.0),
                 Button(text: 'SIGN UP', callback: checkSignUpCredentials)
               ],
             ),
