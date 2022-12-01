@@ -35,20 +35,26 @@ class SignUpPage extends StatelessWidget {
         return;
       }
 
+      try {
+        final credential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text('The password provided is too weak.')));
+          return;
+        } else if (e.code == 'email-already-in-use') {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text('The account already exists for that email.')));
+          return;
+        }
+      }
+
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text('Account created.')));
-
-      // try {
-      //   final credential =
-      //       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      //     email: 'test@email.com',
-      //     password: '123456',
-      //   );
-
-      //   print(credential);
-      // } catch (e) {
-      //   print(e);
-      // }
 
       Navigator.pop(context);
     }
