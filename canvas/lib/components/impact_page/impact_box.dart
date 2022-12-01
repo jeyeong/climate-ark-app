@@ -30,7 +30,6 @@ class _ImpactBoxState extends State<ImpactBox> {
                     style: TextStyle(
                         fontSize: 20,
                         color: (isSelected[0] ? primaryWhite : primaryColor))),
-                //Text("Stats"),
                 Text("History",
                     style: TextStyle(
                         fontSize: 20,
@@ -53,8 +52,7 @@ class _ImpactBoxState extends State<ImpactBox> {
               constraints: BoxConstraints(
                   minHeight: 30.0,
                   maxHeight: 50.0,
-                  minWidth: (MediaQuery.of(context).size.width - 40) /
-                      2), //200.0, maxWidth: 500.0),
+                  minWidth: (MediaQuery.of(context).size.width - 40) / 2),
               color: offsetWhite,
               fillColor: primaryColor,
               borderColor: primaryColor,
@@ -64,18 +62,8 @@ class _ImpactBoxState extends State<ImpactBox> {
             ),
             isSelected[0]
                 ? GraphPack(passedType: Toggle.daily)
-                : HistoryListCard(), //HistoryListCard(),
+                : HistoryListCard(),
           ],
         ));
-
-    // MaterialApp(
-    //   title: _title,
-    //   home: Scaffold(
-    //     appBar: AppBar(title: const Text(_title)),
-    //     body: const Center(
-    //       child: MyStatefulWidget(),
-    //     ),
-    //   ),
-    // );
   }
 }

@@ -36,10 +36,8 @@ class _ImpactPageState extends State<ImpactPage> {
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height / 2 - 100,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color(0xff08b184),
-              //color: primaryWhite,
-              //borderRadius: BorderRadius.circular(50),
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(25),
@@ -94,14 +92,7 @@ class _ImpactPageState extends State<ImpactPage> {
                 numActionsCompleted: 12,
                 boxHeight: 50,
               ),
-
-              // Container(margin: EdgeInsets.all(10),
-              //           width: MediaQuery.of(context).size.width,
-              //           height: 30,
-              //           color: Colors.red,
-              //           child: Text("boxes")),
-
-              ImpactBox()
+              ImpactBox(),
             ]),
           ),
         ],

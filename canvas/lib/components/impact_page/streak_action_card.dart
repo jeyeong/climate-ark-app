@@ -35,15 +35,19 @@ class _StreakActionCardState extends State<StreakActionCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           StreakCard(
-              streakDays: streakDays, boxWidth: 130, boxHeight: boxHeight),
+              streakDays: streakDays,
+              boxWidth: MediaQuery.of(context).size.width * 0.325,
+              boxHeight: boxHeight),
           ActionCard(
-              numActionsCompleted: numActionsCompleted,
-              boxHeight: boxHeight,
-              boxWidth: 250)
+            numActionsCompleted: numActionsCompleted,
+            boxHeight: boxHeight,
+            boxWidth: MediaQuery.of(context).size.width * 0.55,
+          )
         ],
       ),
     );
