@@ -7,6 +7,7 @@ import 'package:canvas/components/general/input_field.dart';
 import 'package:canvas/components/general/button.dart';
 import 'package:canvas/data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 final db = FirebaseFirestore.instance;
 
@@ -20,97 +21,111 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
-  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   void checkLoginCredentials() async {
-    if (usernameController.text == 'tt' && passwordController.text == '123') {
-      // Get account data.
-      AccountData accountData = AccountData(0, '', '', 0, [], []);
+    UserCredential userCredential;
 
-      await db
-          .collection("users")
-          .where('accountID', isEqualTo: 123)
-          .get()
-          .then((snapshot) {
-        QueryDocumentSnapshot doc = snapshot.docs[0];
-        Map data = doc.data() as Map;
-
-        // Process actions.
-        List<List<Object>> actionsCompleted = [];
-        List<List<Object>> actionsCompletedToday = [];
-        DateTime now = DateTime.now();
-
-        int streak = 0;
-        DateTime nextStreakDate = DateTime(now.year, now.month, now.day - 1);
-
-        for (String stamp in data['completedActions'].reversed.toList()) {
-          final splitStamp = stamp.split(',');
-          DateTime dt = DateTime.fromMillisecondsSinceEpoch(
-            int.parse(splitStamp[0]),
-          );
-          int actionID = int.parse(splitStamp[1]);
-
-          // Check for actions completed today.
-          if (now.day == dt.day &&
-              now.month == dt.month &&
-              now.year == dt.year) {
-            actionsCompletedToday.add([dt, actionID]);
-          }
-
-          // Check for streak.
-          if (nextStreakDate.day == dt.day &&
-              nextStreakDate.month == dt.month &&
-              nextStreakDate.year == dt.year) {
-            streak += 1;
-            nextStreakDate.subtract(const Duration(days: 1));
-          }
-
-          actionsCompleted.add([dt, actionID]);
-        }
-
-        accountData = AccountData(
-          data['accountID'],
-          data['firstName'],
-          data['lastName'],
-          streak,
-          actionsCompleted,
-          actionsCompletedToday,
-        );
-      });
-
-      final List<CarbonAction> actions = [];
-
-      // Process actions data.
-      await db.collection("carbon-actions").get().then((event) {
-        for (var doc in event.docs) {
-          var data = doc.data();
-          actions.add(
-            CarbonAction(
-                data['id'],
-                data['actionName'],
-                data['actionDescription'],
-                data['category'],
-                data['carbonScore'],
-                data['amountSavedAnnually']),
-          );
-        }
-      });
-
-      // Move to home page.
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => LandingPage(
-            accountData: accountData,
-            actions: actions,
-          ),
-        ),
+    try {
+      userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
       );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Wrong username/password.')));
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('No user found for that email.')));
+      } else if (e.code == 'wrong-password') {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Wrong password provided for that user.')));
+      } else {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text('Error occurred.')));
+      }
+      return;
     }
+
+    // Get account data.
+    AccountData accountData = AccountData('', '', '', 0, [], []);
+
+    await db
+        .collection("users")
+        .where('accountID', isEqualTo: userCredential.user?.uid)
+        .get()
+        .then((snapshot) {
+      QueryDocumentSnapshot doc = snapshot.docs[0];
+      Map data = doc.data() as Map;
+
+      // Process actions.
+      List<List<Object>> actionsCompleted = [];
+      List<List<Object>> actionsCompletedToday = [];
+      DateTime now = DateTime.now();
+
+      int streak = 0;
+      DateTime nextStreakDate = DateTime(now.year, now.month, now.day - 1);
+
+      for (String stamp in data['completedActions'].reversed.toList()) {
+        final splitStamp = stamp.split(',');
+        DateTime dt = DateTime.fromMillisecondsSinceEpoch(
+          int.parse(splitStamp[0]),
+        );
+        int actionID = int.parse(splitStamp[1]);
+
+        // Check for actions completed today.
+        if (now.day == dt.day && now.month == dt.month && now.year == dt.year) {
+          actionsCompletedToday.add([dt, actionID]);
+        }
+
+        // Check for streak.
+        if (nextStreakDate.day == dt.day &&
+            nextStreakDate.month == dt.month &&
+            nextStreakDate.year == dt.year) {
+          streak += 1;
+          nextStreakDate = nextStreakDate.subtract(const Duration(days: 1));
+        }
+
+        actionsCompleted.add([dt, actionID]);
+      }
+
+      accountData = AccountData(
+        data['accountID'],
+        data['firstName'],
+        data['lastName'],
+        streak,
+        actionsCompleted,
+        actionsCompletedToday,
+      );
+    });
+
+    final List<CarbonAction> actions = [];
+
+    // Process actions data.
+    await db.collection("carbon-actions").get().then((event) {
+      for (var doc in event.docs) {
+        var data = doc.data();
+        actions.add(
+          CarbonAction(
+              data['id'],
+              data['actionName'],
+              data['actionDescription'],
+              data['category'],
+              data['carbonScore'],
+              data['amountSavedAnnually']),
+        );
+      }
+    });
+
+    // Move to home page.
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LandingPage(
+          accountData: accountData,
+          actions: actions,
+        ),
+      ),
+    );
   }
 
   @override
@@ -129,8 +144,8 @@ class _LoginPageState extends State<LoginPage> {
                 child: Image.asset('assets/hero.png'),
               ),
               InputField(
-                title: 'Username',
-                controller: usernameController,
+                title: 'Email',
+                controller: emailController,
               ),
               const SizedBox(height: 20.0),
               InputField(
