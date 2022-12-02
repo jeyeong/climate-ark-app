@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:canvas/components/profile/profile_picture.dart';
 import 'package:canvas/components/profile/selection.dart';
 import 'package:canvas/components/general/logo.dart';
+import 'package:canvas/components/general/app_bar.dart';
 
 class ProfilePage extends StatelessWidget {
   final String name;
@@ -12,15 +13,15 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: primaryDarkColor,
-        title: const Logo(width: 60.0),
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(50),
+        child: JanusAppBar(),
       ),
       body: SafeArea(
-        child: Center(
+        child: SingleChildScrollView(
           child: Container(
             color: primaryWhite,
-            width: 400.0,
+            width: double.infinity,
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
