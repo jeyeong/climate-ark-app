@@ -19,7 +19,7 @@ class FunFact extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: height,
+      // height: height,
       padding: EdgeInsets.fromLTRB(30.0, 5.0, 30.0, 5.0),
       // margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
       child: Center(
