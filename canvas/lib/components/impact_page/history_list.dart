@@ -31,7 +31,6 @@ class HistoryListCard extends StatelessWidget {
       String score = "+" + completedActions[i].carbonScore.toString();
       data2.add([actionName, score, dateStr]);
     });
-    data2 = data2.reversed.toList();
 
     return Container(
         width: double.infinity,

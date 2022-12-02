@@ -54,13 +54,13 @@ class _ImpactPageState extends State<ImpactPage> {
 
     return Scaffold(
         body: SafeArea(
-            child: Center(
+            child: SingleChildScrollView(
                 child: Container(
       child: Column(
         children: [
           Container(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height / 2 - 100,
+            // height: MediaQuery.of(context).size.height / 2 - 100,
             decoration: const BoxDecoration(
               color: Color(0xff08b184),
               shape: BoxShape.rectangle,
