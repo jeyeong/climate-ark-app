@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:canvas/components/profile/profile_picture.dart';
 import 'package:canvas/components/profile/selection.dart';
 import 'package:canvas/components/general/logo.dart';
+import 'package:canvas/components/general/button.dart';
 import 'package:canvas/components/general/app_bar.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -79,6 +80,14 @@ class ProfilePage extends StatelessWidget {
                           Icons.info,
                           color: primaryColor,
                         )),
+                    const SizedBox(height: 20.0),
+                    Button(
+                      text: 'Log Out',
+                      callback: () {
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                      },
+                    ),
                   ],
                 ),
               ),

@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:canvas/constants.dart';
 import 'package:canvas/views/profile_page.dart';
+
 class ProfilePic extends StatelessWidget {
-  const ProfilePic({Key? key}) : super(key: key);
+  final String? firstName;
+  final String? lastName;
+
+  const ProfilePic({
+    Key? key,
+    required this.firstName,
+    required this.lastName,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +26,9 @@ class ProfilePic extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ProfilePage(name: 'John Doe')));
+                          builder: (context) => ProfilePage(
+                                name: '$firstName $lastName',
+                              )));
                 },
                 child: Container(
                     decoration: BoxDecoration(
@@ -36,12 +46,26 @@ class ProfilePic extends StatelessWidget {
 }
 
 class JanusAppBar extends StatelessWidget {
-  const JanusAppBar({Key? key}) : super(key: key);
+  final bool showProfilePic;
+  final String? firstName;
+  final String? lastName;
+
+  const JanusAppBar({
+    Key? key,
+    this.showProfilePic = false,
+    this.firstName,
+    this.lastName,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: const ProfilePic(),
+      leading: showProfilePic
+          ? ProfilePic(
+              firstName: firstName,
+              lastName: lastName,
+            )
+          : null,
       title: const Text(
         'J A N U S',
         style: TextStyle(

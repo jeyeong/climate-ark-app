@@ -123,9 +123,13 @@ class _LandingPageState extends State<LandingPage> {
 
     return Scaffold(
       backgroundColor: primaryWhite,
-      appBar: const PreferredSize(
+      appBar: PreferredSize(
         preferredSize: Size.fromHeight(50),
-        child: JanusAppBar(),
+        child: JanusAppBar(
+          showProfilePic: true,
+          firstName: widget.accountData.firstName,
+          lastName: widget.accountData.lastName,
+        ),
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
