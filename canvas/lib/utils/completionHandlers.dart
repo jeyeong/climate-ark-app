@@ -2,10 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 final db = FirebaseFirestore.instance;
 
-void addCompletedActionToDB(String completedActionStamp) async {
+void addCompletedActionToDB(
+    String completedActionStamp, String accountID) async {
   await db
       .collection("users")
-      .where('accountID', isEqualTo: 123)
+      .where('accountID', isEqualTo: accountID)
       .get()
       .then((snapshot) async {
     QueryDocumentSnapshot doc = snapshot.docs[0];
@@ -16,10 +17,11 @@ void addCompletedActionToDB(String completedActionStamp) async {
   });
 }
 
-void removeCompletedActionFromDB(String completedActionStamp) async {
+void removeCompletedActionFromDB(
+    String completedActionStamp, String accountID) async {
   await db
       .collection("users")
-      .where('accountID', isEqualTo: 123)
+      .where('accountID', isEqualTo: accountID)
       .get()
       .then((snapshot) async {
     QueryDocumentSnapshot doc = snapshot.docs[0];

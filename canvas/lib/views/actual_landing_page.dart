@@ -51,7 +51,7 @@ class _LandingPageState extends State<LandingPage> {
     });
 
     // Add to DB.
-    addCompletedActionToDB(completedActionStamp);
+    addCompletedActionToDB(completedActionStamp, __accountData.accountID);
   }
 
   // Handler for removing completed action.
@@ -88,7 +88,7 @@ class _LandingPageState extends State<LandingPage> {
     });
 
     // Remove from DB.
-    removeCompletedActionFromDB(completedActionStamp);
+    removeCompletedActionFromDB(completedActionStamp, __accountData.accountID);
   }
 
   // Navigation bar logic.
