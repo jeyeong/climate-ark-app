@@ -112,7 +112,8 @@ class _LoginPageState extends State<LoginPage> {
               data['actionDescription'],
               data['category'],
               data['carbonScore'],
-              data['amountSavedAnnually']),
+              data['amountSavedAnnually'],
+              data['image']),
         );
       }
     });

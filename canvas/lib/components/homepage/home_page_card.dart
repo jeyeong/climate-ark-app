@@ -25,8 +25,9 @@ class _HomeImageState extends State<HomeImage> {
           padding: const EdgeInsets.all(16.0),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20.0),
-            child: Image(
-              image: AssetImage(widget.imageFile),
+            child: Image.asset(
+              widget.imageFile,
+              fit: BoxFit.fill,
             ),
           ),
         ));
@@ -222,7 +223,7 @@ class _HomePageCardState extends State<HomePageCard> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  HomeImage(imageFile: 'assets/images/laptop.jpg'),
+                  HomeImage(imageFile: widget.action.image),
                   Expanded(
                     flex: 1,
                     child: HomeText(

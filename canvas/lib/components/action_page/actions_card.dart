@@ -83,7 +83,7 @@ class _ActionsCardState extends State<ActionsCard> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.asset(
-                      'assets/carpool.jpg',
+                      widget.action.image,
                       fit: BoxFit.fill,
                     ),
                   ),

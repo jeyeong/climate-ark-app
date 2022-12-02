@@ -25,6 +25,7 @@ class CarbonAction {
   final String category;
   final double carbonScore;
   final int amountSavedAnnually;
+  final String image;
 
   CarbonAction(
     this.id,
@@ -33,6 +34,7 @@ class CarbonAction {
     this.category,
     this.carbonScore,
     this.amountSavedAnnually,
+    this.image
   );
 }
 
@@ -66,6 +68,7 @@ List<CarbonAction> fakeActions = [
     "Commute",
     900,
     1,
+    "assets/carpool.jpg",
   ),
   CarbonAction(
     1,
@@ -74,6 +77,7 @@ List<CarbonAction> fakeActions = [
     "Water",
     64,
     1,
+    "assets/cold_washing.jpg",
   ),
   CarbonAction(
     2,
@@ -82,6 +86,7 @@ List<CarbonAction> fakeActions = [
     "Commute",
     32,
     1,
+    "assets/drive_slow.jpeg",
   ),
   CarbonAction(
     3,
@@ -90,6 +95,7 @@ List<CarbonAction> fakeActions = [
     "Household",
     400,
     1,
+    "assets/dry_clothes.jpg",
   ),
   CarbonAction(
     4,
@@ -98,6 +104,7 @@ List<CarbonAction> fakeActions = [
     "Water",
     99,
     1,
+    "assets/dual_flush.jpg",
   ),
   CarbonAction(
     5,
@@ -106,6 +113,7 @@ List<CarbonAction> fakeActions = [
     "Food",
     1,
     1,
+    "assets/less_meat.jpg",
   ),
   CarbonAction(
     6,
@@ -114,6 +122,7 @@ List<CarbonAction> fakeActions = [
     "Food",
     1,
     1,
+    "assets/less_meat.jpg",
   ),
   CarbonAction(
     7,
@@ -122,6 +131,7 @@ List<CarbonAction> fakeActions = [
     "Electronics",
     30,
     1,
+    "assets/microwave_less.jpg",
   ),
   CarbonAction(
     8,
@@ -130,6 +140,7 @@ List<CarbonAction> fakeActions = [
     "Food",
     470,
     1,
+    "assets/less_food_waste.jpeg",
   ),
   CarbonAction(
     9,
@@ -138,6 +149,7 @@ List<CarbonAction> fakeActions = [
     "Water",
     60,
     1,
+    "assets/harvest_rainwater.jpg",
   ),
   CarbonAction(
     10,
@@ -146,6 +158,7 @@ List<CarbonAction> fakeActions = [
     "Electronics",
     200,
     1,
+    "assets/laptop.jpg",
   ),
   CarbonAction(
     11,
@@ -154,6 +167,7 @@ List<CarbonAction> fakeActions = [
     "Commute",
     122,
     1,
+    "assets/longer_travel.jpg",
   ),
   CarbonAction(
     12,
@@ -162,6 +176,7 @@ List<CarbonAction> fakeActions = [
     "Plastic",
     2,
     1,
+    "assets/reusable_water_bottle.jpg",
   ),
   CarbonAction(
     13,
@@ -170,6 +185,7 @@ List<CarbonAction> fakeActions = [
     "Electronics",
     135,
     1,
+    "assets/unplug.jpg",
   ),
   CarbonAction(
     14,
@@ -178,6 +194,7 @@ List<CarbonAction> fakeActions = [
     "Electronics",
     200,
     1,
+    "assets/rechargable_batteries.jpg",
   ),
   CarbonAction(
     15,
@@ -186,6 +203,7 @@ List<CarbonAction> fakeActions = [
     "Paper",
     1.8,
     1,
+    "assets/recycle_paper.jpg",
   ),
   CarbonAction(
     16,
@@ -194,6 +212,7 @@ List<CarbonAction> fakeActions = [
     "Plastic",
     12,
     1,
+    "assets/reusable_bags.jpeg",
   ),
   CarbonAction(
     17,
@@ -202,6 +221,7 @@ List<CarbonAction> fakeActions = [
     "Consumables",
     1,
     1,
+    "assets/shop_less.jpg",
   ),
   CarbonAction(
     18,
@@ -210,6 +230,7 @@ List<CarbonAction> fakeActions = [
     "Commute",
     94,
     1,
+    "assets/take_bus.jpg",
   ),
   CarbonAction(
     19,
@@ -218,6 +239,7 @@ List<CarbonAction> fakeActions = [
     "Electronics",
     200,
     1,
+    "assets/close_laptop.jpg",
   ),
   CarbonAction(
     20,
@@ -226,6 +248,7 @@ List<CarbonAction> fakeActions = [
     "Electronics",
     984,
     1,
+    "assets/solar_energy.jpg",
   ),
   CarbonAction(
     21,
@@ -234,6 +257,7 @@ List<CarbonAction> fakeActions = [
     "Electronics",
     617,
     1,
+    "assets/solar_energy.jpg",
   ),
   CarbonAction(
     22,
@@ -242,6 +266,7 @@ List<CarbonAction> fakeActions = [
     "Electronics",
     300,
     1,
+    "assets/led_lightbulbs.jpg",
   ),
   CarbonAction(
     23,
@@ -250,6 +275,7 @@ List<CarbonAction> fakeActions = [
     "Electronics",
     1200,
     1,
+    "assets/take_stairs.jpg",
   ),
   CarbonAction(
     24,
@@ -258,6 +284,7 @@ List<CarbonAction> fakeActions = [
     "Commute",
     140,
     1,
+    "assets/car_tires.jpg",
   ),
   CarbonAction(
     25,
@@ -266,6 +293,7 @@ List<CarbonAction> fakeActions = [
     "Commute",
     122,
     1,
+    "assets/switch_off_ignition.jpeg",
   ),
   CarbonAction(
     26,
@@ -274,6 +302,7 @@ List<CarbonAction> fakeActions = [
     "Electronics",
     200,
     1,
+    "assets/light_switch.jpg",
   ),
   CarbonAction(
     27,
@@ -282,6 +311,7 @@ List<CarbonAction> fakeActions = [
     "Paper",
     5,
     1,
+    "assets/scrap_paper.jpg",
   ),
   CarbonAction(
     28,
@@ -290,6 +320,7 @@ List<CarbonAction> fakeActions = [
     "Commute",
     47,
     1,
+    "assets/walking.jpg",
   ),
   CarbonAction(
     29,
@@ -298,6 +329,7 @@ List<CarbonAction> fakeActions = [
     "Water",
     189,
     1,
+    "assets/efficient_shower.jpg",
   ),
   CarbonAction(
     30,
@@ -306,6 +338,7 @@ List<CarbonAction> fakeActions = [
     "Electronics",
     687,
     1,
+    "assets/solar_heater.jpg",
   ),
   CarbonAction(
     31,
@@ -314,6 +347,7 @@ List<CarbonAction> fakeActions = [
     "Electronics",
     197,
     1,
+    "assets/AC.jpg",
   ),
   CarbonAction(
     32,
@@ -322,6 +356,7 @@ List<CarbonAction> fakeActions = [
     "Electronics",
     46,
     1,
+    "assets/fan.jpg",
   ),
   CarbonAction(
     33,
@@ -330,5 +365,6 @@ List<CarbonAction> fakeActions = [
     "Electronics",
     101,
     1,
+    "assets/refrigerator.jpg",
   ),
 ];
