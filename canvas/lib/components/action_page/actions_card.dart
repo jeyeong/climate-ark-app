@@ -10,15 +10,58 @@ class ActionsCard extends StatefulWidget {
   const ActionsCard({
     Key? key,
     required this.action,
+    required this.completed,
+    required this.completedStamp,
+    required this.addCompletedAction,
+    required this.removeCompletedAction,
   }) : super(key: key);
 
   final CarbonAction action;
+  final bool completed;
+  final String completedStamp;
+  final Function addCompletedAction;
+  final Function removeCompletedAction;
 
   @override
   State<ActionsCard> createState() => _ActionsCardState();
 }
 
 class _ActionsCardState extends State<ActionsCard> {
+  Container generateCompletedButton() {
+    if (widget.completed) {
+      return Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16.0),
+            color: primaryDarkColor,
+          ),
+          child: ListTile(
+            leading: const Icon(Icons.check, color: primaryLightColor),
+            title: const Text('Completed',
+                style: TextStyle(
+                    color: primaryLightColor, fontWeight: FontWeight.bold)),
+            onTap: () {
+              widget.removeCompletedAction(widget.completedStamp);
+            },
+          ));
+    } else {
+      return Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16.0),
+          color: Color.fromARGB(255, 209, 244, 217),
+        ),
+        child: ListTile(
+          leading: const Icon(Icons.check, color: primaryDarkColor),
+          title: const Text('Complete',
+              style: TextStyle(
+                  color: primaryDarkColor, fontWeight: FontWeight.bold)),
+          onTap: () {
+            widget.addCompletedAction(widget.action.id);
+          },
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -85,20 +128,9 @@ class _ActionsCardState extends State<ActionsCard> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Expanded(
-                    flex: 7,
-                    child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16.0),
-                          color: primaryDarkColor,
-                        ),
-                        child: ListTile(
-                          leading: const Icon(Icons.check, color: primaryWhite),
-                          title: const Text('Completed',
-                              style: TextStyle(
-                                  color: primaryWhite,
-                                  fontWeight: FontWeight.bold)),
-                          onTap: () {},
-                        ))),
+                  flex: 7,
+                  child: generateCompletedButton(),
+                ),
                 const Expanded(
                     flex: 1,
                     child: SizedBox(

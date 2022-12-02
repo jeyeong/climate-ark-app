@@ -112,6 +112,8 @@ class _LandingPageState extends State<LandingPage> {
       ActionPage(
         accountData: __accountData,
         actions: fakeActions,
+        addCompletedAction: addCompletedAction,
+        removeCompletedAction: removeCompletedAction,
       ),
       ImpactPage(
         accountData: __accountData,

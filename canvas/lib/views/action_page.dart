@@ -11,10 +11,14 @@ class ActionPage extends StatefulWidget {
     Key? key,
     required this.accountData,
     required this.actions,
+    required this.addCompletedAction,
+    required this.removeCompletedAction,
   }) : super(key: key);
 
   final AccountData accountData;
   final List<CarbonAction> actions;
+  final Function addCompletedAction;
+  final Function removeCompletedAction;
 
   @override
   State<ActionPage> createState() => _ActionPageState();
@@ -42,6 +46,13 @@ class _ActionPageState extends State<ActionPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Create map of action ID : stamp.
+    Map<int, String> completionStampMap = Map.fromIterable(
+      widget.accountData.actionsCompletedToday,
+      key: (element) => element[1] as int,
+      value: (element) => '${element[0].millisecondsSinceEpoch},${element[1]}',
+    );
+
     /* Some function that filters actions to show based on search query and category filter. */
     late List<CarbonAction> actionsToShow = widget.actions
         .where((i) =>
@@ -81,6 +92,12 @@ class _ActionPageState extends State<ActionPage> {
               itemBuilder: (BuildContext context, int index) {
                 return ActionsCard(
                   action: actionsToShow[index],
+                  completed:
+                      completionStampMap.containsKey(actionsToShow[index].id),
+                  completedStamp:
+                      completionStampMap[actionsToShow[index].id] ?? '',
+                  addCompletedAction: widget.addCompletedAction,
+                  removeCompletedAction: widget.removeCompletedAction,
                 );
               },
             ),
@@ -90,40 +107,3 @@ class _ActionPageState extends State<ActionPage> {
     );
   }
 }
-
-// class ActionPage extends StatelessWidget {
-//   const ActionPage({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         //replace line 15 Stack with Column to see scrollable functionality
-//         body: Column(children: [
-//       Container(
-//           height: MediaQuery.of(context).size.height * 0.15,
-//           //height: 110,
-//           width: double.infinity,
-//           //color: Colors.transparent,
-//           decoration: BoxDecoration(
-//               color: primaryColor,
-//               borderRadius: BorderRadius.only(
-//                   bottomLeft: Radius.circular(10.0),
-//                   bottomRight: Radius.circular(10.0))),
-//           //SearchBar(),
-//           child: Column(children: [
-//             Positioned.fill(child: SearchBar()),
-//             Positioned(top: 20, child: SuggestionBox()),
-//             Positioned(child: ActionsCard()),
-//           ]))
-//     ]));
-//     // body: new Container(
-//     //     color: primaryColor,
-//     //     child: Column(children: [
-//     //       //SearchBar(),
-//     //       Positioned.fill(child: SearchBar()),
-//     //       Positioned(top: 60, child: SuggestionBox()),
-//     //       Positioned(child: ActionsCard())
-//     //     ]))
-//     //     );
-//   }
-// }
