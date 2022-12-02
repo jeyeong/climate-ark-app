@@ -57,8 +57,10 @@ class _ActionPageState extends State<ActionPage> {
     late List<CarbonAction> actionsToShow = widget.actions
         .where((i) =>
             (category.isEmpty || category.contains(i.category)) &&
-            (i.actionDescription.contains(searchQuery) ||
-                i.actionName.contains(searchQuery)))
+            (i.actionDescription
+                    .toLowerCase()
+                    .contains(searchQuery.toLowerCase()) ||
+                i.actionName.toLowerCase().contains(searchQuery.toLowerCase())))
         .toList();
 
     return Scaffold(
