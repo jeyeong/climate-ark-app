@@ -70,24 +70,24 @@ class _ImpactPageState extends State<ImpactPage> {
             ),
             child: Column(
               children: [
-                LeafBox(numSaved: 70, size: 110),
+                const LeafBox(numSaved: 70, size: 110),
                 Text.rich(TextSpan(
                   text: '',
                   children: <TextSpan>[
                     TextSpan(
                         text: carbonSaved.toString() + ' ',
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
                             color: primaryWhite,
                             fontFamily: "Poppins")),
-                    TextSpan(
+                    const TextSpan(
                         text: 'Kgs CO',
                         style: TextStyle(
                             fontSize: 20,
                             color: primaryWhite,
                             fontFamily: "Poppins")),
-                    TextSpan(
+                    const TextSpan(
                         text: '2',
                         style: TextStyle(
                             fontSize: 10,
@@ -95,7 +95,7 @@ class _ImpactPageState extends State<ImpactPage> {
                             fontFamily: "Poppins")),
                   ],
                 )),
-                Text("Carbon Saved",
+                const Text("Carbon Saved",
                     style: TextStyle(
                         fontSize: 15,
                         color: primaryWhite,
@@ -104,7 +104,7 @@ class _ImpactPageState extends State<ImpactPage> {
                     text:
                         "Going great! You saved emissions worth\n a flight between Delhi and Banglore",
                     height: 70.0,
-                    icon: Icon(Icons.airplanemode_on),
+                    icon: const Icon(Icons.airplanemode_on),
                     col: primaryLighterColor),
               ],
             ),
