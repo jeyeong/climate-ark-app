@@ -1,5 +1,5 @@
 class AccountData {
-  int accountID;
+  String accountID;
 
   String firstName;
   String lastName;
@@ -37,7 +37,7 @@ class CarbonAction {
 }
 
 AccountData fakeAccountData = AccountData(
-  123,
+  '123',
   'James',
   'Soh',
   5,

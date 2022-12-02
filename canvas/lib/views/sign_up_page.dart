@@ -8,12 +8,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 final db = FirebaseFirestore.instance;
 
-final user = <String, dynamic>{
-  "first": "Ada",
-  "last": "Lovelace",
-  "born": 1815
-};
-
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
 
@@ -21,7 +15,6 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
 
-    TextEditingController usernameController = TextEditingController();
     TextEditingController emailController = TextEditingController();
     TextEditingController firstNameController = TextEditingController();
     TextEditingController lastNameController = TextEditingController();
@@ -29,26 +22,58 @@ class SignUpPage extends StatelessWidget {
     TextEditingController confirmPasswordController = TextEditingController();
 
     void checkSignUpCredentials() async {
+      if (emailController.text == '' ||
+          firstNameController.text == '' ||
+          lastNameController.text == '' ||
+          passwordController.text == '' ||
+          confirmPasswordController.text == '') {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('One or more fields is empty.')));
+        return;
+      }
+
       if (passwordController.text != confirmPasswordController.text) {
         ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Passwords do not match.')));
         return;
       }
 
+      try {
+        final UserCredential credential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+
+        final String uid = credential.user!.uid;
+
+        try {
+          await db.collection("users").add({
+            'accountID': uid,
+            'firstName': firstNameController.text,
+            'lastName': lastNameController.text,
+            'completedActions': [],
+          });
+        } catch (e) {
+          print(e);
+          return;
+        }
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text('The password provided is too weak.')));
+        } else if (e.code == 'email-already-in-use') {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text('The account already exists for that email.')));
+        } else {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(e.code)));
+        }
+        return;
+      }
+
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text('Account created.')));
-
-      // try {
-      //   final credential =
-      //       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      //     email: 'test@email.com',
-      //     password: '123456',
-      //   );
-
-      //   print(credential);
-      // } catch (e) {
-      //   print(e);
-      // }
 
       Navigator.pop(context);
     }
@@ -86,11 +111,6 @@ class SignUpPage extends StatelessWidget {
                   controller: lastNameController,
                 ),
                 const SizedBox(height: 60.0),
-                InputField(
-                  title: 'Username',
-                  controller: usernameController,
-                ),
-                const SizedBox(height: 20.0),
                 InputField(
                   title: 'Email',
                   controller: emailController,
