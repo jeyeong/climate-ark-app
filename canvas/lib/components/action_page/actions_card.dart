@@ -115,7 +115,7 @@ class _ActionsCardState extends State<ActionsCard> {
                     child: Row(children: [
                       Icon(Icons.energy_savings_leaf_rounded,
                           color: primaryColor),
-                      Text(" 24",
+                      Text(widget.action.carbonScore.toString(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
